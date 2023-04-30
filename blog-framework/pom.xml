@@ -24,8 +24,8 @@
 
         <!--Mapper文件包扫描依赖-->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
+            <groupId>com.sky</groupId>
+            <artifactId>blog-common</artifactId>
         </dependency>
     </dependencies>
 
