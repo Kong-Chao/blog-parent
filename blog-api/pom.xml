@@ -36,9 +36,16 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- 业务模块 -->
         <dependency>
             <groupId>com.sky</groupId>
             <artifactId>blog-business</artifactId>
+        </dependency>
+
+        <!-- 核心模块-->
+        <dependency>
+            <groupId>com.sky</groupId>
+            <artifactId>blog-framework</artifactId>
         </dependency>
     </dependencies>
 

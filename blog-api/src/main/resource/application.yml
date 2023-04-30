@@ -14,7 +14,14 @@ spring:
       url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
       username: root
       password: root
-      max-active:
 
 #MyBatis-Plus配置
+mybatis-plus:
+  configuration:
+#    日志输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 表名前缀
+      table-prefix: ms_
 
