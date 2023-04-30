@@ -10,12 +10,6 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>blog</name>
-    <!--申明为父工程-->
-    <packaging>pom</packaging>
-    <modules>
-        <module>blog-api</module>
-        <module>blog-common</module>
-    </modules>
     <!--定义属性版本1.8-->
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -28,7 +22,18 @@
         <lombok.version>1.18.24</lombok.version>
         <java.version>1.8</java.version>
         <blog.version>1.0</blog.version>
+        <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
+        <commons.io.version>2.11.0</commons.io.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
     </properties>
+
+    <!--申明为父工程-->
+    <packaging>pom</packaging>
+    <modules>
+        <module>blog-api</module>
+        <module>blog-common</module>
+        <module>blog-business</module>
+    </modules>
 
     <!--依赖申明-->
     <dependencyManagement>
@@ -36,47 +41,10 @@
             <!-- springboot启动器-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>2.5.14</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- log4j2日志依赖-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-log4j2</artifactId>
-            </dependency>
-
-            <!--aop-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-aop</artifactId>
-            </dependency>
-
-            <!-- 邮件依赖-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-mail</artifactId>
-            </dependency>
-
-           <!-- web启动器-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-
-            <!--Test测试-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-
-            <!--redis依赖-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
             </dependency>
 
             <dependency>
@@ -92,18 +60,6 @@
                 <version>${druid.version}</version>
             </dependency>
 
-            <!--属性文件不提示有用的提示依赖-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-configuration-processor</artifactId>
-                <optional>true</optional>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${autoconfigure.version}</version>
-            </dependency>
 
             <!-- MyBatis-Plus依赖包-->
             <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
@@ -113,12 +69,40 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
-
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+            </dependency>
+
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- collections工具类 -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons.collections.version}</version>
+            </dependency>
+
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!--  时间处理类-->
@@ -132,6 +116,13 @@
             <dependency>
                 <groupId>com.sky</groupId>
                 <artifactId>blog-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <!-- 业务模块 -->
+            <dependency>
+                <groupId>com.sky</groupId>
+                <artifactId>blog-business</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
