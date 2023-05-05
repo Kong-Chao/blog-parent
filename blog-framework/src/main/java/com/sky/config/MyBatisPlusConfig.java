@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @create 2023-04-30 15:57
  */
 @Configuration
-@MapperScan("com.sky.mapper")
+@MapperScan("com.sky.business.mapper")
 public class MyBatisPlusConfig {
 
     //使用MybatisPlus定义分页插件
