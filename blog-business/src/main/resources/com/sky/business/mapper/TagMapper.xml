@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.business.mapper.TagMapper">
+
+    <!--List<Tag> findTagsByArticleId(Long articleId);-->
+    <select id="findTagsByArticleId" parameterType="long" resultType="com.sky.business.pojo.Tag">
+        SELECT t.id, t.tag_name as tagName FROM ms_tag t
+            WHERE   t.id IN (SELECT tag_id  FROM  ms_article_tag a  WHERE a.article_id = #{articleId})
+    </select>
+</mapper>

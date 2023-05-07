@@ -10,20 +10,20 @@ import org.springframework.data.annotation.Id;
  * @create 2023-05-06 18:57
  */
 @Data
-@TableName("ms_tag")
-public class Tag {
+@TableName("article_tag")
+public class ArticleTag {
     @Id
     private Long id;
 
     /**
-     * 账户
+     * 文章id
      */
-    @TableField("avatar")
-    private String avatar;
+    @TableField("article_id")
+    private Integer articleId;
 
     /**
-     * 是否是管理员
+     * 标签id
      */
-    @TableField("tag_name")
-    private String tagName;
+    @TableField("tag_id")
+    private Integer tagId;
 }
