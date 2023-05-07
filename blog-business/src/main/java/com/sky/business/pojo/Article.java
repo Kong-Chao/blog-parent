@@ -16,6 +16,10 @@ import java.util.Date;
 @TableName("ms_article")
 public class Article {
 
+    public static final int Article_TOP = 1;
+
+    public static final int Article_Common = 0;
+
     @Id
     private Long id;
 
@@ -35,13 +39,13 @@ public class Article {
      * 评论数量
      */
     @TableField("comment_counts")
-    private int commentCounts;
+    private Integer commentCounts;
 
     /**
      * 浏览数量
      */
     @TableField("view_counts")
-    private int viewCounts;
+    private Integer viewCounts;
 
     /**
      *作者id
