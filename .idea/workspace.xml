@@ -4,15 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7de98296-3c89-4ea1-b4da-3dfc0eea06f5" name="Changes" comment="配置文件更新">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/pom.xml" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="更新文章列表查询">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/constant/HttpStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/CommonResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/BlogApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-api/src/main/resource/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/src/main/resource/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/controller/ArticleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/ArticleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/ArticleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/SysUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/SysUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/TagMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/TagMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/config/MyBatisPlusConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/config/WebMVCConfig.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +41,14 @@
       <option value="module" />
     </option>
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="OpenAPI" />
+        <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -37,83 +56,103 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b7aad837-6bb8-44d1-b0de-2cd8ead85d0e" />
+        <option name="url" value="git@github.com:/YeXin-Baby/blog-parent.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../software/maven/apache-maven-3.6.1" />
-        <option name="useMavenConfig" value="true" />
+        <option name="customMavenHome" value="$PROJECT_DIR$/../../../software/maven/apache-maven-3.6.1" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="useMavenConfig" value="false" />
         <option name="userSettingsFile" value="D:\software\maven\apache-maven-3.6.1\conf\settings.xml" />
-        <option name="workOffline" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-    <option name="enabledProfiles">
-      <list>
-        <option value="jdk-1.8" />
-      </list>
-    </option>
   </component>
-  <component name="ProjectId" id="2P4HqhwFKeclK0tSIKqsLjIk3er" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2PN7cWulL8jxo2jpPL1evcNCn3D" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/lib/mybatis-plus-boot-starter-3.4.2.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.43793103&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;eb8d9c512c90dcc2bcd87635ecbadba3&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BlogApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Code/Java_code/code/blog-parent/blog-common/src/main/java/com/sky/common/core/domain/enyity",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43793103",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "d0d308e48700fbb8487287cea5a374e5",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Properties&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\code\blog-parent\blog-api\src\main\resource" />
-      <recent name="D:\WorkSpace\code\blog-parent\blog-api\blog-api\src\main\resources" />
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core\domain\enyity" />
+      <recent name="D:\WorkSpace\code\blog-parent\.idea" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\WorkSpace\code\blog-parent\blog-api\src\main\resource" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sky.common.core.domain" />
+      <recent name="com.sky.common.constant" />
+      <recent name="com.sky.business.pojo" />
+      <recent name="com.sky.business.vo" />
     </key>
   </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn install:install-file -DgroupId=com.baomidou -DartifactId=mybatis-plus-boot-start -Dversion=3.4.2 -Dpackaging=jar -Dfile=mybatis-plus-boot-starter-3.4.2.jar" />
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="blog-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.sky.BlogApplication" />
       <extension name="coverage">
@@ -126,73 +165,103 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="SwaggerCodegen">
-      <option name="activeConfigurationType" value="FILE" />
-      <option name="configurationPath" value="" />
-      <option name="customJreEnabled" value="false" />
-      <option name="customTemplatesPath" value="" />
-      <option name="enableDebugLogging" value="false" />
-      <option name="generateToPath" value="D:\WorkSpace\code\blog-parent\gen" />
-      <option name="generationParameters">
-        <list />
-      </option>
-      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
-      <option name="jdkPath" value="" />
-      <option name="language" value="java" />
-      <option name="specificationPath" value="D:\WorkSpace\code\blog-parent\blog-api\blog-api\src\main\resources\application.yaml" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.BlogApplication" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7de98296-3c89-4ea1-b4da-3dfc0eea06f5" name="Changes" comment="" />
-      <created>1682709627270</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1682709627270</updated>
-      <workItem from="1682709628081" duration="608000" />
-      <workItem from="1682739936034" duration="3379000" />
-      <workItem from="1682743330001" duration="6227000" />
-      <workItem from="1682750619402" duration="13466000" />
-      <workItem from="1682764122285" duration="2858000" />
-      <workItem from="1682766996064" duration="1454000" />
-      <workItem from="1682768465113" duration="777000" />
-      <workItem from="1682769254728" duration="134000" />
-      <workItem from="1682769506337" duration="2186000" />
-      <workItem from="1682772856509" duration="2300000" />
-      <workItem from="1682775171153" duration="1055000" />
-    </task>
-    <task id="LOCAL-00001" summary="更新配置文件">
-      <created>1682709886106</created>
+    <task id="LOCAL-00001" summary="配置文件更新">
+      <created>1682825721377</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1682709886106</updated>
+      <updated>1682825721377</updated>
     </task>
-    <task id="LOCAL-00002" summary="配置文件更新">
-      <created>1682764063323</created>
+    <task id="LOCAL-00002" summary="添加MyBatis配置文件">
+      <created>1682843173877</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1682764063323</updated>
+      <updated>1682843173877</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="添加前后端跨域请求问题配置文件">
+      <created>1682846311373</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682846311373</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="添加前后端跨域请求问题配置文件" />
+      <created>1683285764276</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683285764276</updated>
+      <workItem from="1683285765596" duration="5019000" />
+      <workItem from="1683370436527" duration="6448000" />
+      <workItem from="1683377015071" duration="7000" />
+      <workItem from="1683436956954" duration="9341000" />
+      <workItem from="1706498678959" duration="2719000" />
+      <workItem from="1708391516196" duration="56000" />
+      <workItem from="1712642940376" duration="3398000" />
+      <workItem from="1712712237360" duration="18710000" />
+    </task>
+    <task id="LOCAL-00004" summary="添加实体类">
+      <created>1683292301676</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683292301676</updated>
+    </task>
+    <task id="LOCAL-00005" summary="更新列表查询">
+      <created>1683437435223</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1683437435223</updated>
+    </task>
+    <task id="LOCAL-00006" summary="更新文章列表查询">
+      <created>1683457013877</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683457013877</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="更新配置文件" />
     <MESSAGE value="配置文件更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="配置文件更新" />
+    <MESSAGE value="添加MyBatis配置文件" />
+    <MESSAGE value="添加前后端跨域请求问题配置文件" />
+    <MESSAGE value="添加实体类" />
+    <MESSAGE value="更新列表查询" />
+    <MESSAGE value="更新文章列表查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新文章列表查询" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

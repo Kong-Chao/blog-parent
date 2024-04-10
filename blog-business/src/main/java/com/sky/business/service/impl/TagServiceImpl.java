@@ -20,6 +20,7 @@ public class TagServiceImpl implements TagService {
 
     @Autowired
     private TagMapper tagMapper;
+
     @Override
     public List<TagVo> findTagsByArticleId(Long ArticleId) {
         List<Tag> tags = tagMapper.findTagsByArticleId(ArticleId);
