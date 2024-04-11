@@ -11,42 +11,4 @@
 
     <artifactId>blog-api</artifactId>
 
-    <description>
-        web入口
-    </description>
-
-    <dependencies>
-
-        <!-- spring-boot-devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional> <!-- 表示依赖不会传递 -->
-        </dependency>
-
-        <!-- 阿里数据库连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-        </dependency>
-
-        <!-- Mysql驱动包 -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <!-- 业务模块 -->
-        <dependency>
-            <groupId>com.sky</groupId>
-            <artifactId>blog-business</artifactId>
-        </dependency>
-
-        <!-- 核心模块-->
-        <dependency>
-            <groupId>com.sky</groupId>
-            <artifactId>blog-framework</artifactId>
-        </dependency>
-    </dependencies>
-
 </project>

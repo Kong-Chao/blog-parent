@@ -12,6 +12,8 @@
     <name>blog</name>
     <!--定义属性版本1.8-->
     <properties>
+        <!-- 统一依赖管理 -->
+        <spring.boot.version>2.5.14</spring.boot.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,6 +28,8 @@
         <commons.io.version>2.11.0</commons.io.version>
         <commons.collections.version>3.2.2</commons.collections.version>
         <mybatis-spring>2.0.7</mybatis-spring>
+        <captcha-plus.version>1.0.10</captcha-plus.version>
+        <hutool.version>5.8.25</hutool.version>
     </properties>
 
     <!--申明为父工程-->
@@ -36,6 +40,7 @@
         <module>blog-business</module>
         <module>blog-framework</module>
         <module>blog-system</module>
+        <module>blog-admin</module>
     </modules>
 
     <!--依赖申明-->
@@ -45,9 +50,15 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.14</version>
+                <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
             </dependency>
 
             <dependency>
@@ -78,6 +89,18 @@
                 <version>${lombok.version}</version>
             </dependency>
 
+            <!--验证码-->
+            <dependency>
+                <groupId>com.xingyuv</groupId>
+                <artifactId>spring-boot-starter-captcha-plus</artifactId>
+                <version>${captcha-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
 
             <!-- pagehelper 分页插件 -->
             <dependency>
@@ -111,7 +134,7 @@
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
-                <version>2.10.10</version>
+                <version>2.10.13</version>
             </dependency>
 
             <dependency>
@@ -131,6 +154,12 @@
             <dependency>
                 <groupId>com.sky</groupId>
                 <artifactId>blog-business</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sky</groupId>
+                <artifactId>blog-system</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 

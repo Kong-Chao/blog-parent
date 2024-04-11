@@ -1,4 +1,4 @@
-package com.sky;
+package com.sky.admin;
 
 
 import org.springframework.boot.SpringApplication;

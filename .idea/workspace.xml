@@ -4,30 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="更新文章列表查询">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/constant/HttpStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/CommonResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/pom.xml" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="调整项目架构">
+      <change afterPath="$PROJECT_DIR$/blog-admin/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/json/JsonUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/servlet/ServletUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/captcha/CaptchaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/BlogApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-api/src/main/resource/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/src/main/resource/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/controller/ArticleController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/ArticleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/ArticleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/SysUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/SysUserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/TagMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/TagMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-api/src/main/resource/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/config/MyBatisPlusConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/config/WebMVCConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,16 +58,20 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://D:/software/maven/apache-maven-3.6.1/repository_dev/com/xingyuv/captcha-plus/1.0.10/captcha-plus-1.0.10.jar!/com/xingyuv/captcha/model/vo/CaptchaVO.class" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="customMavenHome" value="$PROJECT_DIR$/../../../software/maven/apache-maven-3.6.1" />
+        <option name="customMavenHome" value="D:\software\maven\apache-maven-3.6.1" />
         <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
         <option name="useMavenConfig" value="false" />
         <option name="userSettingsFile" value="D:\software\maven\apache-maven-3.6.1\conf\settings.xml" />
@@ -97,8 +90,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.blog-parent [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -111,7 +106,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/blog-parent/blog-common/src/main/java/com/sky/common/core/domain/enyity",
+    "last_opened_file_path": "E:/Code/Java_code/code/RuoYi-Vue",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -119,7 +114,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.43793103",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
     "spring.configuration.checksum": "d0d308e48700fbb8487287cea5a374e5",
     "vue.rearranger.settings.migration": "true"
   },
@@ -137,6 +132,9 @@
       <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core\domain\enyity" />
       <recent name="D:\WorkSpace\code\blog-parent\.idea" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.sky.common.core.domain" />
       <recent name="com.sky.common.constant" />
@@ -153,11 +151,11 @@
   </component>
   <component name="RunManager">
     <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="blog-api" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sky.BlogApplication" />
+      <module name="blog-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.sky.admin.BlogApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.sky.*" />
+          <option name="PATTERN" value="com.sky.admin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -202,7 +200,10 @@
       <workItem from="1706498678959" duration="2719000" />
       <workItem from="1708391516196" duration="56000" />
       <workItem from="1712642940376" duration="3398000" />
-      <workItem from="1712712237360" duration="18710000" />
+      <workItem from="1712712237360" duration="19613000" />
+      <workItem from="1712798081189" duration="17172000" />
+      <workItem from="1712823848136" duration="441000" />
+      <workItem from="1712824306550" duration="2364000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -225,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1683457013877</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="调整项目架构">
+      <option name="closed" value="true" />
+      <created>1712739915219</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712739915220</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,13 +264,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="配置文件更新" />
     <MESSAGE value="添加MyBatis配置文件" />
     <MESSAGE value="添加前后端跨域请求问题配置文件" />
     <MESSAGE value="添加实体类" />
     <MESSAGE value="更新列表查询" />
     <MESSAGE value="更新文章列表查询" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新文章列表查询" />
+    <MESSAGE value="调整项目架构" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整项目架构" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

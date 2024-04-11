@@ -16,16 +16,21 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- spring security 安全认证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!-- SpringBoot 拦截器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!--Mapper文件包扫描依赖-->
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-common</artifactId>
+            <artifactId>blog-system</artifactId>
         </dependency>
     </dependencies>
 
