@@ -28,7 +28,7 @@
         <commons.io.version>2.11.0</commons.io.version>
         <commons.collections.version>3.2.2</commons.collections.version>
         <mybatis-spring>2.0.7</mybatis-spring>
-        <captcha-plus.version>1.0.10</captcha-plus.version>
+        <captcha-plus.version>1.3.0</captcha-plus.version>
         <hutool.version>5.8.25</hutool.version>
     </properties>
 
@@ -91,8 +91,8 @@
 
             <!--验证码-->
             <dependency>
-                <groupId>com.xingyuv</groupId>
-                <artifactId>spring-boot-starter-captcha-plus</artifactId>
+                <groupId>com.anji-plus</groupId>
+                <artifactId>spring-boot-starter-captcha</artifactId>
                 <version>${captcha-plus.version}</version>
             </dependency>
 
@@ -167,6 +167,18 @@
             <dependency>
                 <groupId>com.sky</groupId>
                 <artifactId>blog-framework</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sky</groupId>
+                <artifactId>blog-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sky.admin</groupId>
+                <artifactId>blog-admin</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>

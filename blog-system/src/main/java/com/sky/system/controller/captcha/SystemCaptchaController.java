@@ -1,10 +1,10 @@
 package com.sky.system.controller.captcha;
 
 import cn.hutool.core.util.StrUtil;
+import com.anji.captcha.model.common.ResponseModel;
+import com.anji.captcha.model.vo.CaptchaVO;
+import com.anji.captcha.service.CaptchaService;
 import com.sky.common.utils.servlet.ServletUtils;
-import com.xingyuv.captcha.model.common.ResponseModel;
-import com.xingyuv.captcha.model.vo.CaptchaVO;
-import com.xingyuv.captcha.service.CaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/system/captcha")
-public class CaptchaController {
+public class SystemCaptchaController {
 
     @Autowired
     private CaptchaService captchaService;
