@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-common</artifactId>
+            <artifactId>blog-api</artifactId>
         </dependency>
 
         <dependency>

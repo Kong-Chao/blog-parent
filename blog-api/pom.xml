@@ -10,5 +10,10 @@
     </parent>
 
     <artifactId>blog-api</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.sky</groupId>
+            <artifactId>blog-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>

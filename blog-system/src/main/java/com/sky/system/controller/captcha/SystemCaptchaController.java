@@ -39,6 +39,18 @@ public class SystemCaptchaController {
         return captchaService.get(captchaVO);
     }
 
+    /**
+     * 核验验证码
+     * @param data
+     * @param request
+     * @return
+     */
+    @PostMapping("/check")
+    public ResponseModel check(@RequestBody CaptchaVO data, HttpServletRequest request) {
+        data.setBrowserInfo(getReomteId(request));
+        return captchaService.check(data);
+    }
+
     public static String getReomteId(HttpServletRequest request){
         String ip = ServletUtils.getClientIP(request);
         String ua = request.getHeader("user-agent");

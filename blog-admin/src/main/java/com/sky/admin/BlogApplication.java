@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author kc
  * @create 2023-04-29 15:28
  */
-@SpringBootApplication(scanBasePackages = {"com.sky.**.controller"})
+@SpringBootApplication(scanBasePackages = {"com.sky.**.controller","com.sky.**.service"})
 public class BlogApplication {
     public static void main(String[] args) {
        SpringApplication.run(BlogApplication.class,args);
