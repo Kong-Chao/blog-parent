@@ -2,6 +2,7 @@ package com.sky.system.service;
 
 import com.anji.captcha.service.CaptchaCacheService;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class CustomCaptchaService implements CaptchaCacheService {
 
+    @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @Override

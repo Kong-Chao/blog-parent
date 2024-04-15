@@ -5,63 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="调整项目架构">
-      <change afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/config/CaptchaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/V2Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/CustomCaptchaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/META-INF/services/com.anji.captcha.service.CaptchaCacheService" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/original/bg9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/11/9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/jigsaw/slidingBlock/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/images/pic-click/bg9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/ArticleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/mapper/SysUserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/ArticleService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/SysUserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/TagService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/ArticleServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/SysUserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/service/impl/TagServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-business/src/main/java/com/sky/business/vo/params/PageParams.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/captcha/CaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/captcha/SystemCaptchaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/CustomCaptchaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/CustomCaptchaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,12 +93,12 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.BlogApplication (1).executor": "Run",
-    "Spring Boot.BlogApplication.executor": "Run",
+    "Spring Boot.BlogApplication.executor": "Debug",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/captcha",
+    "last_opened_file_path": "E:/Code/Java_code/code/ruoyi-vue-pro",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -186,11 +132,11 @@
       <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sky.system.config" />
       <recent name="com.sky.admin.controller" />
       <recent name="com.sky.common.core.domain" />
       <recent name="com.sky.common.constant" />
       <recent name="com.sky.business.pojo" />
-      <recent name="com.sky.business.vo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -265,7 +211,8 @@
       <workItem from="1712970898348" duration="14949000" />
       <workItem from="1712995715122" duration="704000" />
       <workItem from="1712996463422" duration="980000" />
-      <workItem from="1712997971089" duration="1648000" />
+      <workItem from="1712997971089" duration="1810000" />
+      <workItem from="1713146480095" duration="5350000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -304,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712826929590</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="调整项目架构">
+      <option name="closed" value="true" />
+      <created>1712999774598</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712999774598</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

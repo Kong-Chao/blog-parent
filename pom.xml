@@ -94,6 +94,12 @@
                 <groupId>com.anji-plus</groupId>
                 <artifactId>spring-boot-starter-captcha</artifactId>
                 <version>${captcha-plus.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.anji-plus</groupId>
+                        <artifactId>controller</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>

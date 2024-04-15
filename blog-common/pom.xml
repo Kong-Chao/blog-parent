@@ -125,6 +125,12 @@
         <dependency>
             <groupId>com.anji-plus</groupId>
             <artifactId>spring-boot-starter-captcha</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.anji-plus</groupId>
+                    <artifactId>controller</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
