@@ -5,20 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="初始化blog-ui-vue3">
-      <change afterPath="$PROJECT_DIR$/blog-ui/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/jsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/vue.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/constant/ErrorCodeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServiceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/ServiceErrorCodeRange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/util/ServiceExceptionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/mapper/SysUserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SystemServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/BaseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +41,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -88,6 +91,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -109,7 +113,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/blog-parent",
+    "last_opened_file_path": "E:/Code/Java_code/code/blog-parent/blog-common/src/main/java/com/sky/common/core",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -134,21 +138,21 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core" />
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core\exception" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources\META-INF\services" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
-      <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core\domain\enyity" />
-      <recent name="D:\WorkSpace\code\blog-parent\.idea" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sky.common.constant" />
       <recent name="com.sky.system.config" />
       <recent name="com.sky.admin.controller" />
       <recent name="com.sky.common.core.domain" />
-      <recent name="com.sky.common.constant" />
       <recent name="com.sky.business.pojo" />
     </key>
   </component>
@@ -226,7 +230,7 @@
       <workItem from="1712996463422" duration="980000" />
       <workItem from="1712997971089" duration="1810000" />
       <workItem from="1713146480095" duration="20812000" />
-      <workItem from="1713235288298" duration="2532000" />
+      <workItem from="1713235288298" duration="16600000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -289,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713172530707</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="初始化blog-ui-vue3">
+      <option name="closed" value="true" />
+      <created>1713238690834</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1713238690835</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
