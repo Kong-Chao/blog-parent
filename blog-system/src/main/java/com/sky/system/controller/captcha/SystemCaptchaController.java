@@ -8,6 +8,7 @@ import com.sky.common.utils.servlet.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,6 +22,7 @@ public class SystemCaptchaController {
     @Autowired
     private CaptchaService captchaService;
 
+    @PermitAll
     @GetMapping("/test")
     public String test(){
         return "Hello Word";

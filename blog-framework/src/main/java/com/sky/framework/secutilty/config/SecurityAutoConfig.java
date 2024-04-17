@@ -1,0 +1,48 @@
+package com.sky.framework.secutilty.config;
+
+import com.sky.framework.secutilty.handler.AccessDeniedHandlerImpl;
+import com.sky.framework.secutilty.handler.AuthenticationEntryPointImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
+
+/**
+ * SpirngSecurity 自动装配类
+ */
+@Configuration
+@EnableConfigurationProperties(SecurityProperties.class)
+public class SecurityAutoConfig {
+
+    @Autowired
+    private SecurityProperties securityProperties;
+
+    /**
+     *  Spring Security 加密器
+     * @return
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
+    }
+
+    /**
+     * 认证失败处理类 Bean
+     */
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint(){
+        return new AuthenticationEntryPointImpl();
+    }
+
+    /**
+     * 权限不够处理器 Bean
+     */
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new AccessDeniedHandlerImpl();
+    }
+}

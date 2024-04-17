@@ -58,6 +58,9 @@ public class AuthServiceImpl implements AuthService {
         if (sysUser == null){
             throw ServiceExceptionUtil.exception(ErrorCodeConstants.AUTH_LOGIN_BAD_CREDENTIALS);
         }
+        if (!sysUserService.isPasswordMatch(password, sysUser.getPassword())){
+            throw ServiceExceptionUtil.exception(ErrorCodeConstants.AUTH_LOGIN_BAD_CREDENTIALS);
+        }
         return sysUser;
     }
 }

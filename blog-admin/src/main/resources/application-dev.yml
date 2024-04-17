@@ -19,4 +19,11 @@ spring:
     username:
     password:
 
+#SpringSecurity配置信息
+blog:
+  security:
+    whiteList:
+      - /v1/test
+
+
 
