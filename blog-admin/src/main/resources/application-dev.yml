@@ -22,7 +22,7 @@ spring:
 #SpringSecurity配置信息
 blog:
   security:
-    whiteList:
+    white-list:
       - /v1/test
 
 

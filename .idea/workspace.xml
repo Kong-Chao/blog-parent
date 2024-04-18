@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="全局异常修改添加">
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/SecurityAutoConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/SecurityProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/handler/AccessDeniedHandlerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/handler/AuthenticationEntryPointImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/util/SecurityFrameworkUtils.java" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="安全模块修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/util/ServiceExceptionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/util/ServiceExceptionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/captcha/SystemCaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/captcha/SystemCaptchaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SystemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SystemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +103,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/yudao-ui-admin-vue2",
+    "last_opened_file_path": "E:/Code/Java_code/code/ruoyi-vue-pro",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -238,7 +223,8 @@
       <workItem from="1712997971089" duration="1810000" />
       <workItem from="1713146480095" duration="20812000" />
       <workItem from="1713235288298" duration="17244000" />
-      <workItem from="1713316604522" duration="21748000" />
+      <workItem from="1713316604522" duration="22099000" />
+      <workItem from="1713402919275" duration="2027000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -317,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713258009736</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="安全模块修改">
+      <option name="closed" value="true" />
+      <created>1713345032213</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1713345032213</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,7 +351,8 @@
     <MESSAGE value="调整项目架构" />
     <MESSAGE value="初始化blog-ui-vue3" />
     <MESSAGE value="全局异常修改添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="全局异常修改添加" />
+    <MESSAGE value="安全模块修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="安全模块修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -76,10 +77,10 @@ public class WebSecurityConfigurerAdapter {
                 // 开启跨域
                 .cors().and()
                 // CSRF 禁用，因为不使用 Session
-                //.csrf().disable()
+                .csrf().disable()
                 // 基于 token 机制，所以不需要 Session
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                //.headers().frameOptions().disable().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .headers().frameOptions().disable().and()
                 // 一堆自定义的 Spring Security 处理器
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .accessDeniedHandler(accessDeniedHandler);
@@ -87,28 +88,32 @@ public class WebSecurityConfigurerAdapter {
 
         // 获得 @PermitAll 带来的 URL 列表，免登录
         Multimap<HttpMethod, String> permitAllUrls = getPermitAllUrlsFromAnnotations();
-
         // 设置每个请求的权限
         httpSecurity
                 // ①：全局共享规则
                 .authorizeRequests()
-                // 1.1静态资源可以匿名访问
-                .antMatchers().permitAll()
-                // 1.2 设置@PermitAll 无需认证
+                // 1.1 静态资源，可匿名访问
+                .antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+                // 1.2 设置 @PermitAll 无需认证
                 .antMatchers(HttpMethod.GET, permitAllUrls.get(HttpMethod.GET).toArray(new String[0])).permitAll()
                 .antMatchers(HttpMethod.POST, permitAllUrls.get(HttpMethod.POST).toArray(new String[0])).permitAll()
                 .antMatchers(HttpMethod.PUT, permitAllUrls.get(HttpMethod.PUT).toArray(new String[0])).permitAll()
                 .antMatchers(HttpMethod.DELETE, permitAllUrls.get(HttpMethod.DELETE).toArray(new String[0])).permitAll()
-                // 1.3 白名单URL无需认证
+                // 1.3 基于 yudao.security.permit-all-urls 无需认证
                 .antMatchers(securityProperties.getWhiteList().toArray(new String[0])).permitAll()
                 // 1.4 设置 App API 无需认证
-
-                // 1.5 验证码接口允许匿名访问
+                //.antMatchers(buildAppApi("/**")).permitAll()
+                // 1.5 验证码captcha 允许匿名访问
                 .antMatchers("/captcha/get", "/captcha/check").permitAll()
                 // ②：每个项目的自定义规则
+//                .and().authorizeRequests(registry -> // 下面，循环设置自定义规则
+//                        authorizeRequestsCustomizers.forEach(customizer -> customizer.customize(registry)))
+//                .authorizeRequests()
+                // ③：兜底规则，必须认证
+              .anyRequest().authenticated()
+        ;
 
-                // ③：兜底规则，必须认证;
-                .anyRequest().authenticated();
+        // 添加token过滤器验证
 
         return httpSecurity.build();
     }
