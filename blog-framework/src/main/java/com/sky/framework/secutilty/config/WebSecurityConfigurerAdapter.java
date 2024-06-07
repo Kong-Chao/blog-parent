@@ -104,7 +104,7 @@ public class WebSecurityConfigurerAdapter {
                 // 1.4 设置 App API 无需认证
                 //.antMatchers(buildAppApi("/**")).permitAll()
                 // 1.5 验证码captcha 允许匿名访问
-                .antMatchers("/captcha/get", "/captcha/check").permitAll()
+                .antMatchers("/system/auth/login","/captcha/get", "/captcha/check").permitAll()
                 // ②：每个项目的自定义规则
 //                .and().authorizeRequests(registry -> // 下面，循环设置自定义规则
 //                        authorizeRequestsCustomizers.forEach(customizer -> customizer.customize(registry)))

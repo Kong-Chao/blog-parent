@@ -5,9 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="安全模块修改">
+      <change afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/web/service/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/api/login/vo/AuthLoginVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/api/login/vo/AuthLoginVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/SecurityAutoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/SecurityAutoConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/util/SecurityFrameworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/util/SecurityFrameworkUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/V2Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +116,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/ruoyi-vue-pro",
+    "last_opened_file_path": "E:/Code/Java_code/code/RuoYi-Vue",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -137,6 +150,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.sky.framework.secutilty.config" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.sky.common.core.domain.model" />
@@ -225,6 +241,7 @@
       <workItem from="1713235288298" duration="17244000" />
       <workItem from="1713316604522" duration="22099000" />
       <workItem from="1713402919275" duration="2027000" />
+      <workItem from="1717722913965" duration="19806000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -353,22 +370,6 @@
     <MESSAGE value="全局异常修改添加" />
     <MESSAGE value="安全模块修改" />
     <option name="LAST_COMMIT_MESSAGE" value="安全模块修改" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

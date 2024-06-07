@@ -23,12 +23,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--Spring安全模块-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
        <!-- guava 工具类-->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -37,7 +31,7 @@
 
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-common</artifactId>
+            <artifactId>blog-system</artifactId>
         </dependency>
     </dependencies>
 </project>

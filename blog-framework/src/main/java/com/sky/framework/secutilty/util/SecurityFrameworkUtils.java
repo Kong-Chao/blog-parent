@@ -85,7 +85,7 @@ public class SecurityFrameworkUtils {
     @Nullable
     public static Long getLoginUserId() {
         LoginUser loginUser = getLoginUser();
-        return loginUser != null ? loginUser.getId() : null;
+        return loginUser != null ? loginUser.getUserId() : null;
     }
 
     /**

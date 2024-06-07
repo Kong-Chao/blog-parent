@@ -1,12 +1,14 @@
 package com.sky.common.core.domain.model;
 
 import cn.hutool.core.map.MapUtil;
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sky.common.core.domain.enyity.SysUser;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 登录用户信息
@@ -14,16 +16,19 @@ import java.util.Map;
  * @author 芋道源码
  */
 @Data
-public class LoginUser {
+public class LoginUser implements UserDetails {
 
     /**
      * 用户编号
      */
-    private Long id;
+    private Long userId;
+
+    // 部门ID
+    private Long deptId;
     /**
      * 用户类型
      *
-     * 关联 {@link UserTypeEnum}
+     * 关联 {@link }
      */
     private Integer userType;
     /**
@@ -33,7 +38,9 @@ public class LoginUser {
     /**
      * 授权范围
      */
-    private List<String> scopes;
+    private Set<String> permissions;
+
+    private SysUser sysUser;
 
     // ========== 上下文 ==========
     /**
@@ -55,4 +62,59 @@ public class LoginUser {
         return MapUtil.get(context, key, type);
     }
 
+    public LoginUser(SysUser sysUser, Set<String> permissions){
+        this.sysUser = sysUser;
+        this.permissions = permissions;
+    }
+
+    public LoginUser(Long userId, Long deptId, SysUser user, Set<String> permissions)
+    {
+        this.userId = userId;
+        this.deptId = deptId;
+        this.sysUser = user;
+        this.permissions = permissions;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @JSONField(serialize = false)
+    @Override
+    public String getPassword() {
+        return sysUser.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return sysUser.getUserName();
+    }
+
+    // 账户是否未过期,过期无法验证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    // 指定用户是否解锁,锁定的用户无法进行身份验证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    // 指示是否已过期的用户的凭据(密码),过期的凭据防止认证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    // 是否可用 ,禁用的用户不能身份验证
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

@@ -1,7 +1,7 @@
 package com.sky.system.service;
 
 import com.sky.api.login.vo.AuthLoginVO;
-import com.sky.common.core.domain.enyity.SysUser;
+import com.sky.common.core.domain.model.LoginUser;
 
 import javax.validation.Valid;
 
@@ -10,10 +10,10 @@ import javax.validation.Valid;
  */
 public interface AuthService {
 
-    AuthLoginVO login(@Valid AuthLoginVO authLoginVO);
+    String login(@Valid AuthLoginVO authLoginVO);
 
     /**
      * 用户名+密码登录
      */
-    SysUser authenticate(String username, String password);
+    LoginUser authenticate(String username, String password);
 }

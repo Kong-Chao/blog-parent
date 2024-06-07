@@ -19,7 +19,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public CommonResult<AuthLoginVO> login(@RequestBody @Valid AuthLoginVO authLoginVO){
+    public CommonResult<String> login(@RequestBody @Valid AuthLoginVO authLoginVO){
         return CommonResult.success(authService.login(authLoginVO));
     }
 }

@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-system</artifactId>
+            <artifactId>blog-framework</artifactId>
         </dependency>
     </dependencies>
 </project>
