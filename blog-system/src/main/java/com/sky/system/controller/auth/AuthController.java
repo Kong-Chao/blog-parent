@@ -1,6 +1,7 @@
 package com.sky.system.controller.auth;
 
 import com.sky.api.login.vo.AuthLoginVO;
+import com.sky.api.login.vo.TokenVO;
 import com.sky.common.core.domain.CommonResult;
 import com.sky.system.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public CommonResult<String> login(@RequestBody @Valid AuthLoginVO authLoginVO){
+    public CommonResult<TokenVO> login(@RequestBody @Valid AuthLoginVO authLoginVO){
         return CommonResult.success(authService.login(authLoginVO));
     }
 }

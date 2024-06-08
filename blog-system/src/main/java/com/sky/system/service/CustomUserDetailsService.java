@@ -1,9 +1,8 @@
-package com.sky.framework.web.service;
+package com.sky.system.service;
 
 import com.sky.common.core.domain.enyity.SysUser;
 import com.sky.common.core.domain.model.LoginUser;
 import com.sky.common.core.exception.ServiceException;
-import com.sky.system.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

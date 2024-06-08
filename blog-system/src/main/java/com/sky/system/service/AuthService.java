@@ -1,6 +1,7 @@
 package com.sky.system.service;
 
 import com.sky.api.login.vo.AuthLoginVO;
+import com.sky.api.login.vo.TokenVO;
 import com.sky.common.core.domain.model.LoginUser;
 
 import javax.validation.Valid;
@@ -10,7 +11,7 @@ import javax.validation.Valid;
  */
 public interface AuthService {
 
-    String login(@Valid AuthLoginVO authLoginVO);
+    TokenVO login(@Valid AuthLoginVO authLoginVO);
 
     /**
      * 用户名+密码登录

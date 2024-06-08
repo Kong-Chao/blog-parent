@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-api</artifactId>
+            <artifactId>blog-framework</artifactId>
         </dependency>
     </dependencies>
 

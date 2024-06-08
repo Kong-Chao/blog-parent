@@ -8,6 +8,7 @@ import com.sky.common.utils.servlet.ServletUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -32,6 +33,7 @@ public class SystemCaptchaController {
      * @param request
      * @return
      */
+    @PermitAll
     @PostMapping("/get")
     public ResponseModel get(@RequestBody CaptchaVO captchaVO , HttpServletRequest request){
         assert request.getRemoteHost() != null;
@@ -45,6 +47,7 @@ public class SystemCaptchaController {
      * @param request
      * @return
      */
+    @PermitAll
     @PostMapping("/check")
     public ResponseModel check(@RequestBody CaptchaVO data, HttpServletRequest request) {
         data.setBrowserInfo(getReomteId(request));

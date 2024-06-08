@@ -31,7 +31,7 @@
 
         <dependency>
             <groupId>com.sky</groupId>
-            <artifactId>blog-system</artifactId>
+            <artifactId>blog-api</artifactId>
         </dependency>
     </dependencies>
 </project>
