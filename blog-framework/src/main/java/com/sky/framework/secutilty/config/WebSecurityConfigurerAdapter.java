@@ -3,6 +3,8 @@ package com.sky.framework.secutilty.config;
 import cn.hutool.core.collection.CollUtil;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.sky.common.utils.jwt.JwtTokenUtil;
+import com.sky.framework.secutilty.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +13,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -52,6 +56,12 @@ public class WebSecurityConfigurerAdapter {
      */
     @Resource
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     /**
      * 配置URL的安全配置选项
@@ -114,7 +124,7 @@ public class WebSecurityConfigurerAdapter {
         ;
 
         // 添加token过滤器验证
-
+        httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, userDetailsService), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 

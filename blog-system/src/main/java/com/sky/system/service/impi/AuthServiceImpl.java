@@ -7,6 +7,7 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.common.core.domain.model.LoginUser;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.core.exception.util.ServiceExceptionUtil;
+import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.system.service.AuthService;
 import com.sky.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,17 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private CaptchaService captchaService;
 
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
     @Override
     public String login(AuthLoginVO authLoginVO) {
         // 验证码校验
-   //     validateCaptcha(authLoginVO);
+        //validateCaptcha(authLoginVO);
         // 账号密码登录验证
         LoginUser loginUser = authenticate(authLoginVO.getUsername(), authLoginVO.getPassword());
-
-        return null;
+        // 创建token
+        return jwtTokenUtil.generateToken(loginUser);
     }
 
     private void validateCaptcha(AuthLoginVO authLoginVO) {
