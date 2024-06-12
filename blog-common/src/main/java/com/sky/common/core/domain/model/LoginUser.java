@@ -5,10 +5,14 @@ import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sky.common.core.domain.enyity.SysUser;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 登录用户信息
@@ -16,6 +20,7 @@ import java.util.*;
  * @author 芋道源码
  */
 @Data
+@NoArgsConstructor
 public class LoginUser implements UserDetails {
 
     /**

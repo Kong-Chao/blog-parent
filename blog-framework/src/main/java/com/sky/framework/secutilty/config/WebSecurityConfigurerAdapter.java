@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.sky.common.utils.jwt.JwtTokenUtil;
+import com.sky.framework.core.redis.service.RedisService;
 import com.sky.framework.secutilty.filter.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -62,6 +63,9 @@ public class WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private RedisService redisService;
 
     /**
      * 配置URL的安全配置选项
@@ -124,7 +128,7 @@ public class WebSecurityConfigurerAdapter {
         ;
 
         // 添加token过滤器验证
-        httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, userDetailsService), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, userDetailsService,redisService), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 

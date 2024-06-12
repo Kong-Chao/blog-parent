@@ -5,9 +5,11 @@ import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.TokenVO;
+import com.sky.common.constant.Constants;
 import com.sky.common.core.domain.model.LoginUser;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.core.exception.util.ServiceExceptionUtil;
+import com.sky.common.utils.UUIDutil;
 import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;
 import com.sky.system.service.AuthService;
@@ -18,6 +20,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author kc
@@ -52,13 +58,21 @@ public class AuthServiceImpl implements AuthService {
         //validateCaptcha(authLoginVO);
         // 账号密码登录验证
         LoginUser loginUser = authenticate(authLoginVO.getUsername(), authLoginVO.getPassword());
+        Map<String, Object> claims = new HashMap<>(6);
+        String uuid = UUIDutil.generateUUID();
+        claims.put("uuid",uuid);
+        claims.put("userId",loginUser.getUserId());
+        claims.put("userName",authLoginVO.getUsername());
         // 创建token
-        String accessToken = jwtTokenUtil.generateToken(loginUser);
-        String refreshToken = jwtTokenUtil.generateRefreshToken(loginUser);
+        String accessToken = jwtTokenUtil.generateToken(claims);
+        String refreshToken = jwtTokenUtil.generateRefreshToken(accessToken);
+        long expiresIn = jwtTokenUtil.getExpirationDateFromToken(accessToken).getTime();
         // 缓存用户信息
-
+        redisService.setCacheObject(Constants.AUTH_TOKEN + uuid,loginUser,2 * jwtTokenUtil.getExpirationTime(), TimeUnit.MILLISECONDS);
         TokenVO tokenVO = new TokenVO();
-        tokenVO.setAccessToken(accessToken).setRefreshToken(refreshToken).setExpiresIn(jwtTokenUtil.getExpirationDateFromToken(accessToken).getTime());
+        tokenVO.setAccessToken(accessToken)
+                .setRefreshToken(refreshToken)
+                .setExpiresIn(expiresIn);
         return tokenVO;
     }
 

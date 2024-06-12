@@ -94,7 +94,7 @@ public class RedisService
     }
 
     /**
-     * 获得缓存的基本对象。
+     * 获得缓存的基本对象。--linked hashMap
      *
      * @param key 缓存键值
      * @return 缓存键值对应的数据

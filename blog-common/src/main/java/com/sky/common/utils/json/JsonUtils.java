@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Json 工具类
@@ -194,5 +195,16 @@ public class JsonUtils {
 
     public static boolean isJson(String text) {
         return JSONUtil.isTypeJSON(text);
+    }
+
+    /**
+     * 将 Map 转换为指定类型的对象
+     *
+     * @param map   Map 数据
+     * @param clazz 对象类型
+     * @return 转换后的对象
+     */
+    public static <T> T mapToObject(Map<String, Object> map, Class<T> clazz) {
+        return objectMapper.convertValue(map, clazz);
     }
 }
