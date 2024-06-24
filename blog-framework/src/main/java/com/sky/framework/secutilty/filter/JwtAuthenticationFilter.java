@@ -24,6 +24,7 @@ import java.util.Map;
 
 /**
  * token验证过滤器
+ * @author kc
  */
 @Component
 @Slf4j
