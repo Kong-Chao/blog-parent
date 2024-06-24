@@ -105,4 +105,9 @@ public class AuthServiceImpl implements AuthService {
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
         return loginUser;
     }
+
+    @Override
+    public TokenVO refreshToken() {
+        return null;
+    }
 }

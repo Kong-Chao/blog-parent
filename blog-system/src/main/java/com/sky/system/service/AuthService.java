@@ -17,4 +17,6 @@ public interface AuthService {
      * 用户名+密码登录
      */
     LoginUser authenticate(String username, String password);
+
+    TokenVO refreshToken();
 }

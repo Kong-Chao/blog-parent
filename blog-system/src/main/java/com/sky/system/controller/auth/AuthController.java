@@ -23,4 +23,6 @@ public class AuthController {
     public CommonResult<TokenVO> login(@RequestBody @Valid AuthLoginVO authLoginVO){
         return CommonResult.success(authService.login(authLoginVO));
     }
+
+
 }

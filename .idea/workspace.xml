@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="token访问令牌修改">
+      <change afterPath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/api/login/vo/RefreshTokenVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/json/JsonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/json/JsonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/jwt/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/core/redis/service/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/core/redis/service/RedisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,45 +90,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="openDirectoriesWithSingleClick" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.blog-parent [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.BlogApplication (1).executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.BlogApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Code/Java_code/code/captcha&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.43793103&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d0d308e48700fbb8487287cea5a374e5&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\Software\\IDEA\\IntelliJ IDEA 233.11361.10\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.blog-parent [clean].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BlogApplication (1).executor": "Run",
+    "Spring Boot.BlogApplication.executor": "Debug",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Code/Java_code/code/blog-parent",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.43793103",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "spring.configuration.checksum": "d0d308e48700fbb8487287cea5a374e5",
+    "ts.external.directory.path": "E:\\Software\\IDEA\\IntelliJ IDEA 233.11361.10\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -239,7 +236,11 @@
       <workItem from="1713402919275" duration="2027000" />
       <workItem from="1717722913965" duration="26526000" />
       <workItem from="1717810629471" duration="20617000" />
-      <workItem from="1718155968178" duration="19008000" />
+      <workItem from="1718155968178" duration="22074000" />
+      <workItem from="1718243525594" duration="598000" />
+      <workItem from="1718328686034" duration="2099000" />
+      <workItem from="1718345218871" duration="691000" />
+      <workItem from="1719194275675" duration="1459000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -342,7 +343,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717818485057</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="token访问令牌修改">
+      <option name="closed" value="true" />
+      <created>1718180655115</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718180655115</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
