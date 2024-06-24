@@ -1,6 +1,7 @@
 package com.sky.system.service;
 
 import com.sky.api.login.vo.AuthLoginVO;
+import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.core.domain.model.LoginUser;
 
@@ -18,5 +19,5 @@ public interface AuthService {
      */
     LoginUser authenticate(String username, String password);
 
-    TokenVO refreshToken();
+    TokenVO refreshToken(RefreshTokenVO refreshTokenVO);
 }

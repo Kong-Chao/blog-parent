@@ -4,6 +4,7 @@ import com.anji.captcha.model.common.ResponseModel;
 import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.sky.api.login.vo.AuthLoginVO;
+import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
 import com.sky.common.core.domain.model.LoginUser;
@@ -14,6 +15,7 @@ import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;
 import com.sky.system.service.AuthService;
 import com.sky.system.service.SysUserService;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -107,7 +109,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenVO refreshToken() {
-        return null;
+    public TokenVO refreshToken(RefreshTokenVO refreshTokenVO) {
+        String newAccessToken = refreshTokenVO.getRefreshToken();
+        Claims claims = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
+        String userKey = Constants.AUTH_TOKEN + claims.get("uuid");
+        String refreshToken = jwtTokenUtil.generateRefreshToken(newAccessToken);
+        long expiresIn = jwtTokenUtil.getExpirationDateFromToken(newAccessToken).getTime();
+
+        // 更新登录用户信息缓存时间
+        redisService.updateExpiration(userKey, jwtTokenUtil.getExpirationTime() * 2, TimeUnit.MILLISECONDS);
+        return new TokenVO()
+                .setAccessToken(newAccessToken)
+                .setRefreshToken(refreshToken)
+                .setExpiresIn(expiresIn);
     }
 }

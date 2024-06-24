@@ -23,7 +23,8 @@ spring:
 blog:
   security:
     white-list:
-      - /v1/test
+      - /system/auth/login
+      - /system/auth/refresh
 
 
 

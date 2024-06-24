@@ -12,9 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * spring redis 工具类
- *
- * @author ruoyi
- **/
+ */
 @SuppressWarnings(value = { "unchecked", "rawtypes" })
 @Component
 public class RedisService
@@ -261,5 +259,18 @@ public class RedisService
     public Collection<String> keys(final String pattern)
     {
         return redisTemplate.keys(pattern);
+    }
+
+    /**
+     * 更新键值的过期时间
+     *
+     * @param key Redis键
+     * @param timeout 新的超时时间
+     * @param unit 时间单位
+     * @return true=更新成功；false=更新失败
+     */
+    public boolean updateExpiration(final String key, final long timeout, final TimeUnit unit)
+    {
+        return expire(key, timeout, unit);
     }
 }

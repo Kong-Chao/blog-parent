@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="token访问令牌修改">
-      <change afterPath="$PROJECT_DIR$/blog-api/src/main/java/com/sky/api/login/vo/RefreshTokenVO.java" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="登录接口调整">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/core/redis/service/RedisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/core/redis/service/RedisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/config/WebSecurityConfigurerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
@@ -240,7 +241,7 @@
       <workItem from="1718243525594" duration="598000" />
       <workItem from="1718328686034" duration="2099000" />
       <workItem from="1718345218871" duration="691000" />
-      <workItem from="1719194275675" duration="1459000" />
+      <workItem from="1719194275675" duration="10488000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -351,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718180655115</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="登录接口调整">
+      <option name="closed" value="true" />
+      <created>1719196158257</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1719196158257</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +403,19 @@
     <MESSAGE value="安全模块修改" />
     <MESSAGE value="管理系统架构模块调整" />
     <MESSAGE value="token访问令牌修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="token访问令牌修改" />
+    <MESSAGE value="登录接口调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="登录接口调整" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
