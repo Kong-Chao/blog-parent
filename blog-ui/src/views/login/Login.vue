@@ -37,11 +37,13 @@
 <script setup>
 import {ref} from 'vue';
 import {message} from 'ant-design-vue';
+import {login} from "@/api/login";
 
 const loginForm = ref({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: 'admin123',
   remember: false,
+  captchaVerification: ''
 });
 
 const rules = ref({
@@ -54,6 +56,13 @@ const handleLogin = () => {
     message.error('请输入用户名和密码');
     return;
   }
+  const loginData = {
+    username: loginForm.value.username,
+    password: loginForm.value.password
+  };
+
+  const res = login(loginData);
+  console.log(res.data);
   // 模拟登录
   message.success('登录成功');
 };

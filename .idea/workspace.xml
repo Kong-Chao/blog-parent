@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="ui改写">
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/assets/images/login-background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/permission.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/utils/request.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/.env.development" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/.env.production" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/api/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +271,7 @@
       <workItem from="1719278502440" duration="8124000" />
       <workItem from="1719364332570" duration="8567000" />
       <workItem from="1719452348871" duration="16522000" />
-      <workItem from="1719884745218" duration="2967000" />
+      <workItem from="1719884745218" duration="16468000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -408,7 +406,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719220855995</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="ui改写">
+      <option name="closed" value="true" />
+      <created>1719887829141</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1719887829142</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
