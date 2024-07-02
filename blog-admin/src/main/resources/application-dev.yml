@@ -1,6 +1,6 @@
 #请求端口
 server:
-  port: 8080
+  port: 8085
 
 #spring配置
 spring:

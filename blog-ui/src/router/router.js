@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Login from "@/views/login/Login.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
+import Index from "@/layout/Index.vue";
 
 /**
  * Note: 路由配置项
@@ -27,8 +29,21 @@ import HelloWorld from "@/components/HelloWorld.vue";
 export const constantRoutes = [
     {
         path: "/",
+        name: '首页',
+        component: Index
+    },
+    {
+        path: "/login",
+        name: '登录',
+        component: Login
+    },
+    {
+        path: "/elloWorld",
         name: 'HelloWorld',
-        component: HelloWorld
+        component: HelloWorld,
+        meta: {
+            requiresAuth: true
+        }
     }
 ];
 

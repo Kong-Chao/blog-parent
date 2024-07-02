@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="token刷新接口添加">
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="ui改写">
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/assets/images/login-background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/utils/request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +41,8 @@
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Vue Options API Component" />
+        <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -111,13 +117,14 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/RuoYi-Vue",
+    "last_opened_file_path": "E:/Code/Java_code/code/RuoYi-Vue3",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.install.executor": "Run",
+    "npm.serve.executor": "Run",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.43793103",
@@ -129,6 +136,10 @@
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "mysql"
+    ],
+    "vue.recent.templates": [
+      "Vue Options API Component",
+      "Vue Composition API Component"
     ]
   }
 }]]></component>
@@ -137,13 +148,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-ui\src\assets\images" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-common\src\main\java\com\sky\common\core\exception" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources\META-INF\services" />
-      <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code\Java_code\code\blog-parent\blog-ui\src\views" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-system\src\main\resources" />
       <recent name="E:\Code\Java_code\code\blog-parent\blog-admin\src\main\resources" />
     </key>
@@ -165,7 +177,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.serve">
     <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" activateToolWindowBeforeRun="false" temporary="true" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" value="dev" />
       <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
@@ -182,6 +194,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="serve" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/blog-ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.serve" />
+      <item itemvalue="Spring Boot.BlogApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.BlogApplication" />
@@ -243,7 +269,11 @@
       <workItem from="1718243525594" duration="598000" />
       <workItem from="1718328686034" duration="2099000" />
       <workItem from="1718345218871" duration="691000" />
-      <workItem from="1719194275675" duration="20971000" />
+      <workItem from="1719194275675" duration="21261000" />
+      <workItem from="1719278502440" duration="8124000" />
+      <workItem from="1719364332570" duration="8567000" />
+      <workItem from="1719452348871" duration="16522000" />
+      <workItem from="1719884745218" duration="2967000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -370,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719209831606</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="ui改写">
+      <option name="closed" value="true" />
+      <created>1719220855994</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1719220855995</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,7 +453,8 @@
     <MESSAGE value="token访问令牌修改" />
     <MESSAGE value="登录接口调整" />
     <MESSAGE value="token刷新接口添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="token刷新接口添加" />
+    <MESSAGE value="ui改写" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui改写" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
