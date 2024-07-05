@@ -6,8 +6,11 @@ import router from "@/router/router";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import Cookies from 'js-cookie'
+import {createPinia} from "pinia";
 
 const app = createApp(App)
+const pinia = createPinia();
+app.use(pinia);
 app.use(VueAxios,axios)
 app.use(router)
 // 注册 Ant Design Vue

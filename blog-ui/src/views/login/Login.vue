@@ -10,21 +10,22 @@
         <a-form
             :model="loginForm"
             :rules="rules"
-            @submit.prevent="handleLogin"
+            ref="loginRef"
             layout="vertical"
             class="login-form"
+            @submit.prevent="handleLogin"
         >
-          <a-form-item name="username" label="用户名" :rules="[{ required: true, message: '请输入用户名' }]">
+          <a-form-item name="username" label="用户名">
             <a-input v-model:value="loginForm.username" placeholder="请输入用户名" />
           </a-form-item>
-          <a-form-item name="password" label="密码" :rules="[{ required: true, message: '请输入密码' }]">
+          <a-form-item name="password" label="密码">
             <a-input-password v-model:value="loginForm.password" placeholder="请输入密码" />
           </a-form-item>
           <a-form-item>
             <a-checkbox v-model:checked="loginForm.remember">记住我</a-checkbox>
           </a-form-item>
           <a-form-item>
-            <a-button type="primary" html-type="submit" class="login-form-button">
+            <a-button type="primary" html-type="submit" @click.prevent="handleLogin" class="login-form-button">
               登录
             </a-button>
           </a-form-item>
@@ -35,44 +36,53 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
-import {message} from 'ant-design-vue';
-import {login} from "@/api/login";
-
-const loginForm = ref({
-  username: 'admin',
-  password: 'admin123',
-  remember: false,
-  captchaVerification: ''
+import {getCurrentInstance, reactive, ref} from 'vue';
+import Cookies from "js-cookie";
+import useUserStore from "@/store/modules/user";
+const loginRef = ref();
+const {proxy} = getCurrentInstance();
+const loginForm = reactive({
+  username: '',
+  password: '',
+  remember: false
 });
-
-const rules = ref({
-  username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
-  password: [{required: true, message: '请输入密码', trigger: 'blur'}],
-});
-
-const handleLogin = () => {
-  if (!loginForm.value.username || !loginForm.value.password) {
-    message.error('请输入用户名和密码');
-    return;
-  }
-  const loginData = {
-    username: loginForm.value.username,
-    password: loginForm.value.password
-  };
-
-  const res = login(loginData);
-  console.log(res.data);
-  // 模拟登录
-  message.success('登录成功');
+const rules = {
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 };
+// 登录
+const handleLogin = () => {
+  proxy.$refs.loginRef.validate()
+      .then(() => {
+        // 勾选记住
+        if (loginForm.remember){
+          Cookies.set("username",loginForm.username,{expires: 30})
+          Cookies.set("password",loginForm.password,{expires: 30})
+          Cookies.set("remember",loginForm.remember,{expires: 30})
+        }else {
+          Cookies.remove("username")
+          Cookies.remove("password")
+          Cookies.remove("remember")
+        }
+        // 调用user.js的action方法
+        useUserStore().login(loginForm).then(() => {
+
+        })
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+};
+
 </script>
 
-<style scoped>
+<style  scoped>
 @import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
 
 .login-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   background-image: url('../../assets/images/login-background.jpg'); /* 替换为你的背景图片路径 */
   background-size: cover;
@@ -85,7 +95,6 @@ const handleLogin = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
   padding: 20px;
   text-align: center;
   background-color: transparent; /* 设置为透明 */
@@ -101,9 +110,10 @@ const handleLogin = () => {
 }
 
 .login-box {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   padding: 40px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -121,3 +131,6 @@ const handleLogin = () => {
   width: 100%;
 }
 </style>
+
+
+

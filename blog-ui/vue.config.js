@@ -12,7 +12,7 @@ module.exports = defineConfig({
         target: 'http://localhost:8085', // 后端接口运行端口
         changeOrigin: true,
         pathRewrite: {
-          '^/dev-api':''
+          '^/dev-api': ''
         }
       }
     }
