@@ -22,7 +22,7 @@
             <a-input-password v-model:value="loginForm.password" placeholder="请输入密码" />
           </a-form-item>
           <a-form-item>
-            <a-checkbox v-model:checked="loginForm.remember">记住我</a-checkbox>
+            <a-checkbox  v-model:checked="loginForm.remember">记住我</a-checkbox>
           </a-form-item>
           <a-form-item>
             <a-button type="primary" html-type="submit" @click.prevent="handleLogin" class="login-form-button">
@@ -36,11 +36,22 @@
 </template>
 
 <script setup>
-import {getCurrentInstance, reactive, ref} from 'vue';
+import {getCurrentInstance, reactive, ref, watch} from 'vue';
 import Cookies from "js-cookie";
 import useUserStore from "@/store/modules/user";
+import {useRoute, useRouter} from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
 const loginRef = ref();
+// 当前组件的实例
 const {proxy} = getCurrentInstance();
+
+const redirect = ref(undefined);
+watch(route, (newRoute) => {
+  redirect.value = newRoute.query && newRoute.query.redirect;
+}, { immediate: true });
+
 const loginForm = reactive({
   username: '',
   password: '',
@@ -66,7 +77,14 @@ const handleLogin = () => {
         }
         // 调用user.js的action方法
         useUserStore().login(loginForm).then(() => {
-
+          const query = route.query;
+          const otherQueryParams = Object.keys(query).reduce((acc, cur) => {
+            if (cur !== "redirect") {
+              acc[cur] = query[cur];
+            }
+            return acc;
+          }, {});
+          router.push({ path: redirect.value || "/", query: otherQueryParams });
         })
       })
       .catch(error => {

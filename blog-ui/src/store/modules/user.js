@@ -1,10 +1,19 @@
 import {login} from "@/api/login";
 import {defineStore} from "pinia";
+import {getRefreshToken, getToken, setRefreshToken, setToken} from "@/utils/auth";
 
 const useUserStore = defineStore(
     'user',
     {
-        state: ()=> ({}),
+        state: ()=> ({
+            token: getToken(),
+            refreshToken: getRefreshToken(),
+            id: '',
+            name: '',
+            avatar: '',
+            roles: [],
+            permissions: []
+        }),
         actions: {
            // 登录
             login(userInfo) {
@@ -15,7 +24,9 @@ const useUserStore = defineStore(
                 };
                 return new Promise((resolve, reject) => {
                     login(userData).then(res => {
-                        console.log(res.data);
+                        const {accessToken, refreshToken} = res.data;
+                        setToken(accessToken);
+                        setRefreshToken(refreshToken);
                         resolve();
                     }).catch(error => {
                         reject(error);
