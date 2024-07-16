@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="ui改写">
-      <change afterPath="$PROJECT_DIR$/blog-ui/.env.development" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/.env.production" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/api/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/SidebarContent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/home/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,16 +52,14 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="b7aad837-6bb8-44d1-b0de-2cd8ead85d0e" />
-        <option name="url" value="git@github.com:/YeXin-Baby/blog-parent.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Kong-Chao/blog-parent.git&quot;,
+    &quot;accountId&quot;: &quot;e719de85-d7ed-431a-bb78-c2a7d29066b4&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar://D:/software/maven/apache-maven-3.6.1/repository_dev/com/xingyuv/captcha-plus/1.0.10/captcha-plus-1.0.10.jar!/com/xingyuv/captcha/model/vo/CaptchaVO.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$PROJECT_DIR$/../../../software/maven/apache-maven-3.6.1/repository_dev/com/xingyuv/captcha-plus/1.0.10/captcha-plus-1.0.10.jar!/com/xingyuv/captcha/model/vo/CaptchaVO.class" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiProvider">{
@@ -74,10 +71,10 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="customMavenHome" value="D:\software\maven\apache-maven-3.6.1" />
+        <option name="customMavenHome" value="D:\dev\envirment\maven\apache-maven-3.9.8-bin\apache-maven-3.9.8" />
         <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
         <option name="useMavenConfig" value="false" />
-        <option name="userSettingsFile" value="D:\software\maven\apache-maven-3.6.1\conf\settings.xml" />
+        <option name="userSettingsFile" value="D:\dev\envirment\maven\apache-maven-3.9.8-bin\apache-maven-3.9.8\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -115,9 +112,11 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "1.8",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Code/Java_code/code/RuoYi-Vue3",
+    "last_opened_file_path": "D:/dev/Tools/docker",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
@@ -128,7 +127,7 @@
     "project.structure.side.proportion": "0.43793103",
     "settings.editor.selected.configurable": "project.propCompiler",
     "spring.configuration.checksum": "d0d308e48700fbb8487287cea5a374e5",
-    "ts.external.directory.path": "E:\\Code\\Java_code\\code\\blog-parent\\blog-ui\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\dev\\software\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -174,11 +173,10 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="openRunningConfigInTab" value="true" />
   </component>
-  <component name="RunManager" selected="npm.serve">
-    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" activateToolWindowBeforeRun="false" temporary="true" nameIsGenerated="true">
-      <option name="ACTIVE_PROFILES" value="dev" />
-      <option name="INCLUDE_PROVIDED_SCOPE" value="false" />
+  <component name="RunManager" selected="Spring Boot.BlogApplication">
+    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="blog-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.sky.admin.BlogApplication" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -211,6 +209,14 @@
         <item itemvalue="Spring Boot.BlogApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -272,6 +278,10 @@
       <workItem from="1719364332570" duration="8567000" />
       <workItem from="1719452348871" duration="16522000" />
       <workItem from="1719884745218" duration="16468000" />
+      <workItem from="1721093090146" duration="4130000" />
+      <workItem from="1721098099565" duration="1455000" />
+      <workItem from="1721099844671" duration="4267000" />
+      <workItem from="1721108028745" duration="8312000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>

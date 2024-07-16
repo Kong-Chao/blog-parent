@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/views/login/Login.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
-import Index from "@/layout/Index.vue";
+import Layout from "@/layout/Index.vue"
 
 /**
  * Note: 路由配置项
@@ -29,8 +29,14 @@ import Index from "@/layout/Index.vue";
 export const constantRoutes = [
     {
         path: "/",
-        name: '首页',
-        component: Index
+        component: Layout,
+        children: [
+            {
+                path: '',
+                name: '首页',
+                component:()=> import('@/views/home/Home.vue'),
+            },
+        ]
     },
     {
         path: "/login",
