@@ -1,18 +1,19 @@
+<!-- src/layouts/index.vue -->
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider collapsible v-model:collapsed="collapsed">
+    <a-layout-sider collapsible v-model:collapsed="collapsed" @collapse="onCollapse">
       <div class="logo" />
       <sidebar-content />
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header style="background: #fff; padding: 0 16px;">
         <a-icon
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="toggleCollapse"
         />
       </a-layout-header>
-      <a-layout-content style="margin: 24px 16px 0">
+      <a-layout-content style="margin: 0 16px;">
         <router-view />
       </a-layout-content>
     </a-layout>
@@ -24,6 +25,10 @@ import { ref } from 'vue';
 import SidebarContent from '@/layout/module/SidebarContent.vue';
 
 const collapsed = ref(false);
+
+const onCollapse = (collapsed) => {
+  console.log(collapsed);
+};
 
 const toggleCollapse = () => {
   collapsed.value = !collapsed.value;
