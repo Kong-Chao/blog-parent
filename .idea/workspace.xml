@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="ui改写">
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/log/Log.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/system/Menu.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/system/Permission.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/system/User.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/SiderMenu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-admin/src/main/java/com/sky/admin/BlogApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/module/SidebarContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/SidebarContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/module/SidebarContent.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +111,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/dev/Tools/docker&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/dev/project/blog-parent&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -285,6 +282,9 @@
       <workItem from="1721099844671" duration="4267000" />
       <workItem from="1721108028745" duration="8909000" />
       <workItem from="1721178771241" duration="9864000" />
+      <workItem from="1721352016833" duration="336000" />
+      <workItem from="1721353780955" duration="233000" />
+      <workItem from="1721354109808" duration="1060000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
