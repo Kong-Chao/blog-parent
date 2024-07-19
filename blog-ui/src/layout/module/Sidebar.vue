@@ -1,46 +1,40 @@
 <template>
   <a-layout-sider v-model:collapsed="computedCollapsed" :trigger="null" collapsible>
     <div class="logo">My App</div>
-    <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
-      <a-menu-item key="home">
-        <home-outlined />
-        <span>首页</span>
-      </a-menu-item>
-      <a-menu-item key="user">
-        <user-outlined />
-        <span>用户管理</span>
-      </a-menu-item>
-      <a-menu-item key="video">
-        <video-camera-outlined />
-        <span>视频管理</span>
-      </a-menu-item>
-      <a-menu-item key="upload">
-        <upload-outlined />
-        <span>上传管理</span>
-      </a-menu-item>
-      <a-sub-menu key="sub4">
-        <template #icon>
-          <SettingOutlined />
-        </template>
-        <template #title>Navigation Three</template>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-menu-item key="11">Option 11</a-menu-item>
-        <a-menu-item key="12">Option 12</a-menu-item>
-      </a-sub-menu>
+    <a-menu
+        theme="dark"
+        mode="inline"
+        v-model:selectedKeys="selectedKeys"
+        :openKeys="openKeys"
+        @click="handleClick"
+        @openChange="onOpenChange"
+    >
+      <template v-for="item in menuItems" :key="item.key">
+        <a-menu-item v-if="!item.children" :key="item.key">
+          <component :is="item.icon" />
+          <span>{{ item.title }}</span>
+        </a-menu-item>
+        <a-sub-menu v-else :key="item.key">
+          <template #title>
+            <component :is="item.icon" />
+            <span>{{ item.title }}</span>
+          </template>
+          <template v-for="subItem in item.children" :key="subItem.key">
+            <a-menu-item>
+              <component :is="subItem.icon" />
+              <span>{{ subItem.title }}</span>
+            </a-menu-item>
+          </template>
+        </a-sub-menu>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script>
-import {computed, defineComponent, ref, watch} from 'vue';
-import {
-  HomeOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  SettingOutlined
-} from '@ant-design/icons-vue';
+import { computed, defineComponent, onMounted, ref, watch } from 'vue';
+import * as Icons from '@ant-design/icons-vue';
+import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
   props: {
@@ -50,36 +44,66 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const  computedCollapsed = computed(() => props.collapsed);
-    const selectedKeys = ref(['home']);
+    const router = useRouter();
+    const route = useRoute();
+    const computedCollapsed = computed(() => props.collapsed);
+    const selectedKeys = ref([route.name]);
     const openKeys = ref([]);
+    const menuItems = ref([]);
+
+    const generateMenuItems = () => {
+      menuItems.value = router.options.routes
+          .filter(route => route.meta && route.meta.title)
+          .map(route => {
+            const icon = Icons[route.meta.icon] || Icons['HomeOutlined'];
+
+            return {
+              key: route.name,
+              title: route.meta.title,
+              icon: icon,
+              children: route.children ? route.children.map(child => ({
+                key: child.name,
+                title: child.meta.title,
+                icon: Icons[child.meta.icon] || Icons['HomeOutlined']
+              })) : null
+            };
+          });
+    };
+
+    onMounted(() => {
+      selectedKeys.value = [route.name];
+      generateMenuItems();
+    });
+
     const handleClick = e => {
-      console.log('click', e);
+      router.push({ name: e.key });
     };
-    const titleClick = e => {
-      console.log('titleClick', e);
+
+    const onOpenChange = keys => {
+      const latestOpenKey = keys.find(key => !openKeys.value.includes(key));
+      if (latestOpenKey) {
+        openKeys.value = [latestOpenKey];
+      } else {
+        openKeys.value = [];
+      }
     };
+
     watch(
-        () => openKeys.value,
-        val => {
-          console.log('openKeys', val);
-        },
+        () => route.name,
+        () => {
+          selectedKeys.value = [route.name];
+        }
     );
+
     return {
+      menuItems,
       selectedKeys,
       openKeys,
       handleClick,
-      titleClick,
+      onOpenChange,
       computedCollapsed
     };
-  },
-  components: {
-    UploadOutlined,
-    HomeOutlined,
-    VideoCameraOutlined,
-    UserOutlined,
-    SettingOutlined
-  },
+  }
 });
 </script>
 
@@ -92,24 +116,24 @@ export default defineComponent({
     text-align: center;
     font-size: 24px;
     line-height: 64px;
-    background: #001529; /* 更改为侧边栏背景色 */
+    background: #001529;
   }
 
   .ant-menu-dark .ant-menu-item {
-    color: #fff; /* 菜单项文字颜色 */
+    color: #fff;
   }
 
   .ant-menu-dark .ant-menu-item:hover {
-    background-color: #1890ff; /* 菜单项悬停背景色 */
-    color: #fff; /* 菜单项悬停文字颜色 */
+    background-color: #1890ff;
+    color: #fff;
   }
 
   .ant-menu-dark .ant-menu-submenu-title {
-    color: #fff; /* 子菜单标题文字颜色 */
+    color: #fff;
   }
 
   .ant-menu-dark .ant-menu-submenu-title:hover {
-    color: #1890ff; /* 子菜单标题悬停文字颜色 */
+    color: #1890ff;
   }
 }
 </style>

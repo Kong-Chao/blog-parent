@@ -6,7 +6,7 @@ export const constantRoutes = [
     {
         path: "/",
         component: Layout,
-        meta: { title: "首页" },
+        meta: { title: "首页",icon: "DashboardOutlined"},
         redirect: "/home",
         children: [
             {
@@ -26,7 +26,7 @@ export const constantRoutes = [
     {
         path: "/system",
         component: Layout,
-        meta: { title: "系统管理" },
+        meta: { title: "系统管理",icon: "SettingOutlined" },
         children: [
             {
                 path: "user",
@@ -51,13 +51,13 @@ export const constantRoutes = [
     {
         path: "/log",
         component: Layout,
-        meta: { title: "日志管理" },
+        meta: { title: "日志管理" ,icon: 'FileOutlined'},
         children: [
             {
                 path: "systemLog",
                 name: "SystemLog",
                 component: () => import("@/views/log/Log.vue"),
-                meta: { title: '系统日志', icon: 'FileOutlined' },
+                meta: { title: '系统日志', icon: 'FileExcelOutlined' },
             },
         ],
     },
