@@ -6,16 +6,22 @@ export const constantRoutes = [
     {
         path: "/",
         component: Layout,
-        meta: { title: "首页",icon: "DashboardOutlined"},
         redirect: "/home",
+        meta: { title: "首页", icon: "DashboardOutlined" },
         children: [
             {
                 path: "home",
                 name: "Home",
                 component: () => import("@/views/home/Home.vue"),
-                meta: { title: '首页' },  // 添加title属性
+                meta: { title: '首页' },
             },
         ],
+    },
+    {
+        path: "/a",
+        name: '业务数据',
+        component: () => import("@/views/a.vue"),
+        meta: { title: '业务数据', icon: "DashboardOutlined" },
     },
     {
         path: '/login',
@@ -26,7 +32,7 @@ export const constantRoutes = [
     {
         path: "/system",
         component: Layout,
-        meta: { title: "系统管理",icon: "SettingOutlined" },
+        meta: { title: "系统管理", icon: "SettingOutlined" },
         children: [
             {
                 path: "user",
@@ -51,7 +57,7 @@ export const constantRoutes = [
     {
         path: "/log",
         component: Layout,
-        meta: { title: "日志管理" ,icon: 'FileOutlined'},
+        meta: { title: "日志管理", icon: 'FileOutlined' },
         children: [
             {
                 path: "systemLog",
