@@ -10,7 +10,7 @@
         @openChange="onOpenChange"
     >
       <template v-for="item in menuItems" :key="item.key">
-        <a-menu-item v-if="!item.children" :key="item.key">
+        <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.key">
           <component :is="item.icon" />
           <span>{{ item.title }}</span>
         </a-menu-item>
@@ -47,36 +47,39 @@ export default defineComponent({
     const router = useRouter();
     const route = useRoute();
     const computedCollapsed = computed(() => props.collapsed);
-    const selectedKeys = ref([route.name]);
+    const selectedKeys = ref([route.path]);
     const openKeys = ref([]);
     const menuItems = ref([]);
 
-    const generateMenuItems = () => {
-      menuItems.value = router.options.routes
-          .filter(route => route.meta && route.meta.title)
+    const generateMenuItems = (routes, basePath = '') => {
+      return routes
+          .filter(route => route.meta && route.meta.title && !route.meta.hidden)
           .map(route => {
             const icon = Icons[route.meta.icon] || Icons['HomeOutlined'];
+            const fullPath = basePath + (route.path.startsWith('/') ? '' : '/') + route.path;
 
-            return {
-              key: route.name,
+            const menuItem = {
+              key: fullPath,
               title: route.meta.title,
               icon: icon,
-              children: route.children ? route.children.map(child => ({
-                key: child.name,
-                title: child.meta.title,
-                icon: Icons[child.meta.icon] || Icons['HomeOutlined']
-              })) : null
+              path: fullPath,
+              children: route.children ? generateMenuItems(route.children, fullPath) : []
             };
+
+            return menuItem;
           });
     };
 
     onMounted(() => {
-      selectedKeys.value = [route.name];
-      generateMenuItems();
+      selectedKeys.value = [route.path];
+      menuItems.value = generateMenuItems(router.options.routes);
     });
 
     const handleClick = e => {
-      router.push({ name: e.key });
+      const { key } = e;
+      if (key) {
+        router.push(key);
+      }
     };
 
     const onOpenChange = keys => {
@@ -89,9 +92,9 @@ export default defineComponent({
     };
 
     watch(
-        () => route.name,
+        () => route.path,
         () => {
-          selectedKeys.value = [route.name];
+          selectedKeys.value = [route.path];
         }
     );
 
