@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <h1>a1</h1>
+    <h1>子测试</h1>
     <router-view /> <!-- 确保这里有 router-view -->
   </div>
 </template>

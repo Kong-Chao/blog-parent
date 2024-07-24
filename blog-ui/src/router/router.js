@@ -13,20 +13,44 @@ export const constantRoutes = [
                 path: "home",
                 name: "Home",
                 component: () => import("@/views/home/Home.vue"),
-                meta: { title: '首页', visible: false },
+                meta: { title: '首页', visible: true },
             },
         ],
     },
     {
-        path: "/test",
+        path: '/a',
         component: Layout,
         meta: { title: "测试", icon: "DashboardOutlined", visible: true },
         children: [
             {
-                path: "",
+                path: 'b',
                 name: 'Test',
-                component: () => import("@/views/test/a.vue"),
-                meta: { title: '业务数据', icon: "DashboardOutlined", visible: false },
+                component: () => import('@/views/test/a.vue'),
+                meta: { title: '业务数据', icon: "DashboardOutlined", visible: true },
+                children: [
+                    {
+                        path: 'c',
+                        name: 'SubTest1',
+                        component: () => import('@/views/test/SubTest.vue'),
+                        meta: { title: '子测试1', icon: "DashboardOutlined", visible: true },
+                        children: [
+                            {
+                                path: 'd',
+                                name: 'SubTest2',
+                                component: () => import('@/views/test/SubTest1.vue'),
+                                meta: { title: '子测试2', icon: "DashboardOutlined", visible: true },
+                                children: [
+                                    {
+                                        path: 'e',
+                                        name: 'SubTest3',
+                                        component: () => import('@/views/test/SubTest2.vue'),
+                                        meta: { title: '子测试3', icon: "DashboardOutlined", visible: true },
+                                    },
+                                ]
+                            },
+                        ]
+                    },
+                ]
             },
         ],
     },

@@ -1,7 +1,7 @@
 <template>
   <a-layout class="layout">
     <Sidebar :collapsed="collapsed" />
-    <a-layout class="site-layout"> <!-- 添加一个class以便于样式控制 -->
+    <a-layout class="site-layout" :class="{ collapsed }">
       <a-layout-header class="header">
         <div class="trigger-wrapper">
           <menu-unfold-outlined
@@ -15,6 +15,8 @@
               @click="() => (collapsed = !collapsed)"
           />
         </div>
+        <!-- 在这里添加面包屑 -->
+        <Breadcrumb />
         <div class="user-profile">
           <a-avatar :src="require('@/assets/images/avatar.jpg')" />
           <a-dropdown>
@@ -46,10 +48,12 @@ import { defineComponent, ref } from 'vue';
 import Sidebar from "@/layout/module/Sidebar.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 import { Avatar, Dropdown, Menu } from 'ant-design-vue';
+import Breadcrumb from '@/layout/module/Breadcrumb.vue'; // 引入面包屑组件
 
 export default defineComponent({
   components: {
     Sidebar,
+    Breadcrumb, // 注册面包屑组件
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     'a-avatar': Avatar,
@@ -84,26 +88,19 @@ export default defineComponent({
     }
   }
 
-  .logo {
-    height: 64px;
-    margin: 16px;
-    color: #fff;
-    text-align: center;
-    font-size: 24px;
-    line-height: 64px;
-  }
-
   .header {
     background: #fff;
     padding: 0 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 10; // 确保header的层级高于内容区域
+    z-index: 10;
+    height: 64px; // 确保与侧边栏一致的高度
 
     .trigger-wrapper {
       display: flex;
       align-items: center;
+      margin-right: 16px; // 右边距与 breadcrumb 的间距一致
 
       .trigger {
         font-size: 18px;
@@ -113,6 +110,28 @@ export default defineComponent({
 
       .trigger:hover {
         color: #1890ff;
+      }
+    }
+
+    .breadcrumb {
+      flex-grow: 1;
+      margin: 0; // 移除上下边距
+      padding: 8px 16px; // 设置适当的内边距
+      background-color: transparent;
+      display: flex;
+      align-items: center; // 垂直居中对齐
+      text-align: center; // 使面包屑内容居中
+      height: 100%; // 确保高度填满父容器
+      box-sizing: border-box; // 确保内边距和边框不影响宽度计算
+
+      a {
+        color: #1890ff;
+        text-decoration: none;
+        margin-right: 8px; // 设置链接间距
+
+        &:hover {
+          color: #40a9ff;
+        }
       }
     }
 

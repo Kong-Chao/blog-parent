@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="ui改写">
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/menuItem/MenuItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest1.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest2.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/module/Breadcrumb.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/Breadcrumb.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/module/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/a.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/test/a.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/home/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/test/a.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/test/a.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -426,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719887829142</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ui改写">
+      <option name="closed" value="true" />
+      <created>1721804098278</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1721804098278</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
