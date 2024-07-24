@@ -1,5 +1,10 @@
 <template>
-  <a-layout-sider v-model:collapsed="computedCollapsed" :trigger="null" collapsible>
+  <a-layout-sider
+      v-model:collapsed="computedCollapsed"
+      :trigger="null"
+      collapsible
+      class="sider"
+  >
     <div class="logo">My App</div>
     <a-menu
         theme="dark"
@@ -10,20 +15,47 @@
         @openChange="onOpenChange"
     >
       <template v-for="item in menuItems" :key="item.key">
-        <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.key">
+        <a-menu-item
+            v-if="item.visible && (!item.children || item.children.length === 0)"
+            :key="item.key"
+        >
           <component :is="item.icon" />
           <span>{{ item.title }}</span>
         </a-menu-item>
-        <a-sub-menu v-else :key="item.key">
+        <a-sub-menu
+            v-if="item.visible && item.children && item.children.length > 0"
+            :key="item.key"
+        >
           <template #title>
             <component :is="item.icon" />
             <span>{{ item.title }}</span>
           </template>
           <template v-for="subItem in item.children" :key="subItem.key">
-            <a-menu-item>
+            <a-menu-item
+                v-if="subItem.visible && (!subItem.children || subItem.children.length === 0)"
+                :key="subItem.key"
+            >
               <component :is="subItem.icon" />
               <span>{{ subItem.title }}</span>
             </a-menu-item>
+            <a-sub-menu
+                v-if="subItem.visible && subItem.children && subItem.children.length > 0"
+                :key="subItem.key"
+            >
+              <template #title>
+                <component :is="subItem.icon" />
+                <span>{{ subItem.title }}</span>
+              </template>
+              <template v-for="subSubItem in subItem.children" :key="subSubItem.key">
+                <a-menu-item
+                    v-if="subSubItem.visible"
+                    :key="subSubItem.key"
+                >
+                  <component :is="subSubItem.icon" />
+                  <span>{{ subSubItem.title }}</span>
+                </a-menu-item>
+              </template>
+            </a-sub-menu>
           </template>
         </a-sub-menu>
       </template>
@@ -32,16 +64,17 @@
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, ref, watch } from 'vue';
-import * as Icons from '@ant-design/icons-vue';
-import { useRoute, useRouter } from 'vue-router';
+import { computed, defineComponent, onMounted, ref, watch } from "vue";
+import * as Icons from "@ant-design/icons-vue";
+import { useRoute, useRouter } from "vue-router";
+import { join } from "path-browserify"; // 使用 path-browserify 库进行路径拼接
 
 export default defineComponent({
   props: {
     collapsed: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup(props) {
     const router = useRouter();
@@ -51,19 +84,22 @@ export default defineComponent({
     const openKeys = ref([]);
     const menuItems = ref([]);
 
-    const generateMenuItems = (routes, basePath = '') => {
+    const generateMenuItems = (routes, basePath = "") => {
       return routes
-          .filter(route => route.meta && route.meta.title && !route.meta.hidden)
-          .map(route => {
-            const icon = Icons[route.meta.icon] || Icons['HomeOutlined'];
-            const fullPath = basePath + (route.path.startsWith('/') ? '' : '/') + route.path;
+          .filter((route) => route.meta && route.meta.visible && !route.meta.hidden)
+          .map((route) => {
+            const icon = Icons[route.meta.icon] || Icons["HomeOutlined"];
+            const fullPath = join(basePath, route.path); // 使用 path-browserify 处理路径拼接
 
             const menuItem = {
               key: fullPath,
               title: route.meta.title,
               icon: icon,
               path: fullPath,
-              children: route.children ? generateMenuItems(route.children, fullPath) : []
+              visible: route.meta.visible,
+              children: route.children
+                  ? generateMenuItems(route.children, fullPath)
+                  : [],
             };
 
             return menuItem;
@@ -75,15 +111,15 @@ export default defineComponent({
       menuItems.value = generateMenuItems(router.options.routes);
     });
 
-    const handleClick = e => {
+    const handleClick = (e) => {
       const { key } = e;
       if (key) {
         router.push(key);
       }
     };
 
-    const onOpenChange = keys => {
-      const latestOpenKey = keys.find(key => !openKeys.value.includes(key));
+    const onOpenChange = (keys) => {
+      const latestOpenKey = keys.find((key) => !openKeys.value.includes(key));
       if (latestOpenKey) {
         openKeys.value = [latestOpenKey];
       } else {
@@ -99,44 +135,27 @@ export default defineComponent({
     );
 
     return {
-      menuItems,
       selectedKeys,
       openKeys,
       handleClick,
+      computedCollapsed,
+      menuItems,
       onOpenChange,
-      computedCollapsed
     };
-  }
+  },
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
 .sider {
-  .logo {
-    height: 64px;
-    margin: 16px;
-    color: #fff;
-    text-align: center;
-    font-size: 24px;
-    line-height: 64px;
-    background: #001529;
-  }
-
-  .ant-menu-dark .ant-menu-item {
-    color: #fff;
-  }
-
-  .ant-menu-dark .ant-menu-item:hover {
-    background-color: #1890ff;
-    color: #fff;
-  }
-
-  .ant-menu-dark .ant-menu-submenu-title {
-    color: #fff;
-  }
-
-  .ant-menu-dark .ant-menu-submenu-title:hover {
-    color: #1890ff;
-  }
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  left: 0;
 }
 </style>

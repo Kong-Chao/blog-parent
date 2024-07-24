@@ -1,5 +1,5 @@
 <template>
-<div>23124</div>
+<div>首页</div>
 </template>
 
 <script setup>

@@ -1,7 +1,7 @@
 <template>
   <a-layout class="layout">
     <Sidebar :collapsed="collapsed" />
-    <a-layout>
+    <a-layout class="site-layout"> <!-- 添加一个class以便于样式控制 -->
       <a-layout-header class="header">
         <div class="trigger-wrapper">
           <menu-unfold-outlined
@@ -16,7 +16,7 @@
           />
         </div>
         <div class="user-profile">
-          <a-avatar :src="require('@/assets/images/avatar.jpg')"/>
+          <a-avatar :src="require('@/assets/images/avatar.jpg')" />
           <a-dropdown>
             <template #overlay>
               <a-menu>
@@ -73,7 +73,16 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .layout {
-  min-height: 100vh;
+  min-height: 100vh; // 确保布局占据整个视口高度
+
+  .site-layout {
+    margin-left: 200px; // 默认情况下侧边栏的宽度
+    transition: margin-left 0.2s; // 为侧边栏的展开/折叠添加动画过渡
+
+    &.collapsed {
+      margin-left: 80px; // 侧边栏折叠时的宽度
+    }
+  }
 
   .logo {
     height: 64px;
@@ -90,6 +99,7 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 10; // 确保header的层级高于内容区域
 
     .trigger-wrapper {
       display: flex;
@@ -124,7 +134,13 @@ export default defineComponent({
     margin: 24px 16px;
     padding: 24px;
     background: #fff;
-    min-height: 280px;
+    min-height: calc(100vh - 64px); // 确保内容区域最小高度
+    overflow: auto; // 防止内容过多时溢出
+
+    @media (max-width: 768px) {
+      margin: 0; // 在较小屏幕上取消内边距
+      padding: 16px; // 调整内边距以适应小屏幕
+    }
   }
 }
 </style>

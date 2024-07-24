@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div>31242353</div>
+<div>测试页面</div>
 </template>
 
 <style scoped>
