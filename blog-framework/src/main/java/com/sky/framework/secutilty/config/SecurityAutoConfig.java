@@ -2,6 +2,7 @@ package com.sky.framework.secutilty.config;
 
 import com.sky.framework.secutilty.handler.AccessDeniedHandlerImpl;
 import com.sky.framework.secutilty.handler.AuthenticationEntryPointImpl;
+import com.sky.framework.secutilty.handler.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /**
  * SpirngSecurity 安全配置
@@ -54,5 +56,13 @@ public class SecurityAutoConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    /**
+     * 登录退出类
+     */
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler(){
+        return new LogoutSuccessHandlerImpl();
     }
 }

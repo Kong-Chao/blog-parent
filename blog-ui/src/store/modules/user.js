@@ -1,6 +1,6 @@
-import {login} from "@/api/login";
+import {login, logout} from "@/api/login";
 import {defineStore} from "pinia";
-import {getRefreshToken, getToken, setRefreshToken, setToken} from "@/utils/auth";
+import {getRefreshToken, getToken, removeRefreshToken, removeToken, setRefreshToken, setToken} from "@/utils/auth";
 
 const useUserStore = defineStore(
     'user',
@@ -33,6 +33,24 @@ const useUserStore = defineStore(
                     })
                 })
             },
+            // 登出
+            logOut() {
+                return new Promise((resolve, reject) => {
+                    logout(this.token).then(res=>{
+                        console.log(res);
+                        this.token = '';
+                        this.refreshToken = '';
+                        this.roles = [];
+                        this.permissions = [];
+                        removeToken();
+                        removeRefreshToken();
+                        resolve()
+                    }).catch(error => {
+                        console.log('error', error);
+                        reject(error);
+                    })
+                })
+            }
         },
     }
 )

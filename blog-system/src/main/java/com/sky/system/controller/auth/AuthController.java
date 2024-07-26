@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 /**
  * 认证接口
+ * @author admin
  */
 @RestController
 @RequestMapping("/system/auth")

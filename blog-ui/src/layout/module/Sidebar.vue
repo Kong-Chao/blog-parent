@@ -23,11 +23,11 @@
 import { computed, defineComponent, onMounted, ref, watch } from "vue";
 import * as Icons from "@ant-design/icons-vue";
 import { useRoute, useRouter } from "vue-router";
-import { join } from "path-browserify"; // 使用 path-browserify 库进行路径拼接
-import MenuItem from "@/layout/module/menuItem/MenuItem.vue"
+import { join } from "path-browserify";
+import MenuItem from "@/layout/module/menuItem/MenuItem.vue";
 
 export default defineComponent({
-  components: {MenuItem},
+  components: { MenuItem },
   props: {
     collapsed: {
       type: Boolean,
@@ -42,13 +42,12 @@ export default defineComponent({
     const openKeys = ref([]);
     const menuItems = ref([]);
 
-    // 动态生成菜单项
     const generateMenuItems = (routes, basePath = "") => {
       return routes
           .filter((route) => route.meta && route.meta.visible && !route.meta.hidden)
           .map((route) => {
-            const icon = Icons[route.meta.icon] || Icons["HomeOutlined"];
-            const fullPath = join(basePath, route.path); // 使用 path-browserify 处理路径拼接
+            const icon = Icons[route.meta.icon];
+            const fullPath = join(basePath, route.path);
 
             const menuItem = {
               key: fullPath,
@@ -68,7 +67,6 @@ export default defineComponent({
     onMounted(() => {
       selectedKeys.value = [route.path];
       menuItems.value = generateMenuItems(router.options.routes);
-      console.log('menuItems', menuItems.value);
     });
 
     const handleClick = (e) => {
@@ -79,7 +77,6 @@ export default defineComponent({
     };
 
     const onOpenChange = (keys) => {
-      // 设置菜单展开状态
       openKeys.value = keys;
     };
 

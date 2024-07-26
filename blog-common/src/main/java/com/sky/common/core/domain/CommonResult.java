@@ -56,6 +56,10 @@ public class CommonResult<T> implements Serializable {
         return restResult(SUCCESS,null,"操作成功");
     }
 
+    public static <T> CommonResult<T> success(String msg){
+        return restResult(SUCCESS,null,msg);
+    }
+
     public static <T> CommonResult<T> success(T data){
         return restResult(SUCCESS,data,"操作成功");
     }

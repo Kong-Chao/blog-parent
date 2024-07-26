@@ -19,6 +19,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -52,11 +53,15 @@ public class WebSecurityConfigurerAdapter {
     @Resource
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Resource
+    private LogoutSuccessHandler logoutSuccessHandler;
+
     /**
      * spring 上下文
      */
     @Resource
     private ApplicationContext applicationContext;
+
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -126,7 +131,8 @@ public class WebSecurityConfigurerAdapter {
                 // ③：兜底规则，必须认证
               .anyRequest().authenticated()
         ;
-
+        // 添加Logout filter
+        httpSecurity.logout(logout -> logout.logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler));
         // 添加token过滤器验证
         httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, userDetailsService,redisService), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
@@ -153,7 +159,7 @@ public class WebSecurityConfigurerAdapter {
             Set<String> urls = entry.getKey().getPatternsCondition().getPatterns();
             // 特殊：使用 @RequestMapping 注解，并且未写 method 属性，此时认为都需要免登录
             Set<RequestMethod> methods = entry.getKey().getMethodsCondition().getMethods();
-            if (CollUtil.isEmpty(methods)) { //
+            if (CollUtil.isEmpty(methods)) {
                 result.putAll(HttpMethod.GET, urls);
                 result.putAll(HttpMethod.POST, urls);
                 result.putAll(HttpMethod.PUT, urls);

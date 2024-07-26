@@ -47,8 +47,9 @@
 import { defineComponent, ref } from 'vue';
 import Sidebar from "@/layout/module/Sidebar.vue";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
-import { Avatar, Dropdown, Menu } from 'ant-design-vue';
-import Breadcrumb from '@/layout/module/Breadcrumb.vue'; // 引入面包屑组件
+import {Avatar, Dropdown, Menu, Modal} from 'ant-design-vue';
+import Breadcrumb from '@/layout/module/Breadcrumb.vue';
+import useUserStore from "@/store/modules/user"; // 引入面包屑组件
 
 export default defineComponent({
   components: {
@@ -65,6 +66,20 @@ export default defineComponent({
   setup() {
     const handleLogout = () => {
       // 处理退出登录逻辑
+      Modal.confirm({
+        title: '确认退出登录',
+        content: '您确定要退出登录吗？',
+        okText: '确认',
+        cancelText: '取消',
+        onOk() {
+          useUserStore().logOut().then(() => {
+            location.href = '/login';
+          })
+        },
+        onCancel() {
+
+        }
+      })
     };
 
     return {
