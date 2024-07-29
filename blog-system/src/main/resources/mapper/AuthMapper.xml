@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.system.mapper.AuthMapper">
+
+    <resultMap type="com.sky.common.core.domain.entity.UserBO" id="authUserMap">
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+        <result property="userType" column="user_type" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="delFlag" column="del_flag" jdbcType="VARCHAR"/>
+        <result property="loginIp" column="login_ip" jdbcType="VARCHAR"/>
+        <result property="loginDate" column="login_date" jdbcType="TIMESTAMP"/>
+        <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+
+        <collection property="roles" ofType="com.sky.common.core.domain.entity.SysRole">
+            <id property="roleId" column="role_id" jdbcType="VARCHAR"/>
+            <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        </collection>
+
+        <collection property="permissions" ofType="com.sky.common.core.domain.entity.SysMenu">
+            <id property="menuId" column="menu_id" jdbcType="VARCHAR"/>
+            <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectByUserName" resultMap="authUserMap">
+        SELECT
+            u.user_id,u.dept_id,u.user_name,u.nick_name,u.email,u.phonenumber,u.sex,u.avatar,u.`password`,u.`status`,u.del_flag,u.login_ip,u.login_date,r.role_id,r.role_name,m.menu_id,m.perms
+        FROM
+            sys_user u
+                LEFT JOIN sys_user_role ur ON u.user_id = ur.user_id
+                LEFT JOIN sys_role r ON r.role_id = ur.role_id
+                LEFT JOIN sys_role_menu rm ON  r.role_id = rm.role_id
+                LEFT JOIN sys_menu m ON m.menu_id = rm.menu_id
+        WHERE u.user_name = 'ry'
+
+    </select>
+</mapper>

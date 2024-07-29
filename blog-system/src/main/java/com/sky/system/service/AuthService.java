@@ -3,12 +3,13 @@ package com.sky.system.service;
 import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
-import com.sky.common.core.domain.model.LoginUser;
+import com.sky.common.core.domain.entity.UserBO;
 
 import javax.validation.Valid;
 
 /**
  * 登录认证接口
+ * @author admin
  */
 public interface AuthService {
 
@@ -17,7 +18,9 @@ public interface AuthService {
     /**
      * 用户名+密码登录
      */
-    LoginUser authenticate(String username, String password);
+    UserBO authenticate(String username, String password);
 
     TokenVO refreshToken(RefreshTokenVO refreshTokenVO);
+
+    UserBO selectByUserName(String username);
 }

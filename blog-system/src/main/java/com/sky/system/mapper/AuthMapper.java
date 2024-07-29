@@ -1,13 +1,14 @@
 package com.sky.system.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.sky.common.core.domain.entity.UserBO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author kc
+ * @author admin
  */
 @Mapper
-public interface SysUserMapper extends BaseMapper<UserBO> {
+public interface AuthMapper {
+
+    UserBO selectByUserName(String username);
 
 }

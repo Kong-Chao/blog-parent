@@ -1,7 +1,7 @@
 package com.sky.framework.secutilty.util;
 
 import cn.hutool.core.util.StrUtil;
-import com.sky.common.core.domain.model.LoginUser;
+import com.sky.common.core.domain.entity.UserBO;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -69,12 +69,12 @@ public class SecurityFrameworkUtils {
      * @return 当前用户
      */
     @Nullable
-    public static LoginUser getLoginUser() {
+    public static UserBO getLoginUser() {
         Authentication authentication = getAuthentication();
         if (authentication == null) {
             return null;
         }
-        return authentication.getPrincipal() instanceof LoginUser ? (LoginUser) authentication.getPrincipal() : null;
+        return authentication.getPrincipal() instanceof UserBO ? (UserBO) authentication.getPrincipal() : null;
     }
 
     /**
@@ -84,7 +84,7 @@ public class SecurityFrameworkUtils {
      */
     @Nullable
     public static Long getLoginUserId() {
-        LoginUser loginUser = getLoginUser();
+        UserBO loginUser = getLoginUser();
         return loginUser != null ? loginUser.getUserId() : null;
     }
 
@@ -94,7 +94,7 @@ public class SecurityFrameworkUtils {
      * @param loginUser 登录用户
      * @param request 请求
      */
-    public static void setLoginUser(LoginUser loginUser, HttpServletRequest request) {
+    public static void setLoginUser(UserBO loginUser, HttpServletRequest request) {
         // 创建 Authentication，并设置到上下文
         Authentication authentication = buildAuthentication(loginUser, request);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -105,7 +105,7 @@ public class SecurityFrameworkUtils {
 //        WebFrameworkUtils.setLoginUserType(request, loginUser.getUserType());
     }
 
-    private static Authentication buildAuthentication(LoginUser loginUser, HttpServletRequest request) {
+    private static Authentication buildAuthentication(UserBO loginUser, HttpServletRequest request) {
         // 创建 UsernamePasswordAuthenticationToken 对象
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginUser, null, Collections.emptyList());

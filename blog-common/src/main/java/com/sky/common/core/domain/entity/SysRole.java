@@ -1,4 +1,4 @@
-package com.sky.common.core.domain.enyity;
+package com.sky.common.core.domain.entity;
 
 import com.sky.common.core.domain.BaseEntity;
 import lombok.Data;

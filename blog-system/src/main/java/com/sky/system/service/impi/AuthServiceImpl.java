@@ -7,7 +7,7 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
-import com.sky.common.core.domain.model.LoginUser;
+import com.sky.common.core.domain.entity.UserBO;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.core.exception.util.ServiceExceptionUtil;
 import com.sky.common.utils.UUIDutil;
@@ -59,7 +59,7 @@ public class AuthServiceImpl implements AuthService {
         // 验证码校验
         //validateCaptcha(authLoginVO);
         // 账号密码登录验证
-        LoginUser loginUser = authenticate(authLoginVO.getUsername(), authLoginVO.getPassword());
+        UserBO loginUser = authenticate(authLoginVO.getUsername(), authLoginVO.getPassword());
         Map<String, Object> claims = new HashMap<>(6);
         String uuid = UUIDutil.generateUUID();
         claims.put("uuid",uuid);
@@ -92,7 +92,7 @@ public class AuthServiceImpl implements AuthService {
      * 用户名+密码登录
      */
     @Override
-    public LoginUser authenticate(String username, String password) {
+    public UserBO authenticate(String username, String password) {
         // 手动用户验证
         Authentication authenticate = null;
         try{
@@ -104,7 +104,7 @@ public class AuthServiceImpl implements AuthService {
         }catch (Exception e){
             throw ServiceExceptionUtil.exception(GlobalErrorCodeConstants.ACCOUNT_PASSWORD_ERROR);
         }
-        LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
+        UserBO loginUser = (UserBO) authenticate.getPrincipal();
         return loginUser;
     }
 
@@ -122,5 +122,14 @@ public class AuthServiceImpl implements AuthService {
                 .setAccessToken(newAccessToken)
                 .setRefreshToken(refreshToken)
                 .setExpiresIn(expiresIn);
+    }
+
+    /**
+     * @param username
+     * @return
+     */
+    @Override
+    public UserBO selectByUserName(String username) {
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 package com.sky.common.utils.jwt;
 
-import com.sky.common.core.domain.model.LoginUser;
+import com.sky.common.core.domain.entity.UserBO;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -115,7 +115,7 @@ public class JwtTokenUtil {
         final String userName = getAllClaimsFromToken(token).get("userName").toString();
         final Long userId = getUserIdFromToken(token);
         return (userName.equals(userDetails.getUsername())
-                && userId.equals(((LoginUser) userDetails).getUserId())
+                && userId.equals(((UserBO) userDetails).getUserId())
                 && !isTokenExpired(token));
     }
 

@@ -1,7 +1,7 @@
 package com.sky.system.service.impi;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.sky.common.core.domain.enyity.SysUser;
+import com.sky.common.core.domain.entity.UserBO;
 import com.sky.system.mapper.SysUserMapper;
 import com.sky.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class SystemServiceImpl implements SysUserService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public SysUser selectByUserName(String username) {
-        return sysUserMapper.selectOne(new LambdaQueryWrapper<SysUser>().eq(SysUser::getUserName,username));
+    public UserBO selectByUserName(String username) {
+        return sysUserMapper.selectOne(new LambdaQueryWrapper<UserBO>().eq(UserBO::getUserName,username));
     }
 
     @Override

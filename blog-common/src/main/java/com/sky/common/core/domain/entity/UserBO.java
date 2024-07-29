@@ -1,26 +1,32 @@
-package com.sky.common.core.domain.enyity;
+package com.sky.common.core.domain.entity;
 
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.sky.common.core.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 用户对象 sys_user
  *
  * @author ruoyi
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @TableName("sys_user")
-public class SysUser extends BaseEntity
+public class UserBO extends BaseEntity implements UserDetails
 {
     private static final long serialVersionUID = 1L;
 
@@ -39,6 +45,8 @@ public class SysUser extends BaseEntity
     @TableField("nick_name")
     /** 用户昵称 */
     private String nickName;
+
+    private String userType;
 
     @TableField("email")
     /** 用户邮箱 */
@@ -78,7 +86,9 @@ public class SysUser extends BaseEntity
 
     @TableField(exist = false)
     /** 角色对象 */
-    private  List<SysRole> roles;
+    private Set<SysRole> roles;
+
+    private Set<SysMenu> permissions;
 
     @TableField(exist = false)
     /** 角色组 */
@@ -92,12 +102,12 @@ public class SysUser extends BaseEntity
     /** 角色ID */
     private  Long roleId;
 
-    public SysUser()
+    public UserBO()
     {
 
     }
 
-    public SysUser(Long userId)
+    public UserBO(Long userId)
     {
         this.userId = userId;
     }
@@ -144,5 +154,48 @@ public class SysUser extends BaseEntity
     public String getPhonenumber()
     {
         return phonenumber;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @JSONField(serialize = false)
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    // 账户是否未过期,过期无法验证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    // 指定用户是否解锁,锁定的用户无法进行身份验证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    // 指示是否已过期的用户的凭据(密码),过期的凭据防止认证
+    @JSONField(serialize = false)
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    // 是否可用 ,禁用的用户不能身份验证
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

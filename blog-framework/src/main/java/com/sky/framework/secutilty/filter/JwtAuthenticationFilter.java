@@ -1,7 +1,7 @@
 package com.sky.framework.secutilty.filter;
 
 import com.sky.common.constant.Constants;
-import com.sky.common.core.domain.model.LoginUser;
+import com.sky.common.core.domain.entity.UserBO;
 import com.sky.common.utils.json.JsonUtils;
 import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;
@@ -54,7 +54,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Claims claims = jwtTokenUtil.getAllClaimsFromToken(jwtToken);
                 String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
                 Map<String, Object> userMap = redisService.getCacheObject(userKey);
-                LoginUser loginUser = JsonUtils.mapToObject(userMap, LoginUser.class);
+                UserBO loginUser = JsonUtils.mapToObject(userMap, UserBO.class);
 
                 if (jwtTokenUtil.validateToken(jwtToken, loginUser)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

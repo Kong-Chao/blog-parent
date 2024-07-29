@@ -99,7 +99,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .logo {
   height: 32px;
   margin: 16px;
