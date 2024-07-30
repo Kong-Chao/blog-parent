@@ -8,15 +8,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.sky.common.core.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 用户对象 sys_user
@@ -158,7 +162,14 @@ public class UserBO extends BaseEntity implements UserDetails
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        if (CollectionUtils.isEmpty(permissions)) {
+            return Collections.emptyList();
+        }
+
+        return permissions.stream()
+                .filter(menu -> menu.getPerms() != null)
+                .map(menu -> new SimpleGrantedAuthority(menu.getPerms()))
+                .collect(Collectors.toSet());
     }
 
     @JSONField(serialize = false)
