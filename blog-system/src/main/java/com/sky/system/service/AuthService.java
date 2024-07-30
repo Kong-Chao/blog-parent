@@ -22,5 +22,5 @@ public interface AuthService {
 
     TokenVO refreshToken(RefreshTokenVO refreshTokenVO);
 
-    UserBO selectByUserName(String username);
+    UserBO getUserInfo();
 }

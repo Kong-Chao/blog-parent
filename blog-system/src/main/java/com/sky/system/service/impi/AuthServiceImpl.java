@@ -9,13 +9,14 @@ import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
 import com.sky.common.core.domain.entity.UserBO;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
-import com.sky.common.core.exception.util.ServiceExceptionUtil;
 import com.sky.common.utils.UUIDutil;
 import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;
+import com.sky.framework.secutilty.util.SecurityFrameworkUtils;
 import com.sky.system.service.AuthService;
 import com.sky.system.service.SysUserService;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @author kc
  */
 @Service
+@Slf4j
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
@@ -102,10 +104,9 @@ public class AuthServiceImpl implements AuthService {
         }catch (BadCredentialsException e){
             throw new BadCredentialsException(GlobalErrorCodeConstants.ACCOUNT_PASSWORD_ERROR.getMsg());
         }catch (Exception e){
-            throw ServiceExceptionUtil.exception(GlobalErrorCodeConstants.ACCOUNT_PASSWORD_ERROR);
+            log.error(e.getMessage());
         }
-        UserBO loginUser = (UserBO) authenticate.getPrincipal();
-        return loginUser;
+        return (UserBO) authenticate.getPrincipal();
     }
 
     @Override
@@ -125,11 +126,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * @param username
      * @return
      */
     @Override
-    public UserBO selectByUserName(String username) {
-        return null;
+    public UserBO getUserInfo() {
+        return SecurityFrameworkUtils.getLoginUser();
     }
 }

@@ -4,12 +4,10 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.core.domain.CommonResult;
+import com.sky.common.core.domain.entity.UserBO;
 import com.sky.system.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -32,6 +30,16 @@ public class AuthController {
     @PostMapping("/refresh")
     public CommonResult<TokenVO> refresh(@RequestBody @Valid RefreshTokenVO refreshTokenVO){
         return CommonResult.success(authService.refreshToken(refreshTokenVO));
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @return 用户信息
+     */
+    @GetMapping("/getInfo")
+    public CommonResult<UserBO> getInfo(){
+        return CommonResult.success(authService.getUserInfo());
     }
 
 }

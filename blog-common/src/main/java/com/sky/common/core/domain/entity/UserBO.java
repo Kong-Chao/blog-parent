@@ -8,10 +8,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.sky.common.core.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -167,7 +167,7 @@ public class UserBO extends BaseEntity implements UserDetails
         }
 
         return permissions.stream()
-                .filter(menu -> menu.getPerms() != null)
+                .filter(menu -> menu.getPerms() != null && !menu.getPerms().trim().isEmpty())
                 .map(menu -> new SimpleGrantedAuthority(menu.getPerms()))
                 .collect(Collectors.toSet());
     }

@@ -66,8 +66,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             } catch (Exception e) {
                 log.error("无法获得JWT令牌,原因:{}",e.getMessage());
             }
-        } else {
-            logger.error("JWT令牌不以承载字符串开头");
         }
         chain.doFilter(request, response);
     }

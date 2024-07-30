@@ -30,7 +30,7 @@
 
         <collection property="permissions" ofType="com.sky.common.core.domain.entity.SysMenu">
             <id property="menuId" column="menu_id" jdbcType="VARCHAR"/>
-            <result property="menuName" column="menu_name" jdbcType="VARCHAR"/>
+            <result property="perms" column="perms" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
 
@@ -43,7 +43,32 @@
                 LEFT JOIN sys_role r ON r.role_id = ur.role_id
                 LEFT JOIN sys_role_menu rm ON  r.role_id = rm.role_id
                 LEFT JOIN sys_menu m ON m.menu_id = rm.menu_id
-        WHERE u.user_name = 'ry'
+        WHERE u.user_name = #{username}
 
+    </select>
+    <select id="selectAllAuthority" resultType="com.sky.common.core.domain.entity.SysMenu">
+        SELECT
+            menu_id,
+            menu_name,
+            parent_id,
+            order_num,
+            path,
+            component,
+            QUERY,
+            route_name,
+            is_frame,
+            is_cache,
+            menu_type,
+            visible,
+            STATUS,
+            perms,
+            icon,
+            create_by,
+            create_time,
+            update_by,
+            update_time,
+            remark
+        FROM
+            sys_menu
     </select>
 </mapper>

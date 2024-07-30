@@ -3,20 +3,18 @@ package com.sky.framework.secutilty.util;
 import cn.hutool.core.util.StrUtil;
 import com.sky.common.core.domain.entity.UserBO;
 import org.springframework.lang.Nullable;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collections;
 
 /**
  * 安全服务工具类
  *
- * @author 芋道源码
+ * @author admin
+
  */
 public class SecurityFrameworkUtils {
 
@@ -86,31 +84,6 @@ public class SecurityFrameworkUtils {
     public static Long getLoginUserId() {
         UserBO loginUser = getLoginUser();
         return loginUser != null ? loginUser.getUserId() : null;
-    }
-
-    /**
-     * 设置当前用户
-     *
-     * @param loginUser 登录用户
-     * @param request 请求
-     */
-    public static void setLoginUser(UserBO loginUser, HttpServletRequest request) {
-        // 创建 Authentication，并设置到上下文
-        Authentication authentication = buildAuthentication(loginUser, request);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        // 额外设置到 request 中，用于 ApiAccessLogFilter 可以获取到用户编号；
-        // 原因是，Spring Security 的 Filter 在 ApiAccessLogFilter 后面，在它记录访问日志时，线上上下文已经没有用户编号等信息
-//        WebFrameworkUtils.setLoginUserId(request, loginUser.getId());
-//        WebFrameworkUtils.setLoginUserType(request, loginUser.getUserType());
-    }
-
-    private static Authentication buildAuthentication(UserBO loginUser, HttpServletRequest request) {
-        // 创建 UsernamePasswordAuthenticationToken 对象
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                loginUser, null, Collections.emptyList());
-        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        return authenticationToken;
     }
 
 }
