@@ -21,6 +21,7 @@ import java.util.Map;
 
 /**
  * Json 工具类
+ * @author admin
  */
 @Slf4j
 public class JsonUtils {
@@ -29,8 +30,12 @@ public class JsonUtils {
     static {
         objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL); // 忽略 null 值
-        objectMapper.registerModules(new JavaTimeModule()); // 解决 LocalDateTime 的序列化
+        // 忽略 null 值
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        // 解决 LocalDateTime 的序列化
+        objectMapper.registerModules(new JavaTimeModule());
+        //GrantedAuthority自定义反序列化
+        objectMapper.registerModule(GrantedAuthorityDeserializer.getModule());
     }
 
     /**

@@ -4,7 +4,7 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.core.domain.CommonResult;
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.entity.SysUser;
 import com.sky.system.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +38,7 @@ public class AuthController {
      * @return 用户信息
      */
     @GetMapping("/getInfo")
-    public CommonResult<UserBO> getInfo(){
+    public CommonResult<SysUser> getInfo(){
         return CommonResult.success(authService.getUserInfo());
     }
 

@@ -1,7 +1,7 @@
 package com.sky.system.mapper;
 
 import com.sky.common.core.domain.entity.SysMenu;
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Set;

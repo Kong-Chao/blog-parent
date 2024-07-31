@@ -1,13 +1,11 @@
 package com.sky.system.service;
 
-import com.sky.common.core.domain.entity.UserBO;
-
 /**
  * @author kc
  */
 public interface SysUserService {
 
-    UserBO selectByUserName(String username);
+
 
     /**
      * 判断密码是否匹配

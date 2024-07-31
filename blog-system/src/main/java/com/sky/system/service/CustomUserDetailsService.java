@@ -1,6 +1,6 @@
 package com.sky.system.service;
 
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.exception.ServiceException;
 import com.sky.system.mapper.AuthMapper;
 import lombok.extern.slf4j.Slf4j;

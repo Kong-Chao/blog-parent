@@ -1,7 +1,7 @@
 package com.sky.framework.secutilty.filter;
 
 import com.sky.common.constant.Constants;
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
 import com.sky.common.utils.json.JsonUtils;
 import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;

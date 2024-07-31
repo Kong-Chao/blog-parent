@@ -8,6 +8,7 @@ import javax.validation.constraints.Pattern;
 
 /**
  * 用户登录访问字段
+ * @author admin
  */
 @Data
 public class AuthLoginVO {

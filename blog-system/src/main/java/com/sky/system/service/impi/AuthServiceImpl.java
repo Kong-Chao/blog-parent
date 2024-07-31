@@ -7,7 +7,8 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
+import com.sky.common.core.domain.entity.SysUser;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.utils.UUIDutil;
 import com.sky.common.utils.jwt.JwtTokenUtil;
@@ -17,6 +18,7 @@ import com.sky.system.service.AuthService;
 import com.sky.system.service.SysUserService;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -66,7 +68,7 @@ public class AuthServiceImpl implements AuthService {
         String uuid = UUIDutil.generateUUID();
         claims.put("uuid",uuid);
         claims.put("userId",loginUser.getUserId());
-        claims.put("userName",authLoginVO.getUsername());
+        claims.put("username",authLoginVO.getUsername());
         // 创建token
         String accessToken = jwtTokenUtil.generateToken(claims);
         String refreshToken = jwtTokenUtil.generateRefreshToken(accessToken);
@@ -129,7 +131,11 @@ public class AuthServiceImpl implements AuthService {
      * @return
      */
     @Override
-    public UserBO getUserInfo() {
-        return SecurityFrameworkUtils.getLoginUser();
+    public SysUser getUserInfo() {
+        UserBO userBO = SecurityFrameworkUtils.getLoginUser();
+        SysUser sysUser = new SysUser();
+        BeanUtils.copyProperties(userBO,sysUser);
+
+        return sysUser;
     }
 }

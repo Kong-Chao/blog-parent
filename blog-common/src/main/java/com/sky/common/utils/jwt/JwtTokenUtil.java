@@ -1,6 +1,6 @@
 package com.sky.common.utils.jwt;
 
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -112,7 +112,7 @@ public class JwtTokenUtil {
      * 验证token
      */
     public boolean validateToken(String token, UserDetails userDetails) {
-        final String userName = getAllClaimsFromToken(token).get("userName").toString();
+        final String userName = getAllClaimsFromToken(token).get("username").toString();
         final Long userId = getUserIdFromToken(token);
         return (userName.equals(userDetails.getUsername())
                 && userId.equals(((UserBO) userDetails).getUserId())

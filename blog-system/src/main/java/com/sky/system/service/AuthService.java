@@ -3,7 +3,8 @@ package com.sky.system.service;
 import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
-import com.sky.common.core.domain.entity.UserBO;
+import com.sky.common.core.domain.UserBO;
+import com.sky.common.core.domain.entity.SysUser;
 
 import javax.validation.Valid;
 
@@ -22,5 +23,5 @@ public interface AuthService {
 
     TokenVO refreshToken(RefreshTokenVO refreshTokenVO);
 
-    UserBO getUserInfo();
+    SysUser getUserInfo();
 }
