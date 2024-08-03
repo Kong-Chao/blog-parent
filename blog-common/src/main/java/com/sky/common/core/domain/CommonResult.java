@@ -1,6 +1,7 @@
 package com.sky.common.core.domain;
 
 import com.sky.common.constant.HttpStatus;
+import com.sky.common.core.exception.ErrorCode;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -34,6 +35,10 @@ public class CommonResult<T> implements Serializable {
 
     public static <T> CommonResult<T> error(){
         return restResult(FAIL,null, "操作失败");
+    }
+
+    public static <T> CommonResult<T> error(ErrorCode errorCode){
+        return restResult(errorCode.getCode(),null, errorCode.getMsg());
     }
 
     public static <T> CommonResult<T> error(String msg){

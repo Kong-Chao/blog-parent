@@ -57,7 +57,7 @@ import { getCurrentInstance, reactive, ref, watch } from 'vue';
 import Cookies from 'js-cookie';
 import useUserStore from '@/store/modules/user';
 import { useRoute, useRouter } from 'vue-router';
-import { message } from 'ant-design-vue'; // 引入ant-design的message组件
+import { message } from 'ant-design-vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -75,8 +75,8 @@ watch(
 );
 
 const loginForm = reactive({
-  username: '',
-  password: '',
+  username: 'admin',
+  password: 'admin123',
   remember: false,
 });
 const rules = {
@@ -108,17 +108,17 @@ const handleLogin = () => {
             .then(() => {
               loading.value = false;
               message.success('登录成功！', 2);
-              router.push('/');
+              router.push({path: '/'});
             })
             .catch((error) => {
               loading.value = false;
               message.error('登录失败，请重试！', 2);
               console.error('登录失败', error);
-            });
-      })
-      .catch((error) => {
-        console.log('error', error);
-      });
+            })
+      }) .catch((error) => {
+    console.log('error', error);
+  });
+
 };
 </script>
 

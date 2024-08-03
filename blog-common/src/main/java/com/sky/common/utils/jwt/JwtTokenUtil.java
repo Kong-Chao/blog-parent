@@ -61,51 +61,31 @@ public class JwtTokenUtil {
      * 获取token中用户名
      */
     public String getUserNameFromToken(String token) {
-        try {
-            return getAllClaimsFromToken(token).get("username", String.class);
-        } catch (JwtException ex) {
-            log.error("JWT令牌解析错误", ex);
-            return null;
-        }
+        return getAllClaimsFromToken(token).get("username", String.class);
     }
 
     /**
      * 从令牌中获取用户ID
      */
     public Long getUserIdFromToken(String token) {
-        try {
-            return Objects.requireNonNull(getAllClaimsFromToken(token)).get("userId", Long.class);
-        } catch (JwtException ex) {
-            log.error("JWT令牌解析错误", ex);
-            return null;
-        }
+        return Objects.requireNonNull(getAllClaimsFromToken(token)).get("userId", Long.class);
     }
 
     /**
      * 获取token中的载荷数据
      */
     public Claims getAllClaimsFromToken(String token) {
-        try {
-            return Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (JwtException ex) {
-            log.error("JWT令牌解析错误", ex);
-            return null;
-        }
+        return Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
     }
 
     /**
      * 获取token的过期时间
      */
     public Date getExpirationDateFromToken(String token) {
-        try {
-            return Objects.requireNonNull(getAllClaimsFromToken(token)).getExpiration();
-        } catch (JwtException ex) {
-            log.error("JWT令牌解析错误", ex);
-            return null;
-        }
+        return Objects.requireNonNull(getAllClaimsFromToken(token)).getExpiration();
     }
 
     /**

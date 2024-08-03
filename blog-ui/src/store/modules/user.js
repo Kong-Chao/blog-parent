@@ -1,4 +1,4 @@
-import {login, logout} from "@/api/login";
+import {getInfo, login, logout} from "@/api/login";
 import {defineStore} from "pinia";
 import {getRefreshToken, getToken, removeRefreshToken, removeToken, setRefreshToken, setToken} from "@/utils/auth";
 
@@ -36,8 +36,7 @@ const useUserStore = defineStore(
             // 登出
             logOut() {
                 return new Promise((resolve, reject) => {
-                    logout(this.token).then(res=>{
-                        console.log(res);
+                    logout(this.token).then(()=>{
                         this.token = '';
                         this.refreshToken = '';
                         this.roles = [];
@@ -47,6 +46,26 @@ const useUserStore = defineStore(
                         resolve()
                     }).catch(error => {
                         console.log('error', error);
+                        reject(error);
+                    })
+                })
+            },
+            // 获取用户信息
+            getInfo(){
+                return new Promise((resolve, reject) => {
+                    getInfo().then(res=>{
+                        const user = res.data;
+                        this.id = user.userId;
+                        this.name = user.username;
+                        this.avatar = user.avatar;
+                        if (user.roles && user.roles.length > 0) {
+                            this.roles = user.roles;
+                            this.permissions = user.permissions;
+                        }else {
+                            this.roles = ['ROLE_DEFAULT']
+                        }
+                        resolve(res);
+                    }).catch(error => {
                         reject(error);
                     })
                 })

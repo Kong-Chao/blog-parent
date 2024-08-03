@@ -55,7 +55,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
                 Map<String, Object> userMap = redisService.getCacheObject(userKey);
                 UserBO loginUser = JsonUtils.mapToObject(userMap, UserBO.class);
-
                 if (jwtTokenUtil.validateToken(jwtToken, loginUser)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                             loginUser, null, loginUser.getAuthorities());

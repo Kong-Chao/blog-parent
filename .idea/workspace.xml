@@ -4,27 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="修改系统退出认证逻辑">
-      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/mapper/AuthMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/mapper/AuthMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="路由的构建">
+      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/vo/RouterVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/mapper/SysMenuMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysMenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SysMenuImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-system/src/main/resources/mapper/SysMenuMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/api/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog-ui/src/store/modules/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/entity/SysMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/entity/SysRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/enyity/SysUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/entity/UserBO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/model/LoginUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/CommonResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/CommonResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/entity/SysMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/domain/entity/SysMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/jwt/JwtTokenUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/util/SecurityFrameworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/util/SecurityFrameworkUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/mapper/SysUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/mapper/SysUserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/SysUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SystemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/SystemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/module/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/module/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/controller/auth/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/api/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/permission.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/router/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +51,8 @@
         <option value="Vue Options API Component" />
         <option value="Vue Composition API Component" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -125,7 +125,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/dev/project/coupon_center&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/dev/project/blog-parent&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -190,6 +190,7 @@
   </component>
   <component name="RunManager" selected="Spring Boot.BlogApplication">
     <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="blog-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.sky.admin.BlogApplication" />
       <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -301,7 +302,14 @@
       <workItem from="1721354109808" duration="4277000" />
       <workItem from="1721958192944" duration="15143000" />
       <workItem from="1722217861336" duration="360000" />
-      <workItem from="1722218735025" duration="15934000" />
+      <workItem from="1722218735025" duration="16252000" />
+      <workItem from="1722303753809" duration="6000" />
+      <workItem from="1722304367185" duration="20862000" />
+      <workItem from="1722388664313" duration="22306000" />
+      <workItem from="1722418571559" duration="1081000" />
+      <workItem from="1722474641242" duration="17141000" />
+      <workItem from="1722564549967" duration="12832000" />
+      <workItem from="1722647814670" duration="1808000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -460,7 +468,39 @@
       <option name="project" value="LOCAL" />
       <updated>1721982460117</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="获取用户信息接口修改">
+      <option name="closed" value="true" />
+      <created>1722244591041</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1722244591042</updated>
+    </task>
+    <task id="LOCAL-00025" summary="获取用户信息接口修改">
+      <option name="closed" value="true" />
+      <created>1722311886689</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1722311886689</updated>
+    </task>
+    <task id="LOCAL-00026" summary="获取用户信息接口修改">
+      <option name="closed" value="true" />
+      <created>1722330658065</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1722330658065</updated>
+    </task>
+    <task id="LOCAL-00027" summary="修改获取用户信息错误问题">
+      <option name="closed" value="true" />
+      <created>1722417315797</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1722417315797</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +547,10 @@
     <MESSAGE value="token刷新接口添加" />
     <MESSAGE value="ui改写" />
     <MESSAGE value="修改系统退出认证逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改系统退出认证逻辑" />
+    <MESSAGE value="获取用户信息接口修改" />
+    <MESSAGE value="修改获取用户信息错误问题" />
+    <MESSAGE value="路由的构建" />
+    <option name="LAST_COMMIT_MESSAGE" value="路由的构建" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

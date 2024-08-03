@@ -23,3 +23,19 @@ export function logout() {
     })
 }
 
+export function getInfo() {
+    return request({
+        url: '/system/auth/getInfo',
+        method: 'get'
+    })
+}
+
+// 刷新token
+export function refreshToken(data){
+    return request({
+        url: '/system/auth/refresh',
+        method: 'post',
+        data: data
+    })
+}
+

@@ -1,6 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/views/login/Login.vue";
-import Layout from "@/layout/Index.vue";
+import NProgress from "nprogress";
+import {getToken} from "@/utils/auth";
+import useUserStore from "@/store/modules/user";
+import {isRelogin} from "@/utils/request";
+import Layout from "@/layout/Index.vue"
+import {message} from "ant-design-vue";
+import usePermissionStore from "@/store/modules/permission";
 
 export const constantRoutes = [
     {
@@ -18,91 +24,75 @@ export const constantRoutes = [
         ],
     },
     {
-        path: '/a',
-        component: Layout,
-        meta: { title: "测试", icon: "DashboardOutlined", visible: true },
-        children: [
-            {
-                path: 'b',
-                name: 'Test',
-                component: () => import('@/views/test/a.vue'),
-                meta: { title: '业务数据', icon: "DashboardOutlined", visible: true },
-                children: [
-                    {
-                        path: 'c',
-                        name: 'SubTest1',
-                        component: () => import('@/views/test/SubTest.vue'),
-                        meta: { title: '子测试1', icon: "DashboardOutlined", visible: true },
-                        children: [
-                            {
-                                path: 'd',
-                                name: 'SubTest2',
-                                component: () => import('@/views/test/SubTest1.vue'),
-                                meta: { title: '子测试2', icon: "DashboardOutlined", visible: true },
-                                children: [
-                                    {
-                                        path: 'e',
-                                        name: 'SubTest3',
-                                        component: () => import('@/views/test/SubTest2.vue'),
-                                        meta: { title: '子测试3', icon: "DashboardOutlined", visible: true },
-                                    },
-                                ]
-                            },
-                        ]
-                    },
-                ]
-            },
-        ],
-    },
-    {
         path: '/login',
         name: '登录',
         component: Login,
         meta: { hidden: true, visible: true },
-    },
-    {
-        path: "/system",
-        component: Layout,
-        meta: { title: "系统管理", icon: "SettingOutlined", visible: true },
-        children: [
-            {
-                path: "user",
-                name: "User",
-                component: () => import("@/views/system/User.vue"),
-                meta: { title: '用户管理', icon: 'UserOutlined', visible: true },
-            },
-            {
-                path: "menu",
-                name: "Menu",
-                component: () => import("@/views/system/Menu.vue"),
-                meta: { title: '菜单管理', icon: 'MenuOutlined', visible: true },
-            },
-            {
-                path: "permission",
-                name: "Permission",
-                component: () => import("@/views/system/Permission.vue"),
-                meta: { title: '权限管理', icon: 'LockOutlined', visible: true },
-            },
-        ],
-    },
-    {
-        path: "/log",
-        component: Layout,
-        meta: { title: "日志管理", icon: 'FileOutlined', visible: true },
-        children: [
-            {
-                path: "systemLog",
-                name: "SystemLog",
-                component: () => import("@/views/log/Log.vue"),
-                meta: { title: '系统日志', icon: 'FileExcelOutlined', visible: true },
-            },
-        ],
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes: constantRoutes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { top: 0 }
+        }
+    },
 });
+
+NProgress.configure({ showSpinner: false });
+
+const whiteList = ['/login', '/register'];
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+    NProgress.start()
+    if (getToken()) {
+        /* has token*/
+        if (to.path === '/login') {
+
+            next({ path: '/' })
+            NProgress.done()
+        }else if (whiteList.indexOf(to.path) !== -1){
+            next()
+        }else {
+            if (useUserStore().roles.length === 0){
+                isRelogin.show = true
+                // 判断当前用户是否已拉取完user_info信息
+                useUserStore().getInfo().then(() => {
+                    isRelogin.show = false
+                    // 获取路由处理
+                    usePermissionStore().generateRoutes().then(accessRoutes => {
+                            console.log(accessRoutes)
+                        })
+                    router.push({ path: '/' })
+                }).catch(err => {
+                    useUserStore().logOut().then(() => {
+                        message.error(err)
+                        next({ path: '/' })
+                    })
+                })
+            }else {
+                next()
+            }
+        }
+    }else {
+        // 没有token
+        if (whiteList.indexOf(to.path) !== -1) {
+            // 在免登录白名单，直接进入
+            next()
+        } else {
+            next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
+            NProgress.done()
+        }
+    }
+})
+
+router.afterEach(() => {
+    NProgress.done()
+})
 
 export default router;

@@ -2,6 +2,7 @@ package com.sky.common.core.domain.entity;
 
 import com.sky.common.core.domain.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,6 +16,7 @@ import java.util.List;
  * @author ruoyi
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SysMenu extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -42,6 +44,9 @@ public class SysMenu extends BaseEntity
 
     /** 路由参数 */
     private String query;
+
+    /** 路由名称 */
+    private String routeName;
 
     /** 是否为外链（0是 1否） */
     private String isFrame;
