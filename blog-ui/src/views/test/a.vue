@@ -5,7 +5,7 @@
 <template>
   <div>
     <h1>a1</h1>
-    <router-view /> <!-- 确保这里有 router-view -->
+    <router-view /> <!-- 确保这里有 index-view -->
   </div>
 </template>
 

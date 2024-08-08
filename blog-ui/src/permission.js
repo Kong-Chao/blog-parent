@@ -1,47 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Login from "@/views/login/Login.vue";
+import router from "@/router";
 import NProgress from "nprogress";
 import {getToken} from "@/utils/auth";
 import useUserStore from "@/store/modules/user";
 import {isRelogin} from "@/utils/request";
-import Layout from "@/layout/Index.vue"
-import {message} from "ant-design-vue";
 import usePermissionStore from "@/store/modules/permission";
-
-export const constantRoutes = [
-    {
-        path: "/",
-        component: Layout,
-        redirect: "/home",
-        meta: { title: "首页", icon: "DashboardOutlined", visible: true },
-        children: [
-            {
-                path: "home",
-                name: "Home",
-                component: () => import("@/views/home/Home.vue"),
-                meta: { title: '首页', visible: true },
-            },
-        ],
-    },
-    {
-        path: '/login',
-        name: '登录',
-        component: Login,
-        meta: { hidden: true, visible: true },
-    },
-];
-
-const router = createRouter({
-    history: createWebHistory(),
-    routes: constantRoutes,
-    scrollBehavior(to, from, savedPosition) {
-        if (savedPosition) {
-            return savedPosition
-        } else {
-            return { top: 0 }
-        }
-    },
-});
+import {message} from "ant-design-vue";
+import {isHttp} from "@/utils/validate";
 
 NProgress.configure({ showSpinner: false });
 
@@ -66,9 +30,15 @@ router.beforeEach((to, from, next) => {
                     isRelogin.show = false
                     // 获取路由处理
                     usePermissionStore().generateRoutes().then(accessRoutes => {
-                            console.log(accessRoutes)
-                        })
-                    router.push({ path: '/' })
+                        // 根据roles权限生成可访问的路由表
+                        accessRoutes.forEach((route) => {
+                            if (!isHttp(route.path)){
+                                router.addRoute(route);
+                            }
+                        });
+                        // 确保 Vue Router 实例已更新后再进行导航
+                        next({ ...to, replace: true });
+                    })
                 }).catch(err => {
                     useUserStore().logOut().then(() => {
                         message.error(err)
@@ -94,5 +64,3 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
     NProgress.done()
 })
-
-export default router;

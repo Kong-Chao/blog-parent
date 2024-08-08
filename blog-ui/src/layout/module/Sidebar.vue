@@ -14,20 +14,48 @@
         @click="handleClick"
         @openChange="onOpenChange"
     >
-      <MenuItem v-for="item in menuItems" :key="item.key" :item="item" />
+      <template v-for="menuItem in menuItems" :key="menuItem.key">
+        <template v-if="menuItem.children && menuItem.children.length">
+          <a-sub-menu :key="menuItem.key">
+            <template #title>
+              <span>
+                <component :is="menuItem.icon" />
+                <span>{{ menuItem.title }}</span>
+              </span>
+            </template>
+            <a-menu-item
+                v-for="child in menuItem.children"
+                :key="child.key"
+                :index="child.key"
+                @click="() => navigateTo(child.path)"
+            >
+              <component :is="child.icon" />
+              <span>{{ child.title }}</span>
+            </a-menu-item>
+          </a-sub-menu>
+        </template>
+        <a-menu-item
+            v-else
+            :key="menuItem.key"
+            @click="() => navigateTo(menuItem.path)"
+        >
+          <component :is="menuItem.icon" />
+          <span>{{ menuItem.title }}</span>
+        </a-menu-item>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>
 
 <script>
-import { computed, defineComponent, onMounted, ref, watch } from "vue";
+import {computed, defineComponent, onMounted, ref, watch} from "vue";
+import usePermissionStore from "@/store/modules/permission";
+import permission from "@/store/modules/permission";
+import {useRoute, useRouter} from "vue-router";
 import * as Icons from "@ant-design/icons-vue";
-import { useRoute, useRouter } from "vue-router";
-import { join } from "path-browserify";
-import MenuItem from "@/layout/module/menuItem/MenuItem.vue";
 
 export default defineComponent({
-  components: { MenuItem },
+  methods: {permission, usePermissionStore},
   props: {
     collapsed: {
       type: Boolean,
@@ -38,54 +66,68 @@ export default defineComponent({
     const router = useRouter();
     const route = useRoute();
     const computedCollapsed = computed(() => props.collapsed);
-    const selectedKeys = ref([route.path]);
+    const permissionStore = usePermissionStore();
+    const selectedKeys = ref([]);
     const openKeys = ref([]);
-    const menuItems = ref([]);
+    //根据权限存储的路由生成菜单项
+    const menuItems = computed(() => {
+      return generateMenuItems(permissionStore.routes);
+    })
 
+    // 递归生成菜单项的辅助函数
     const generateMenuItems = (routes, basePath = "") => {
-      return routes
-          .filter((route) => route.meta && route.meta.visible && !route.meta.hidden)
+      return routes.filter((route) => route.meta && route.meta.visible !== false) // 只有可见的路线
           .map((route) => {
-            const icon = Icons[route.meta.icon];
-            const fullPath = join(basePath, route.path);
-
+            // 获取图标组件
+            const IconComponent = route.meta.icon? Icons[route.meta.icon] : null;
+            // 构建完整路径
+            const fullPath = `${basePath}/${route.path}`.replace("//", "/");
             const menuItem = {
               key: fullPath,
               title: route.meta.title,
-              icon: icon,
+              icon: IconComponent,
               path: fullPath,
-              visible: route.meta.visible,
-              children: route.children
-                  ? generateMenuItems(route.children, fullPath)
-                  : [],
+              children: route.children ? generateMenuItems(route.children, fullPath) : [],
             };
 
             return menuItem;
-          });
-    };
-
-    onMounted(() => {
-      selectedKeys.value = [route.path];
-      menuItems.value = generateMenuItems(router.options.routes);
-    });
+          })
+    }
 
     const handleClick = (e) => {
-      const { key } = e;
-      if (key) {
-        router.push(key);
-      }
+      console.log(1111,router);
+      router.push(e);
     };
 
     const onOpenChange = (keys) => {
       openKeys.value = keys;
     };
 
+    const navigateTo = (path) => {
+      console.log("Navigating to:", path);
+      router.push(path).catch((err) => {
+        console.error("Navigation error:", err);
+      });
+    };
+
     watch(
         () => route.path,
-        () => {
-          selectedKeys.value = [route.path];
+        (newPath) => {
+          selectedKeys.value = [newPath];
         }
     );
+
+    onMounted(() => {
+      watch(
+          () => permissionStore.routes,
+          (newRoutes) => {
+            if (newRoutes && newRoutes.length > 0) {
+              console.log('Dynamic routes updated:', router.getRoutes());
+            }
+          },
+          { immediate: true }
+      )
+    });
 
     return {
       selectedKeys,
@@ -94,6 +136,7 @@ export default defineComponent({
       computedCollapsed,
       menuItems,
       onOpenChange,
+      navigateTo
     };
   },
 });

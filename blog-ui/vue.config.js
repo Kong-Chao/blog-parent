@@ -18,12 +18,24 @@ module.exports = defineConfig({
     }
   },
 
-  // 可选的其他配置
+  // Webpack 配置
   configureWebpack: {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src')
-      }
+      },
+      extensions: ['.ts', '.js','.vue','.json']
+    }
+  },
+  // CSS相关选项
+  css: {
+    loaderOptions: {
+      less: {
+        modifyVars: {
+          'primary-color': '#42b983',  //使用Ant Design或其他UI库更改原色
+        },
+        javascriptEnabled: true,
+      },
     }
   },
   lintOnSave: true

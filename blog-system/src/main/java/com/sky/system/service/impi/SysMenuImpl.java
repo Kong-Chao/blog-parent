@@ -1,10 +1,12 @@
 package com.sky.system.service.impi;
 
+import cn.hutool.core.util.StrUtil;
 import com.sky.common.core.domain.entity.SysMenu;
 import com.sky.common.core.domain.vo.RouterVO;
 import com.sky.system.mapper.SysMenuMapper;
 import com.sky.system.service.SysMenuService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,9 +46,9 @@ public class SysMenuImpl implements SysMenuService {
                 .collect(Collectors.toList());
         for (SysMenu menu : filteredMenus) {
             RouterVO vo = new RouterVO();
-            vo.setPath(menu.getPath());
-            vo.setName(menu.getRouteName());
-            vo.setComponent(menu.getComponent());
+            vo.setPath(getPath(menu,parentId));
+            vo.setName(getRouteName(menu.getRouteName(),menu.getPath()));
+            vo.setComponent(getComponent(menu,menuList));
             vo.setMeta(new RouterVO.RouteMeta(
                     menu.getMenuName(),
                     menu.getIcon(),
@@ -64,6 +66,44 @@ public class SysMenuImpl implements SysMenuService {
             routers.add(vo);
         }
         return routers;
+    }
+
+    private String getRouteName(String routeName,String path){
+         String name = StrUtil.isEmpty(routeName)? path:routeName;
+         return StringUtils.capitalize(name);
+    }
+
+    private String getPath(SysMenu menu, Long parentId){
+        if (isHttpUrl(menu.getPath())){
+            return menu.getPath();
+        }
+        if (0L == parentId){
+            return "/" + menu.getPath();
+        }
+        return menu.getPath();
+    }
+
+    private String getComponent(SysMenu menu,List<SysMenu> menuList){
+        // 目录-M
+        if (Objects.equals(menu.getMenuType(),"M") && 0 == menu.getParentId()){
+            // 顶层或父级菜单，使用Layout作为容器
+            return "Layout";
+        }
+        // 目录M -父级菜单
+        if (Objects.equals(menu.getMenuType(),"M") && StrUtil.isEmpty(menu.getComponent())){
+            return "ParentView";
+        }
+        // C - 菜单
+        if (Objects.equals(menu.getMenuType(),"C")){
+           return menu.getComponent();
+        }
+
+        // F - 按钮 (不用于路由)
+        return null;
+    }
+
+    private boolean isHttpUrl(String path) {
+        return StrUtil.isNotEmpty(path) && (path.startsWith("http://") || path.startsWith("https://"));
     }
 
 }

@@ -31,7 +31,7 @@
     </sql>
 
     <select id="selectAllMenus" resultMap="SysMenuMap">
-        select <include refid="menu"/> from sys_menu where status = '0' ORDER BY parent_id, order_num
+        select <include refid="menu"/> from sys_menu where status = '0' and menu_type in ("M","C") ORDER BY parent_id, order_num
     </select>
 
 
