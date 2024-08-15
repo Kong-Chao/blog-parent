@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 业务逻辑异常 Exception
+ * @author admin
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -16,7 +17,7 @@ public final class ServiceException extends RuntimeException {
      *
      * @see ServiceErrorCodeRange
      */
-    private Integer code;
+    private int code;
     /**
      * 错误提示
      */
@@ -33,16 +34,16 @@ public final class ServiceException extends RuntimeException {
         this.message = errorCode.getMsg();
     }
 
-    public ServiceException(Integer code, String message) {
+    public ServiceException(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public ServiceException setCode(Integer code) {
+    public ServiceException setCode(int code) {
         this.code = code;
         return this;
     }

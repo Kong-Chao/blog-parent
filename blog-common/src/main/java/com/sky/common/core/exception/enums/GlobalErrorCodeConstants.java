@@ -22,6 +22,7 @@ public interface GlobalErrorCodeConstants {
     ErrorCode BAD_REQUEST = new ErrorCode(400, "请求参数不正确");
     ErrorCode UNAUTHORIZED = new ErrorCode(401, "账号未登录");
     ErrorCode ACCOUNT_PASSWORD_ERROR = new ErrorCode(401, "账号或密码错误");
+    ErrorCode UN_TOKEN_VERIFICATION = new ErrorCode(401,"token校验失败,授权失效");
     ErrorCode FORBIDDEN = new ErrorCode(403, "没有该操作权限");
     ErrorCode NOT_FOUND = new ErrorCode(404, "请求未找到");
     ErrorCode METHOD_NOT_ALLOWED = new ErrorCode(405, "请求方法不正确");

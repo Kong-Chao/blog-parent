@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * 服务器异常 Exception
+ * @author admin
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -16,7 +17,7 @@ public final class ServerException extends RuntimeException {
      *
      * @see GlobalErrorCodeConstants
      */
-    private Integer code;
+    private int code;
     /**
      * 错误提示
      */
@@ -33,16 +34,16 @@ public final class ServerException extends RuntimeException {
         this.message = errorCode.getMsg();
     }
 
-    public ServerException(Integer code, String message) {
+    public ServerException(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public ServerException setCode(Integer code) {
+    public ServerException setCode(int code) {
         this.code = code;
         return this;
     }
