@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="路由的构建">
-      <change afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blog-ui/src/api/system/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="140830b8-33a1-4dc0-b16d-8c76eb03f85b" name="Changes" comment="request.配置修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServerException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServiceException.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/ServiceException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/enums/GlobalErrorCodeConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/util/ServiceExceptionUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/core/exception/handler/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/servlet/ServletUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-common/src/main/java/com/sky/common/utils/servlet/ServletUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/layout/Index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/handler/AuthenticationEntryPointImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-framework/src/main/java/com/sky/framework/secutilty/handler/AuthenticationEntryPointImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog-ui/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/login/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/system/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/system/user/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest1.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/test/SubTest2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/blog-ui/src/views/system/user/profile/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog-ui/src/views/test/a.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -325,7 +314,10 @@
       <workItem from="1723440277399" duration="3131000" />
       <workItem from="1723511388917" duration="18683000" />
       <workItem from="1723598267218" duration="18150000" />
-      <workItem from="1723684697672" duration="1420000" />
+      <workItem from="1723684697672" duration="13359000" />
+      <workItem from="1723707388851" duration="1276000" />
+      <workItem from="1724117062436" duration="1894000" />
+      <workItem from="1724120581371" duration="16339000" />
     </task>
     <task id="LOCAL-00004" summary="添加实体类">
       <created>1683292301676</created>
@@ -540,7 +532,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723195055947</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="request.配置修改">
+      <option name="closed" value="true" />
+      <created>1723686544809</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1723686544809</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,18 +590,8 @@
     <MESSAGE value="获取用户信息接口修改" />
     <MESSAGE value="修改获取用户信息错误问题" />
     <MESSAGE value="路由的构建" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由的构建" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/blog-system/src/main/java/com/sky/system/service/impi/AuthServiceImpl.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="request.配置修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="request.配置修改" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -27,7 +27,7 @@ import java.io.IOException;
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-        log.debug("[commence][访问 URL({}) 时，没有登录]", request.getRequestURI(), e);
+        log.error("[commence][访问 URL({}) 时，没有登录]", request.getRequestURI(), e);
         // 返回 401
         ServletUtils.writeJSON(response, CommonResult.error(GlobalErrorCodeConstants.UNAUTHORIZED));
     }

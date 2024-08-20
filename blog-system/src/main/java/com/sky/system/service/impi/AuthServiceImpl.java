@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -134,8 +135,10 @@ public class AuthServiceImpl implements AuthService {
     public SysUser getUserInfo() {
         UserBO userBO = SecurityFrameworkUtils.getLoginUser();
         SysUser sysUser = new SysUser();
-        BeanUtils.copyProperties(userBO,sysUser);
-
-        return sysUser;
+        if (!Objects.isNull(userBO)){
+            BeanUtils.copyProperties(userBO,sysUser);
+            return sysUser;
+        }
+       return null;
     }
 }
