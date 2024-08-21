@@ -31,7 +31,7 @@ public class SecurityAutoConfig {
      */
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(securityProperties.getPasswordEncoderLength());
     }
 
     /**

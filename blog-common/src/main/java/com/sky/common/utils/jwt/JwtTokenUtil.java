@@ -2,15 +2,13 @@ package com.sky.common.utils.jwt;
 
 import com.sky.common.core.domain.UserBO;
 import io.jsonwebtoken.*;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author kc
@@ -21,10 +19,11 @@ import java.util.Objects;
 public class JwtTokenUtil {
 
    @Value("${token.secret}")
-    private  String SECRET_KEY;
+    private  String secretKey;
 
+    @Getter
     @Value("${token.expireTime}")
-    private long EXPIRATION_TIME;
+    private long expirationTime;
 
     /**
      * 令牌生成
@@ -33,8 +32,8 @@ public class JwtTokenUtil {
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .setExpiration(calculateExpirationDate(expirationTime))
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 
@@ -44,67 +43,102 @@ public class JwtTokenUtil {
      * @return
      */
     public String generateRefreshToken(String accessToken) {
-        Claims claims = getAllClaimsFromToken(accessToken);
-        if (claims == null){
+        Optional<Claims> claimsOpt = getAllClaimsFromToken(accessToken);
+
+        if (!claimsOpt.isPresent()) {
             throw new IllegalArgumentException("无效的访问令牌");
         }
+
+        Claims claims = claimsOpt.get();
         Map<String, Object> refreshedClaims = new HashMap<>(claims);
+        // 过期时间为访问令牌过期时间的两倍
         return Jwts.builder()
                 .setClaims(refreshedClaims)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 2 * EXPIRATION_TIME)) // 过期时间为访问令牌过期时间的两倍
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .setExpiration(calculateExpirationDate(2 * expirationTime))
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
+
 
     /**
      * 获取token中用户名
      */
     public String getUserNameFromToken(String token) {
-        return getAllClaimsFromToken(token).get("username", String.class);
+        return getAllClaimsFromToken(token)
+                .map(claims ->claims.get("username",String.class))
+                .orElse(null);
     }
 
     /**
      * 从令牌中获取用户ID
      */
     public Long getUserIdFromToken(String token) {
-        return Objects.requireNonNull(getAllClaimsFromToken(token)).get("userId", Long.class);
+        return getAllClaimsFromToken(token)
+                .map(claims -> claims.get("userId", Long.class))
+                .orElse(null);
     }
 
     /**
      * 获取token中的载荷数据
      */
-    public Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody();
+    public Optional<Claims> getAllClaimsFromToken(String token) {
+        try {
+            return Optional.of(Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token)
+                    .getBody());
+        } catch (ExpiredJwtException e) {
+            log.warn("JWT token expired: ", e);
+        } catch (MalformedJwtException e) {
+            log.warn("JWT token is malformed: ", e);
+        } catch (UnsupportedJwtException e) {
+            log.warn("JWT token is unsupported: ", e);
+        } catch (IllegalArgumentException e) {
+            log.warn("JWT token is illegal: ", e);
+        } catch (JwtException e) {
+            log.error("JWT token parsing error: ", e);
+        }
+        return Optional.empty();
     }
 
     /**
      * 获取token的过期时间
      */
     public Date getExpirationDateFromToken(String token) {
-        return Objects.requireNonNull(getAllClaimsFromToken(token)).getExpiration();
+        return getAllClaimsFromToken(token)
+                .map(Claims::getExpiration)
+                .orElseThrow(() -> new IllegalArgumentException("无效的JWT令牌"));
     }
 
     /**
      * 验证token
      */
     public boolean validateToken(String token, UserDetails userDetails) {
-        final String userName = getAllClaimsFromToken(token).get("username").toString();
-        final Long userId = getUserIdFromToken(token);
+        Optional<Claims> claimsOpt = getAllClaimsFromToken(token);
+
+        // 无效令牌
+        if (!claimsOpt.isPresent()) {
+            return false;
+        }
+
+        Claims claims = claimsOpt.get();
+        final String userName = claims.get("username", String.class);
+        final Long userId = claims.get("userid", Long.class);
+
         return (userName.equals(userDetails.getUsername())
                 && userId.equals(((UserBO) userDetails).getUserId())
                 && !isTokenExpired(token));
     }
+
 
     private boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    public long getExpirationTime(){
-        return EXPIRATION_TIME;
+    private Date calculateExpirationDate(long expirationTime) {
+        return new Date(System.currentTimeMillis() + expirationTime);
     }
+
 }

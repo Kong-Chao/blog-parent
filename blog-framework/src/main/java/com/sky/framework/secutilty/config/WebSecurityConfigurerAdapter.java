@@ -14,7 +14,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -65,9 +64,6 @@ public class WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
 
     @Autowired
     private RedisService redisService;
@@ -134,7 +130,7 @@ public class WebSecurityConfigurerAdapter {
         // 添加Logout filter
         httpSecurity.logout(logout -> logout.logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandler));
         // 添加token过滤器验证
-        httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, userDetailsService,redisService), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(new JwtAuthenticationFilter(jwtTokenUtil, redisService), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
     }
 

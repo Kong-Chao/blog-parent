@@ -29,6 +29,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -68,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
         Map<String, Object> claims = new HashMap<>(6);
         String uuid = UUIDutil.generateUUID();
         claims.put("uuid",uuid);
-        claims.put("userId",loginUser.getUserId());
+        claims.put("userid",loginUser.getUserId());
         claims.put("username",authLoginVO.getUsername());
         // 创建token
         String accessToken = jwtTokenUtil.generateToken(claims);
@@ -115,8 +116,12 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public TokenVO refreshToken(RefreshTokenVO refreshTokenVO) {
         String newAccessToken = refreshTokenVO.getRefreshToken();
-        Claims claims = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
-        String userKey = Constants.AUTH_TOKEN + claims.get("uuid");
+        Optional<Claims> claimsOpt = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
+        if (!claimsOpt.isPresent()) {
+            throw new IllegalArgumentException("过期的刷新令牌。");
+        }
+        Claims claims = claimsOpt.get();
+        String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
         String refreshToken = jwtTokenUtil.generateRefreshToken(newAccessToken);
         long expiresIn = jwtTokenUtil.getExpirationDateFromToken(newAccessToken).getTime();
 

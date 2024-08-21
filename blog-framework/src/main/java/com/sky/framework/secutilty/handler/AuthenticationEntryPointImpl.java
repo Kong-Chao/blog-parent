@@ -29,6 +29,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
         log.error("[commence][访问 URL({}) 时，没有登录]", request.getRequestURI(), e);
         // 返回 401
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         ServletUtils.writeJSON(response, CommonResult.error(GlobalErrorCodeConstants.UNAUTHORIZED));
     }
 }
