@@ -1,20 +1,37 @@
 import axios from 'axios';
-import {getToken} from "@/utils/auth";
+import {getRefreshToken, getToken, removeRefreshToken, removeToken, setRefreshToken, setToken} from "@/utils/auth";
 import {tansParams} from "@/utils/common";
 import errorCode from "@/utils/errorCode";
 import {message, Modal} from "ant-design-vue";
 import useUserStore from "@/store/modules/user";
-import res from "core-js/internals/is-forced";
+import {refreshToken} from "@/api/login";
 
 const baseURL = '/dev-api';
 
 // 是否显示重新登录
 export let isRelogin = { show: false };
 
+let isRefreshing = false;
+let requests = [];
+
 const axiosInstance = axios.create({
     baseURL: baseURL, // 设置基础请求路径
     timeout: 10000 // 请求超时时间（毫秒）
 });
+
+// 添加请求到待重发队列
+function pushRequestToQueue(config, resolve, reject) {
+    requests.push({config, resolve, reject});
+}
+
+// 执行待重发的请求
+function processRequestsQueue(newToken) {
+    requests.forEach(({config, resolve}) => {
+        config.headers['Authorization'] = `Bearer ${newToken}`;
+        resolve(axiosInstance(config));
+    });
+    requests = [];
+}
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 
@@ -60,54 +77,81 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(res => {
     // 未设置状态码则默认为成功状态
-    const code = res.data.code || 200;
+    const code = res.status;
     // 获取错误信息
     const msg = res.data.msg || errorCode[code] || errorCode['default'];
     // 二进制数据直接返回
     if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer'){
         return res.data;
     }
+    // 业务错误逻辑
+    if (code === 200 && res.data?.code !== 200) {
+        message.error(msg);
+        return Promise.reject(res);
+    }
+    return Promise.resolve(res.data);
+},
+ error => {
+    const code = error.response.status;
     if (code === 401) {
-        if (!isRelogin.show){
-            isRelogin.show = true;
-            Modal.confirm({
-                title: '系统提示',
-                content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
-                okText: '重新登录',
-                cancelText: '取消',
-                iconType: 'warning',
-                onOk() {
-                    isRelogin.show = false;
-                    // 执行系统退出操作
-                    useUserStore().logOut().then(() => {
-                        location.href = '/login';
-                    }).catch(() =>{
-                        isRelogin.show = false;
-                    })
-                }
+        console.log(isRefreshing)
+        if (!isRefreshing){
+            console.log('Token 过期，执行刷新 Token 的逻辑');
+            isRefreshing = true;
+            const refresh = getRefreshToken();
+            return refreshToken({refreshToken : refresh})
+                .then((res) => {
+                    const {accessToken,refreshToken} = res.data;
+                    setToken(accessToken);
+                    setRefreshToken(refreshToken);
+                    // 更新待重发的请求的 Token
+                    processRequestsQueue(accessToken);
+                    return axiosInstance(error.config)})
+                .catch(error => {
+                    console.error('刷新 Token 失败:', error);
+                    if (!isRelogin.show){
+                        isRelogin.show = true;
+                        Modal.confirm({
+                            title: '系统提示',
+                            content: '登录状态已过期，您可以继续留在该页面，或者重新登录',
+                            okText: '确定',
+                            okType: 'danger',
+                            cancelText: '取消',
+                            onOk() {
+                                isRelogin.show = false;
+                                useUserStore().logOut().then(() => {
+                                    location.href = '/index';
+                                })
+                            },
+                            onCancel(){
+                                isRelogin.show = false;
+                            }
+                        });
+                    }
+                    return Promise.reject('无效的会话，或者会话已过期，请重新登录。');
+                })
+                .finally(() => {
+                    isRefreshing = false;
+                })
+        }else {
+            // 正在刷新 Token，将当前请求添加到待重发队列
+            return new Promise((resolve, reject) => {
+                pushRequestToQueue(error.config, resolve, reject);
             });
         }
-        return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
-    }else if(code === 500) {
+    }else {
+        let {message: msg} = error;
+        if (msg === 'Network Error') {
+            msg = '后端接口连接异常';
+        } else if (msg.includes('timeout')) {
+            msg = '系统接口请求超时';
+        } else if (msg.includes('Request failed with status code')) {
+            msg = '系统接口' + msg.substr(msg.length - 3) + '异常';
+        }
         message.error(msg);
-        return Promise.reject(new Error(msg));
-    }else if (code !== 200) {
-        message.error({ title: msg })
-        return Promise.reject('error')
-    } else {
-        return  Promise.resolve(res.data)
+        return Promise.reject(error);
     }
-},
-error => {
-    console.log('err',error);
-    let {message} = error;
-    if (message === "Network Error"){
-        message = "后端接口连接异常";
-    }else if(message.includes("timeout")){
-        message = "系统接口请求超时";
-    }
-    return Promise.reject(error)
-    }
+ }
 );
 
 export default axiosInstance;

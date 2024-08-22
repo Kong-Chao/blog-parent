@@ -13,7 +13,7 @@ export const constantRoutes = [
                 path: "home",
                 name: "Home",
                 component: () => import("@/views/home/Home.vue"),
-                meta: { title: '首页', visible: true },
+                meta: { title: '', visible: false },
             },
         ],
     },
@@ -21,7 +21,22 @@ export const constantRoutes = [
         path: '/login',
         name: 'Login',
         component: Login,
-        meta: { hidden: true, visible: true },
+        meta: {
+            visible: false
+        },
+    },
+    {
+        path: "/user",
+        component: Layout,
+        meta: { visible: false },
+        children: [
+            {
+                path: "profile",
+                name: "Profile",
+                component: () => import("@/views/system/user/profile/index.vue"),
+                meta: { title: '个人中心', visible: false },
+            },
+        ],
     },
 ];
 

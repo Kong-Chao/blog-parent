@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div>我是大爷</div>
+<div>个人中心</div>
 </template>
 
 <style scoped>
