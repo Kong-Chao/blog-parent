@@ -89,15 +89,9 @@ public class JwtTokenUtil {
                     .parseClaimsJws(token)
                     .getBody());
         } catch (ExpiredJwtException e) {
-            log.warn("JWT token expired: ", e);
-        } catch (MalformedJwtException e) {
-            log.warn("JWT token is malformed: ", e);
-        } catch (UnsupportedJwtException e) {
-            log.warn("JWT token is unsupported: ", e);
-        } catch (IllegalArgumentException e) {
-            log.warn("JWT token is illegal: ", e);
+            log.warn("JWT令牌过期: ", e);
         } catch (JwtException e) {
-            log.error("JWT token parsing error: ", e);
+            log.error("JWT令牌解析错误: ", e);
         }
         return Optional.empty();
     }

@@ -62,12 +62,6 @@ public class GlobalExceptionHandler {
         return CommonResult.error(e.getCode(), e.getMessage());
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public CommonResult<String> handleRuntimeException(RuntimeException ex) {
-        log.error("运行时异常: {}", ex.getMessage());
-        return CommonResult.error(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), ex.getMessage());
-    }
-
     @ExceptionHandler(Exception.class)
     public CommonResult<String> handleException(Exception ex) {
         log.error("未知错误: {}", ex.getMessage());

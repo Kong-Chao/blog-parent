@@ -77,7 +77,7 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(res => {
     // 未设置状态码则默认为成功状态
-    const code = res.status;
+    const code = res.status || 200;
     // 获取错误信息
     const msg = res.data.msg || errorCode[code] || errorCode['default'];
     // 二进制数据直接返回
@@ -85,28 +85,29 @@ axiosInstance.interceptors.response.use(res => {
         return res.data;
     }
     // 业务错误逻辑
-    if (code === 200 && res.data?.code !== 200) {
+    if (code === 200 && res.data && res.data?.code !== 200) {
         message.error(msg);
-        return Promise.reject(res);
+        return Promise.reject(new Error(msg));
     }
     return Promise.resolve(res.data);
 },
  error => {
     const code = error.response.status;
     if (code === 401) {
-        console.log(isRefreshing)
         if (!isRefreshing){
             console.log('Token 过期，执行刷新 Token 的逻辑');
             isRefreshing = true;
             const refresh = getRefreshToken();
             return refreshToken({refreshToken : refresh})
                 .then((res) => {
+                    console.log(res)
                     const {accessToken,refreshToken} = res.data;
                     setToken(accessToken);
                     setRefreshToken(refreshToken);
                     // 更新待重发的请求的 Token
                     processRequestsQueue(accessToken);
-                    return axiosInstance(error.config)})
+                    return axiosInstance(error.config);
+                    })
                 .catch(error => {
                     console.error('刷新 Token 失败:', error);
                     if (!isRelogin.show){
@@ -128,7 +129,7 @@ axiosInstance.interceptors.response.use(res => {
                             }
                         });
                     }
-                    return Promise.reject('无效的会话，或者会话已过期，请重新登录。');
+                    return Promise.reject(new Error('无效的会话，或者会话已过期，请重新登录。'));
                 })
                 .finally(() => {
                     isRefreshing = false;

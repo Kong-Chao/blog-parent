@@ -55,7 +55,8 @@ const useUserStore = defineStore(
                 return new Promise((resolve, reject) => {
                     getInfo().then(res=>{
                         const user = res.data;
-                        this.id = user.userId;
+                        console.log(user)
+                        this.id = user.userid;
                         this.name = user.username;
                         this.avatar = user.avatar;
                         if (user.roles && user.roles.length > 0) {

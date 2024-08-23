@@ -29,20 +29,22 @@ public class CommonResult<T> implements Serializable {
      */
     private String msg;
 
+    private boolean success = isSuccess();
+
     public static final int SUCCESS = HttpStatus.SUCCESS;
 
     public static final int FAIL = HttpStatus.ERROR;
 
     public static <T> CommonResult<T> error(){
-        return restResult(FAIL,null, "操作失败");
+        return restResult(FAIL, "操作失败");
     }
 
     public static <T> CommonResult<T> error(ErrorCode errorCode){
-        return restResult(errorCode.getCode(),null, errorCode.getMsg());
+        return restResult(errorCode.getCode(), errorCode.getMsg());
     }
 
     public static <T> CommonResult<T> error(String msg){
-        return restResult(FAIL,null, msg);
+        return restResult(FAIL, msg);
     }
 
     public static <T> CommonResult<T> error(T data){
@@ -50,19 +52,15 @@ public class CommonResult<T> implements Serializable {
     }
 
     public static <T> CommonResult<T> error(int code , String msg){
-       return restResult(code,null, msg);
-    }
-
-    public static <T> CommonResult<T> error(T data , String msg){
-        return restResult(FAIL, data , msg);
+       return restResult(code, msg);
     }
 
     public static <T> CommonResult<T> success(){
-        return restResult(SUCCESS,null,"操作成功");
+        return restResult(SUCCESS,"操作成功");
     }
 
     public static <T> CommonResult<T> success(String msg){
-        return restResult(SUCCESS,null,msg);
+        return restResult(SUCCESS,msg);
     }
 
     public static <T> CommonResult<T> success(T data){
@@ -81,11 +79,14 @@ public class CommonResult<T> implements Serializable {
         return result;
     }
 
-    public static boolean isSuccess(int code){
-        return Objects.equals(code,SUCCESS);
+    private static <T> CommonResult<T> restResult(int code, String msg){
+        CommonResult<T> result = new CommonResult<>();
+        result.code = code;
+        result.msg = msg;
+        return result;
     }
 
-    public static boolean isError(int code){
-        return !Objects.equals(code,SUCCESS);
+    public boolean isSuccess(){
+        return Objects.equals(this.code,SUCCESS);
     }
 }

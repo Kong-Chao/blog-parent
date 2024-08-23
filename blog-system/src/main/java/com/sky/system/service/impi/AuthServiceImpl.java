@@ -9,6 +9,7 @@ import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
 import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysUser;
+import com.sky.common.core.exception.ServiceException;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.utils.UUIDutil;
 import com.sky.common.utils.jwt.JwtTokenUtil;
@@ -118,7 +119,7 @@ public class AuthServiceImpl implements AuthService {
         String newAccessToken = refreshTokenVO.getRefreshToken();
         Optional<Claims> claimsOpt = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
         if (!claimsOpt.isPresent()) {
-            throw new IllegalArgumentException("过期的刷新令牌。");
+            throw new ServiceException(GlobalErrorCodeConstants.UN_TOKEN_VERIFICATION);
         }
         Claims claims = claimsOpt.get();
         String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
