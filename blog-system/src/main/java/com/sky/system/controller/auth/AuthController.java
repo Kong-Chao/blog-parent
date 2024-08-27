@@ -35,7 +35,7 @@ public class AuthController {
 
     @PostMapping("/refresh")
     public CommonResult<TokenVO> refresh(@RequestBody @Valid RefreshTokenVO refreshTokenVO){
-        return CommonResult.success(authService.refreshToken(refreshTokenVO));
+        return authService.refreshToken(refreshTokenVO);
     }
 
     /**

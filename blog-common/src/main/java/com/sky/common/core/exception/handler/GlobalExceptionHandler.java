@@ -65,12 +65,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public CommonResult<String> handleException(Exception ex) {
         log.error("未知错误: {}", ex.getMessage());
-        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(), "An unexpected error occurred. Please try again later.");
+        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(), "发生意外错误。请稍后再试。");
     }
 
     @ExceptionHandler(Throwable.class)
     public CommonResult<String> handleThrowable(Throwable e) {
         log.error("系统错误: {}", e.getMessage());
-        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(), "A system error occurred. Please contact support.");
+        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(), "系统错误。处理步骤请联系技术支持。");
     }
 }

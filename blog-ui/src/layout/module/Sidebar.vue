@@ -51,7 +51,6 @@ export default defineComponent({
     // 获取所有注册路由
     const permissionStore = usePermissionStore();
     const allRoutes = computed(() => permissionStore.routes)
-    console.log('allRoutes',allRoutes.value);
 
     // 构建菜单路由
     const generateMenuItems = (routes, basePath = '') => {

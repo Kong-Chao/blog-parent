@@ -6,6 +6,10 @@ module.exports = defineConfig({
 
   // 配置前端开发服务器
   devServer: {
+    client: {
+      overlay: false,
+    },
+    open: true,
     port: 8081, // 前端运行端口
     proxy: {
       '/dev-api': {

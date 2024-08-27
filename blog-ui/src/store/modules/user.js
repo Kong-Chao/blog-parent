@@ -55,7 +55,6 @@ const useUserStore = defineStore(
                 return new Promise((resolve, reject) => {
                     getInfo().then(res=>{
                         const user = res.data;
-                        console.log(user)
                         this.id = user.userid;
                         this.name = user.username;
                         this.avatar = user.avatar;

@@ -16,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * 自定义退出处理类 返回成功
@@ -44,22 +43,16 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
         response.setContentType("application/json;charset=utf-8");
 
         // 获取token
-        final String requestTokenHeader = request.getHeader("Authorization");
+        final String authToken = request.getHeader("Authorization");
 
-        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            String jwtToken = requestTokenHeader.substring(7);
-            Optional<Claims> claimsOpt = jwtTokenUtil.getAllClaimsFromToken(jwtToken);
-
-            claimsOpt.ifPresent(claims -> {
+        if (authToken != null && authToken.startsWith("Bearer ")) {
+            String jwtToken = authToken.substring(7);
+            Claims claims = jwtTokenUtil.getAllClaimsFromToken(jwtToken);
+            if (claims != null) {
                 String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
                 redisService.deleteObject(userKey);
-            });
-
-            if (!claimsOpt.isPresent()) {
-                log.warn("JWT令牌无效或过期。");
             }
         }
-
         CommonResult<String> result = CommonResult.success("退出成功");
         response.getWriter().write(JSONObject.toJSONString(result));
     }

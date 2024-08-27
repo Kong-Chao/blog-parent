@@ -3,6 +3,7 @@ package com.sky.system.service;
 import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
+import com.sky.common.core.domain.CommonResult;
 import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysUser;
 
@@ -21,7 +22,7 @@ public interface AuthService {
      */
     UserBO authenticate(String username, String password);
 
-    TokenVO refreshToken(RefreshTokenVO refreshTokenVO);
+    CommonResult<TokenVO> refreshToken(RefreshTokenVO refreshTokenVO);
 
     SysUser getUserInfo();
 }

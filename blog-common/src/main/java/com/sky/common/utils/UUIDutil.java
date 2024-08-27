@@ -4,6 +4,9 @@ import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.UUID;
 
+/**
+ * @author admin
+ */
 public class UUIDutil {
     // 生成UUID
     public static String generateUUID() {

@@ -7,6 +7,7 @@ import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
 import com.sky.api.login.vo.TokenVO;
 import com.sky.common.constant.Constants;
+import com.sky.common.core.domain.CommonResult;
 import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysUser;
 import com.sky.common.core.exception.ServiceException;
@@ -30,7 +31,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -115,23 +115,21 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public TokenVO refreshToken(RefreshTokenVO refreshTokenVO) {
+    public CommonResult<TokenVO> refreshToken(RefreshTokenVO refreshTokenVO) {
         String newAccessToken = refreshTokenVO.getRefreshToken();
-        Optional<Claims> claimsOpt = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
-        if (!claimsOpt.isPresent()) {
+        Claims claims = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
+        if (claims == null) {
             throw new ServiceException(GlobalErrorCodeConstants.UN_TOKEN_VERIFICATION);
         }
-        Claims claims = claimsOpt.get();
         String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
         String refreshToken = jwtTokenUtil.generateRefreshToken(newAccessToken);
         long expiresIn = jwtTokenUtil.getExpirationDateFromToken(newAccessToken).getTime();
-
         // 更新登录用户信息缓存时间
         redisService.updateExpiration(userKey, jwtTokenUtil.getExpirationTime() * 2, TimeUnit.MILLISECONDS);
-        return new TokenVO()
+        return CommonResult.success(new TokenVO()
                 .setAccessToken(newAccessToken)
                 .setRefreshToken(refreshToken)
-                .setExpiresIn(expiresIn);
+                .setExpiresIn(expiresIn));
     }
 
     /**
