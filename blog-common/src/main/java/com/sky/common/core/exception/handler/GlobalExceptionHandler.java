@@ -1,11 +1,11 @@
 package com.sky.common.core.exception.handler;
 
 import com.sky.common.core.domain.CommonResult;
-import com.sky.common.core.exception.ServerException;
 import com.sky.common.core.exception.ServiceException;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
 
 /**
@@ -47,14 +48,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ExpiredJwtException.class)
     public CommonResult<String> handleExpiredJwtException(ExpiredJwtException ex) {
         log.error("JWT过期: {}", ex.getMessage());
-        return CommonResult.error(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "令牌已过期。请重新登录。");
+        return CommonResult.error(GlobalErrorCodeConstants.UNAUTHORIZED.getCode(), "令牌已过期,请重新登录。");
     }
 
-    @ExceptionHandler(ServerException.class)
-    public CommonResult<String> handleServerException(ServerException e) {
-        log.error("服务器错误: {}", e.getMessage());
-        return CommonResult.error(e.getCode(), e.getMessage());
+    @ExceptionHandler(AccessDeniedException.class)
+    public CommonResult<String> handleAccessDeniedException(AccessDeniedException ex, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',权限校验失败'{}'", requestURI, ex.getMessage());
+        return CommonResult.error(GlobalErrorCodeConstants.FORBIDDEN.getCode(), "没有权限,无法访问此资源,请联系管理员授权。");
     }
+
 
     @ExceptionHandler(ServiceException.class)
     public CommonResult<String> handleServiceException(ServiceException e) {

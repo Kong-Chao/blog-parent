@@ -31,7 +31,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e)
             throws IOException, ServletException {
         // 打印 warn 的原因是，不定期合并 warn，看看有没恶意破坏
-        log.warn("[commence][访问 URL({}) 时，用户({}) 权限不够]", request.getRequestURI(),
+        log.error("[commence][访问 URL({}) 时，用户({}) 权限不够]", request.getRequestURI(),
                 SecurityFrameworkUtils.getLoginUserId(), e);
         // 返回 403
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);

@@ -16,7 +16,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 /**
- * SpirngSecurity 安全配置
+ * SpringSecurity 安全配置
+ * @author admin
  */
 @Configuration
 @EnableConfigurationProperties(SecurityProperties.class)
