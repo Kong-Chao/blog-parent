@@ -1,15 +1,15 @@
 package com.sky.common.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.sky.common.constant.HttpStatus;
 import com.sky.common.core.exception.ErrorCode;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * 通用返回类
- * @author kc
+ * @author admin
  */
 @Data
 public class CommonResult<T> implements Serializable {
@@ -22,6 +22,7 @@ public class CommonResult<T> implements Serializable {
     /**
      * 返回数据
      */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     /**
@@ -29,64 +30,67 @@ public class CommonResult<T> implements Serializable {
      */
     private String msg;
 
-    private boolean success = isSuccess();
+    /**
+     * 是否成功
+     */
+    private boolean success;
 
-    public static final int SUCCESS = HttpStatus.SUCCESS;
+    private static final int SUCCESS = HttpStatus.SUCCESS;
+    private static final int FAIL = HttpStatus.ERROR;
 
-    public static final int FAIL = HttpStatus.ERROR;
-
-    public static <T> CommonResult<T> error(){
-        return restResult(FAIL, "操作失败");
+    /**
+     * 私有化构造方法，确保对象只能通过工厂方法创建
+     */
+    private CommonResult(int code, T data, String msg) {
+        this.code = code;
+        this.data = data;
+        this.msg = msg;
+        this.success = code == SUCCESS;
     }
 
-    public static <T> CommonResult<T> error(ErrorCode errorCode){
-        return restResult(errorCode.getCode(), errorCode.getMsg());
+    private CommonResult(int code, String msg) {
+        this(code, null, msg);
     }
 
-    public static <T> CommonResult<T> error(String msg){
-        return restResult(FAIL, msg);
+    /**
+     * 错误返回
+     */
+    public static <T> CommonResult<T> error() {
+        return new CommonResult<>(FAIL, "操作失败");
     }
 
-    public static <T> CommonResult<T> error(T data){
-        return restResult(FAIL,data, "操作失败");
+    public static <T> CommonResult<T> error(ErrorCode errorCode) {
+        return new CommonResult<>(errorCode.getCode(), errorCode.getMsg());
     }
 
-    public static <T> CommonResult<T> error(int code , String msg){
-       return restResult(code, msg);
+    public static <T> CommonResult<T> error(String msg) {
+        return new CommonResult<>(FAIL, msg);
     }
 
-    public static <T> CommonResult<T> success(){
-        return restResult(SUCCESS,"操作成功");
+    public static <T> CommonResult<T> error(T data) {
+        return new CommonResult<>(FAIL, data, "操作失败");
     }
 
-    public static <T> CommonResult<T> success(String msg){
-        return restResult(SUCCESS,msg);
+    public static <T> CommonResult<T> error(int code, String msg) {
+        return new CommonResult<>(code, msg);
     }
 
-    public static <T> CommonResult<T> success(T data){
-        return restResult(SUCCESS,data,"操作成功");
+    /**
+     * 成功返回
+     */
+    public static <T> CommonResult<T> success() {
+        return new CommonResult<>(SUCCESS, "操作成功");
     }
 
-    public static <T> CommonResult<T> success(T data , String msg){
-        return restResult(SUCCESS,data,msg);
+    public static <T> CommonResult<T> success(String msg) {
+        return new CommonResult<>(SUCCESS, msg);
     }
 
-    private static <T> CommonResult<T> restResult(int code,T data, String msg){
-        CommonResult<T> result = new CommonResult<>();
-        result.code = code;
-        result.msg = msg;
-        result.data = data;
-        return result;
+    public static <T> CommonResult<T> success(T data) {
+        return new CommonResult<>(SUCCESS, data, "操作成功");
     }
 
-    private static <T> CommonResult<T> restResult(int code, String msg){
-        CommonResult<T> result = new CommonResult<>();
-        result.code = code;
-        result.msg = msg;
-        return result;
-    }
-
-    public boolean isSuccess(){
-        return Objects.equals(this.code,SUCCESS);
+    public static <T> CommonResult<T> success(T data, String msg) {
+        return new CommonResult<>(SUCCESS, data, msg);
     }
 }

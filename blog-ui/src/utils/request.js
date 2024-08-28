@@ -85,7 +85,7 @@ axiosInstance.interceptors.response.use(res => {
         return res.data;
     }
     // 业务错误逻辑
-    if (code === 200 && res.data && res.data?.code !== 200 ) {
+    if (code === 200 && res.data && res.data?.code !== 200 && !msg.includes("token已过期")) {
         message.error(msg);
         return Promise.reject(msg);
     }

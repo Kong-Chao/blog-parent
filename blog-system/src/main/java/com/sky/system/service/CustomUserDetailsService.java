@@ -1,7 +1,7 @@
 package com.sky.system.service;
 
 import com.sky.common.core.domain.UserBO;
-import com.sky.common.core.exception.ServiceException;
+import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.system.mapper.AuthMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserBO userBO = authMapper.selectByUserName(username);
         if (userBO == null){
-            log.info("登录用户:{}不存在",username);
-            throw new ServiceException(00000,"登录用户" + "{" + username + "}" + "不存在！");
+            log.error("登录用户:{}不存在",username);
+            throw new UsernameNotFoundException(GlobalErrorCodeConstants.ACCOUNT_PASSWORD_ERROR.getMsg());
         }
         if (userBO.isAdmin()){
             userBO.setPermissions(authMapper.selectAllAuthority());

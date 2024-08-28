@@ -1,16 +1,14 @@
 package com.sky.common.core.exception;
 
 import com.sky.common.core.exception.enums.ServiceErrorCodeRange;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 /**
  * 业务逻辑异常 Exception
  * @author admin
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
-public final class ServiceException extends RuntimeException {
+@Getter
+public final class ServiceException extends BaseException {
 
     /**
      * 业务错误码
@@ -26,8 +24,7 @@ public final class ServiceException extends RuntimeException {
     /**
      * 空构造方法，避免反序列化问题
      */
-    public ServiceException() {
-    }
+    public ServiceException() {super("认证失败!");}
 
     public ServiceException(ErrorCode errorCode) {
         this.code = errorCode.getCode();
@@ -38,24 +35,4 @@ public final class ServiceException extends RuntimeException {
         this.code = code;
         this.message = message;
     }
-
-    public int getCode() {
-        return code;
-    }
-
-    public ServiceException setCode(int code) {
-        this.code = code;
-        return this;
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public ServiceException setMessage(String message) {
-        this.message = message;
-        return this;
-    }
-
 }

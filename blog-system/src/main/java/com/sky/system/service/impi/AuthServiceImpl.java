@@ -10,6 +10,7 @@ import com.sky.common.constant.Constants;
 import com.sky.common.core.domain.CommonResult;
 import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysUser;
+import com.sky.common.core.exception.BaseException;
 import com.sky.common.core.exception.ServiceException;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.utils.UUIDutil;
@@ -109,7 +110,7 @@ public class AuthServiceImpl implements AuthService {
         }catch (BadCredentialsException e){
             throw new BadCredentialsException(GlobalErrorCodeConstants.ACCOUNT_PASSWORD_ERROR.getMsg());
         }catch (Exception e){
-            log.error(e.getMessage());
+            throw new BaseException("认证服务异常,登录失败！");
         }
         return (UserBO) authenticate.getPrincipal();
     }

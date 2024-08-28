@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public CommonResult<String> handleException(Exception ex) {
         log.error("未知错误: {}", ex.getMessage());
-        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(), "发生意外错误。请稍后再试。");
+        return CommonResult.error(GlobalErrorCodeConstants.INTERNAL_SERVER_ERROR.getCode(),ex.getMessage());
     }
 
     @ExceptionHandler(Throwable.class)

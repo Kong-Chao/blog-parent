@@ -1,6 +1,7 @@
 package com.sky.common.core.domain;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.sky.common.core.domain.entity.SysMenu;
 import com.sky.common.core.domain.entity.SysRole;
 import lombok.Data;
@@ -45,14 +46,13 @@ public class UserBO implements UserDetails
 
     public boolean isAdmin()
     {
-        return isAdmin(this.userId);
+        return isAdmin(this.userId,this.username);
     }
 
-    public static boolean isAdmin(Long userId)
+    public static boolean isAdmin(Long userId,String username)
     {
-        return userId != null && 1L == userId;
+        return (userId != null && 1L == userId) || (StrUtil.isNotBlank(username) && "admin".equalsIgnoreCase(username));
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
