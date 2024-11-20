@@ -1,7 +1,7 @@
 package com.sky.common.core.exception.handler;
 
 import com.sky.common.core.domain.CommonResult;
-import com.sky.common.core.exception.ServiceException;
+import com.sky.common.core.exception.AuthException;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
@@ -58,9 +58,8 @@ public class GlobalExceptionHandler {
         return CommonResult.error(GlobalErrorCodeConstants.FORBIDDEN.getCode(), "没有权限,无法访问此资源,请联系管理员授权。");
     }
 
-
-    @ExceptionHandler(ServiceException.class)
-    public CommonResult<String> handleServiceException(ServiceException e) {
+    @ExceptionHandler(AuthException.class)
+    public CommonResult<String> handleServiceException(AuthException e) {
         log.error("业务错误: {}", e.getMessage());
         return CommonResult.error(e.getCode(), e.getMessage());
     }

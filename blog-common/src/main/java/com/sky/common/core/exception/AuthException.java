@@ -8,7 +8,7 @@ import lombok.Getter;
  * @author admin
  */
 @Getter
-public final class ServiceException extends BaseException {
+public final class AuthException extends BaseException {
 
     /**
      * 业务错误码
@@ -24,14 +24,14 @@ public final class ServiceException extends BaseException {
     /**
      * 空构造方法，避免反序列化问题
      */
-    public ServiceException() {super("认证失败!");}
+    public AuthException() {super("认证失败!");}
 
-    public ServiceException(ErrorCode errorCode) {
+    public AuthException(ErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMsg();
     }
 
-    public ServiceException(int code, String message) {
+    public AuthException(int code, String message) {
         this.code = code;
         this.message = message;
     }

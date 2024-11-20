@@ -1,12 +1,17 @@
 package com.sky.common.utils.jwt;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
@@ -22,7 +27,7 @@ public class JwtTokenUtil {
 
     @Getter
     @Value("${token.expireTime}")
-    private long expirationTime;
+    private long expirationTime; // 单位：毫秒
 
     /**
      * 令牌生成
@@ -43,9 +48,6 @@ public class JwtTokenUtil {
      */
     public String generateRefreshToken(String accessToken) {
         Claims claims = getAllClaimsFromToken(accessToken);
-        if (claims == null){
-            return null;
-        }
         Map<String, Object> refreshedClaims = new HashMap<>(claims);
         // 过期时间为访问令牌过期时间的两倍
         return Jwts.builder()
@@ -71,10 +73,7 @@ public class JwtTokenUtil {
      * @return 解析结果
      */
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = getAllClaimsFromToken(token);
-        if (claims == null) {
-            return null;
-        }
+        Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
 
@@ -84,25 +83,11 @@ public class JwtTokenUtil {
      * @return 载荷数据
      */
     public Claims getAllClaimsFromToken(String token) {
-        try {
-            return Jwts.parser()
-                    .setSigningKey(secretKey)
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (ExpiredJwtException e) {
-            log.warn("Token已过期: {}", e.getMessage());
-        } catch (UnsupportedJwtException e) {
-            log.error("不支持的Token: {}", e.getMessage());
-        } catch (MalformedJwtException e) {
-            log.error("无效的Token: {}", e.getMessage());
-        } catch (SignatureException e) {
-            log.error("签名验证失败: {}", e.getMessage());
-        } catch (Exception e) {
-            log.error("解析Token时发生异常: {}", e.getMessage());
-        }
-        return null;
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
     }
-
 
     /**
      * 验证token
@@ -110,17 +95,13 @@ public class JwtTokenUtil {
      * @return 是否有效
      */
     public boolean validateToken(String token) {
-        return token != null && !isTokenExpired(token);
-    }
-
-    /**
-     * 验证Token是否过期
-     * @param token 令牌
-     * @return 是否过期
-     */
-    private boolean isTokenExpired(String token) {
-        final Date expiration = getExpirationDateFromToken(token);
-        return expiration != null && expiration.before(new Date());
+        try {
+            Claims claims = getAllClaimsFromToken(token);
+            boolean isExpired = claims.getExpiration().before(new Date());
+            return !isExpired;
+        }catch (JwtException | IllegalArgumentException e){
+            return false;
+        }
     }
 
     /**

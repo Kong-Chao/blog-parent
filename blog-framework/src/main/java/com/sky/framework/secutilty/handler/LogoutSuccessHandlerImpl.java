@@ -43,10 +43,9 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
         response.setContentType("application/json;charset=utf-8");
 
         // 获取token
-        final String authToken = request.getHeader("Authorization");
-
-        if (authToken != null && authToken.startsWith("Bearer ")) {
-            String jwtToken = authToken.substring(7);
+        final String authToken = request.getHeader(Constants.AUTHORIZATION_HEADER);
+        if (authToken != null && authToken.startsWith(Constants.TOKEN_PREFIX) && jwtTokenUtil.validateToken(authToken)) {
+            String jwtToken = authToken.substring(Constants.TOKEN_PREFIX.length());
             Claims claims = jwtTokenUtil.getAllClaimsFromToken(jwtToken);
             if (claims != null) {
                 String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();

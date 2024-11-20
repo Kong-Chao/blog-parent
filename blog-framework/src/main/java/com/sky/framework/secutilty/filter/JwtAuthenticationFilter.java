@@ -7,6 +7,7 @@ import com.sky.common.utils.json.JsonUtils;
 import com.sky.common.utils.jwt.JwtTokenUtil;
 import com.sky.framework.core.redis.service.RedisService;
 import io.jsonwebtoken.Claims;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,36 +28,25 @@ import java.io.IOException;
  */
 @Component
 @Slf4j
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
     private final RedisService redisService;
 
-    @Autowired
-    public JwtAuthenticationFilter(JwtTokenUtil jwtTokenUtil, RedisService redisService) {
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.redisService = redisService;
-    }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        String authToken = request.getHeader("Authorization");
-        if (StrUtil.isNotBlank(authToken) && authToken.startsWith("Bearer ")) {
-            authToken = authToken.substring(7);
+        String authToken = request.getHeader(Constants.AUTHORIZATION_HEADER);
+        if (StrUtil.isNotBlank(authToken) && authToken.startsWith(Constants.TOKEN_PREFIX)) {
+            authToken = authToken.substring(Constants.TOKEN_PREFIX.length());
         }
         // 当 token 存在且尚未验证身份时，执行验证逻辑
-        if (authToken != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (authToken != null && jwtTokenUtil.validateToken(authToken) && SecurityContextHolder.getContext().getAuthentication() == null) {
             Claims claims = jwtTokenUtil.getAllClaimsFromToken(authToken);
-            if (claims != null){
-                String userKey = Constants.AUTH_TOKEN + claims.get("uuid");
-                UserBO loginUser = JsonUtils.mapToObject(redisService.getCacheObject(userKey), UserBO.class);
-                if (loginUser != null) {
-                    setAuthenticationContext(loginUser,request);
-                }else {
-                    log.warn("用户数据在缓存中不存在，userKey: {}", userKey);
-                }
-            }
+            String userKey = Constants.AUTH_TOKEN + claims.get("uuid");
+            UserBO loginUser = JsonUtils.mapToObject(redisService.getCacheObject(userKey), UserBO.class);
+            setAuthenticationContext(loginUser,request);
         }
         chain.doFilter(request, response);
     }

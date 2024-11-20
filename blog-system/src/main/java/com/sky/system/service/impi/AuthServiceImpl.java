@@ -11,7 +11,6 @@ import com.sky.common.core.domain.CommonResult;
 import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysUser;
 import com.sky.common.core.exception.BaseException;
-import com.sky.common.core.exception.ServiceException;
 import com.sky.common.core.exception.enums.GlobalErrorCodeConstants;
 import com.sky.common.utils.UUIDutil;
 import com.sky.common.utils.jwt.JwtTokenUtil;
@@ -119,9 +118,6 @@ public class AuthServiceImpl implements AuthService {
     public CommonResult<TokenVO> refreshToken(RefreshTokenVO refreshTokenVO) {
         String newAccessToken = refreshTokenVO.getRefreshToken();
         Claims claims = jwtTokenUtil.getAllClaimsFromToken(newAccessToken);
-        if (claims == null) {
-            throw new ServiceException(GlobalErrorCodeConstants.UN_TOKEN_VERIFICATION);
-        }
         String userKey = Constants.AUTH_TOKEN + claims.get("uuid").toString();
         String refreshToken = jwtTokenUtil.generateRefreshToken(newAccessToken);
         long expiresIn = jwtTokenUtil.getExpirationDateFromToken(newAccessToken).getTime();
