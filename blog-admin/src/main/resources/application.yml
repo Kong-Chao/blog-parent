@@ -35,5 +35,5 @@ token:
   # 令牌密钥
   secret: abcdefghijklmnopqrstuvwxyz
   # 令牌有效期（默认30秒）
-  expireTime: 30000
+  expireTime: 120000
 

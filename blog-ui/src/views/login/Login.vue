@@ -41,11 +41,19 @@
                 :loading="loading"
                 :disabled="loading"
                 class="login-form-button"
-                @click.prevent="handleLogin"
+                @click.prevent="triggerCaptcha"
             >
               {{ loading ? '登录中...' : '登录' }}
             </a-button>
           </a-form-item>
+          <!--验证码-->
+          <Verify
+              mode="pop"
+              :captchaType="captchaType"
+              :imgSize="{width:'360px',height:'200px'}"
+              ref="verify"
+              @success = onCaptchaVerified
+          />
         </a-form>
       </div>
     </div>
@@ -53,26 +61,24 @@
 </template>
 
 <script setup>
-import { getCurrentInstance, reactive, ref, watch } from 'vue';
+import {getCurrentInstance, onMounted, reactive, ref, watch} from 'vue';
 import Cookies from 'js-cookie';
 import useUserStore from '@/store/modules/user';
 import { useRoute, useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
+import Verify from "@/components/verifition/Verify.vue";
 
 const route = useRoute();
 const router = useRouter();
 const loginRef = ref();
+// 验证码
+const verify = ref(null);
+const captchaType = ref('clickWord'); // 默认类型(blockPuzzle、clickWord)
+
 // 当前组件的实例
 const { proxy } = getCurrentInstance();
 
 const redirect = ref(undefined);
-watch(
-    route,
-    (newRoute) => {
-      redirect.value = newRoute.query && newRoute.query.redirect;
-    },
-    { immediate: true }
-);
 
 const loginForm = reactive({
   username: 'admin',
@@ -83,9 +89,26 @@ const rules = {
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 };
-
 const loading = ref(false);
 
+// 触发验证码弹窗
+const triggerCaptcha = () => {
+  // 表单校验，确保用户名和密码已输入
+  proxy.$refs.loginRef
+      .validate()
+      .then(() => {
+        // 显示验证码弹窗
+        verify.value?.show();
+      })
+      .catch((error) => {
+        console.error('表单校验失败', error);
+      });
+};
+const onCaptchaVerified = (data) => {
+  if (data && data.captchaVerification){
+    handleLogin();
+  }
+};
 // 登录
 const handleLogin = () => {
   proxy.$refs.loginRef
@@ -111,8 +134,9 @@ const handleLogin = () => {
               router.push({path: '/'});
             })
             .catch((error) => {
+              console.log('error',error)
               loading.value = false;
-              message.error('登录失败，请重试！', 2);
+              message.error('登录失败，用户名或密码错误，请重试！', 2);
               console.error('登录失败', error);
             })
       }) .catch((error) => {
@@ -120,6 +144,13 @@ const handleLogin = () => {
   });
 
 };
+watch(
+    route,
+    (newRoute) => {
+      redirect.value = newRoute.query && newRoute.query.redirect;
+    },
+    { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>

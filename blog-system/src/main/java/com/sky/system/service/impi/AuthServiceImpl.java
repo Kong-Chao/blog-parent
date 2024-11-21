@@ -1,7 +1,5 @@
 package com.sky.system.service.impi;
 
-import com.anji.captcha.model.common.ResponseModel;
-import com.anji.captcha.model.vo.CaptchaVO;
 import com.anji.captcha.service.CaptchaService;
 import com.sky.api.login.vo.AuthLoginVO;
 import com.sky.api.login.vo.RefreshTokenVO;
@@ -63,8 +61,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public TokenVO login(AuthLoginVO authLoginVO) {
-        // 验证码校验
-        //validateCaptcha(authLoginVO);
         // 账号密码登录验证
         UserBO loginUser = authenticate(authLoginVO.getUsername(), authLoginVO.getPassword());
         Map<String, Object> claims = new HashMap<>(6);
@@ -83,16 +79,6 @@ public class AuthServiceImpl implements AuthService {
                 .setRefreshToken(refreshToken)
                 .setExpiresIn(expiresIn);
         return tokenVO;
-    }
-
-    private void validateCaptcha(AuthLoginVO authLoginVO) {
-        // 验证码校验
-        CaptchaVO captchaVO = new CaptchaVO();
-        captchaVO.setCaptchaVerification(authLoginVO.getCaptchaVerification());
-        ResponseModel re = captchaService.verification(captchaVO);
-       /* if (!re.isSuccess()){
-            throw new BaseException(GlobalErrorCodeEnum.INTERNAL_SERVER_ERROR.getCode(),"验证码错误，原因:" + "{" + re.getRepMsg() +  "}");
-        }*/
     }
 
     /**

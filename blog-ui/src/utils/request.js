@@ -16,7 +16,10 @@ let requests = [];
 
 const axiosInstance = axios.create({
     baseURL: baseURL, // 设置基础请求路径
-    timeout: 10000 // 请求超时时间（毫秒）
+    timeout: 10000, // 请求超时时间（毫秒）
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+    }
 });
 
 // 添加请求到待重发队列
@@ -79,13 +82,17 @@ axiosInstance.interceptors.response.use(res => {
     // 未设置状态码则默认为成功状态
     const code = res.status;
     // 获取错误信息
-    const msg = res.data.msg || errorCode[code] || errorCode['default'];
+    const msg = res.data.msg || res.data.repMsg || errorCode[code] || errorCode['default'];
     // 二进制数据直接返回
     if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer'){
         return res.data;
     }
+    // 验证码
+    if (code === 200 && res.data && res.data?.repCode === '0000'){
+        return res.data;
+    }
     // 业务错误逻辑
-    if (code === 200 && res.data && res.data?.code !== 200 && !msg.includes("token已过期")) {
+    if (code === 200 && res.data && res.data?.code !== 200 && res.data.repCode === '6111' && !msg.includes("token已过期")) {
         message.error(msg);
         return Promise.reject(msg);
     }
