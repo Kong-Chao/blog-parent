@@ -14,6 +14,9 @@ mybatis-plus:
       # 表名前缀
       table-prefix: ms_
   mapper-locations: classpath*:/mapper/**/*.xml
+logging:
+  level:
+    com.ulisesbocchio.jasyptspringboot: DEBUG
 
 aj:
   captcha:
@@ -33,7 +36,7 @@ aj:
     req-verify-minute-limit: 60 # verify 接口一分钟内请求数限制
 token:
   # 令牌密钥
-  secret: abcdefghijklmnopqrstuvwxyz
+  secret: ENC(vfrWF45X44w8YI+RbjIg5AKN2RWW4M3YzKME/0oQxDmXFGn/XqHUBdMwvr9JIkDMn9dRcX1f89d5U25cNMZDBQ==)
   # 令牌有效期（默认30秒）
   expireTime: 120000
 

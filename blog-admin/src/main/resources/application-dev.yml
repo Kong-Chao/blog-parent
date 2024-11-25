@@ -9,9 +9,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #数据库配置
     druid:
-      url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-      username: root
-      password: admin123
+      url: ENC(cv9INhLppnVh5AOtYYQ6rRXfe5K5MbB7gvcddv+44axserNcMijqqKBOlrz5rbgzZS/8UI3Wg5YoIsLLIwoHvGjSLBcju+6Xcu+sY1W7v8cPgS1YyKeUg20JWOte5g/t4mPgz5XyyziDq3vvui9hlgyS2JTmtG0DDDxJzbH3+pPmOYMoCsuFfC68FwFA6hTFkZTEaljv/r5VhFgihss5nvVkNSfXc6OuLz1LiQ23pos=)
+      username: ENC(oL7rr7xnw8M087aYZ00ew2PKJC1Fe7oH0ITxLDNdl9qv+ofYk//edthxEYiRom6P)
+      password: ENC(UUi9vDcjG6OMAW+3XtjqTK/176DHlgEDpLGxipPD9Jg2d6delfQE1quc24dA74fF)
   redis:
     host: localhost
     port: 6379
@@ -25,6 +25,8 @@ blog:
     white-list:
       - /system/auth/login
       - /system/auth/refresh
-
+#jasypt:
+#  encryptor:
+#    password: qwe!@#123
 
 

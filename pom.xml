@@ -32,6 +32,7 @@
         <captcha-plus.version>1.3.0</captcha-plus.version>
         <hutool.version>5.8.25</hutool.version>
         <jwt.version>0.9.1</jwt.version>
+        <jasypt.version>3.0.5</jasypt.version>
     </properties>
 
     <!--申明为父工程-->
@@ -163,6 +164,13 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+
+            <!--配置文件加解密工具-->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
             </dependency>
 
             <!-- 通用工具-->
