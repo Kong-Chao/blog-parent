@@ -2,7 +2,14 @@
   <div class="div-layout">
     <a-layout breakpoint="lg" collapsed-width="0" @collapse="onCollapse" class="layout">
       <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-        <div class="logo">LOGO</div>
+        <!-- logo 修改为图标，大小根据collapsed变化 -->
+        <img
+            src="@/assets/logo/logo.png"
+            alt="Logo"
+            class="logo"
+            :style="{ width: collapsed ? '60px' : '80px', height: collapsed ? '45px' : '60px' }"
+            @click="goHome"
+        />
         <a-menu
             theme="dark"
             mode="inline"
@@ -47,12 +54,12 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import usePermissionStore from "@/store/modules/permission";
 import MenuItem from "@/layout/module/MenuItem.vue";
-import {MenuFoldOutlined,MenuUnfoldOutlined} from "@ant-design/icons-vue";
-import {iconMap} from "@/utils/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
+import { iconMap } from "@/utils/icons";
 
 // 状态管理
 const collapsed = ref(false);
@@ -80,9 +87,11 @@ const processedRoutes = computed(() => {
   };
   return processRoutes(rawRoutes.value);
 });
+
 const onCollapse = (collapsed) => {
   collapsed.value = collapsed; // 更新状态
 };
+
 // 菜单事件处理
 const handleMenuClick = ({ key }) => {
   selectedKeys.value = [key];
@@ -93,11 +102,17 @@ const handleOpenChange = (keys) => {
 const toggleCollapsed = () => {
   collapsed.value = !collapsed.value;
 };
+
 // 自定义resolveIconComponent函数
 const resolveComponent = (iconName) => {
-  if (iconName){
+  if (iconName) {
     return iconMap[iconName];
   }
+};
+
+// 跳转到首页
+const goHome = () => {
+  router.push("/"); // 导航到首页路径
 };
 </script>
 
@@ -112,6 +127,7 @@ const resolveComponent = (iconName) => {
 .layout {
   height: 100%;
 }
+
 .trigger {
   padding: 0 24px;
   font-size: 18px;
@@ -121,6 +137,14 @@ const resolveComponent = (iconName) => {
 
 .trigger:hover {
   color: #1890ff;
+}
+
+/* logo 样式 */
+.logo {
+  cursor: pointer;
+  transition: width 0.3s, height 0.3s; /* 动画效果 */
+  display: block;
+  margin: 20px auto;
 }
 
 @media (max-width: 768px) {
