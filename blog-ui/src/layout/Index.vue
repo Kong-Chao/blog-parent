@@ -144,7 +144,7 @@ const goHome = () => {
   cursor: pointer;
   transition: width 0.3s, height 0.3s; /* 动画效果 */
   display: block;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 @media (max-width: 768px) {
