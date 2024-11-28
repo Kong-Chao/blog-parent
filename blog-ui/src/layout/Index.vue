@@ -15,7 +15,7 @@
             <template v-if="route.children?.length">
               <a-sub-menu :key="route.path" :title="route.meta?.title">
                 <template #icon>
-                  <component :is="resolveComponent(route.meta?.icon || 'user-outlined')" />
+                  <component :is="resolveComponent(route.meta?.icon)" />
                 </template>
                 <template v-for="child in route.children" :key="child.path">
                   <MenuItem :route="child" />
@@ -47,11 +47,12 @@
 </template>
 
 <script setup>
-import { computed, ref, resolveComponent } from "vue";
+import {computed, ref} from "vue";
 import { useRouter } from "vue-router";
 import usePermissionStore from "@/store/modules/permission";
 import MenuItem from "@/layout/module/MenuItem.vue";
 import {MenuFoldOutlined,MenuUnfoldOutlined} from "@ant-design/icons-vue";
+import {iconMap} from "@/utils/icons";
 
 // 状态管理
 const collapsed = ref(false);
@@ -91,6 +92,12 @@ const handleOpenChange = (keys) => {
 };
 const toggleCollapsed = () => {
   collapsed.value = !collapsed.value;
+};
+// 自定义resolveIconComponent函数
+const resolveComponent = (iconName) => {
+  if (iconName){
+    return iconMap[iconName];
+  }
 };
 </script>
 
