@@ -7,37 +7,42 @@ export const constantRoutes = [
         path: "/",
         component: Layout,
         redirect: "/home",
-        meta: { title: "首页", icon: "DashboardOutlined", visible: true },
+        hidden: false,
+        meta: { title: "首页", icon: "DashboardOutlined"},
         children: [
             {
                 path: "home",
                 name: "Home",
+                hidden: true,
                 component: () => import("@/views/home/Home.vue"),
-                meta: { title: '', visible: false },
             },
-        ],
+        ]
     },
     {
         path: '/login',
         name: 'Login',
         component: Login,
-        meta: {
-            visible: false
-        },
+        hidden: true,
     },
     {
         path: "/user",
         component: Layout,
-        meta: { visible: false },
+        hidden: true,
         children: [
             {
                 path: "profile",
                 name: "Profile",
+                hidden: false,
                 component: () => import("@/views/system/user/profile/index.vue"),
-                meta: { title: '个人中心', visible: false },
+                meta: { title: '个人中心', },
             },
         ],
     },
+    {
+        path: "/:pathMatch(.*)*",  // 捕获所有未匹配的路由
+        hidden: true,
+        component: () => import("@/views/error/404.vue"),
+    }
 ];
 
 const router = createRouter({

@@ -73,7 +73,7 @@ const router = useRouter();
 const processedRoutes = computed(() => {
   const processRoutes = (routes, parentPath = "") => {
     return routes
-        .filter((route) => route.meta?.visible !== false) // 排除不可见路由
+        .filter((route) => route.hidden !== true) // 排除不可见路由
         .map((route) => {
           const fullPath = route.path.startsWith("/")
               ? route.path
