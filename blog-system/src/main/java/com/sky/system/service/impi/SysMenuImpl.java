@@ -1,8 +1,10 @@
 package com.sky.system.service.impi;
 
 import cn.hutool.core.util.StrUtil;
+import com.sky.common.core.domain.UserBO;
 import com.sky.common.core.domain.entity.SysMenu;
 import com.sky.common.core.domain.vo.RouterVO;
+import com.sky.framework.secutilty.util.SecurityFrameworkUtils;
 import com.sky.system.mapper.SysMenuMapper;
 import com.sky.system.service.SysMenuService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +32,13 @@ public class SysMenuImpl implements SysMenuService {
      */
     @Override
     public List<RouterVO> getRoutes() {
-        List<SysMenu> sysMenus = sysMenuMapper.selectAllMenus();
+        UserBO userBO = SecurityFrameworkUtils.getLoginUser();
+        List<SysMenu> sysMenus;
+        if (Objects.requireNonNull(userBO).isAdmin()){
+            sysMenus = sysMenuMapper.selectAllMenus();
+        }else {
+            sysMenus = sysMenuMapper.selectMenusByUserId(userBO.getUserId());
+        }
         return buildRouteTree(sysMenus,0L);
     }
 
@@ -49,14 +54,8 @@ public class SysMenuImpl implements SysMenuService {
             vo.setPath(getPath(menu,parentId));
             vo.setName(getRouteName(menu.getRouteName(),menu.getPath()));
             vo.setComponent(getComponent(menu,menuList));
-            vo.setMeta(new RouterVO.RouteMeta(
-                    menu.getMenuName(),
-                    menu.getIcon(),
-                    menu.getPerms(),
-                    Objects.equals(menu.getIsCache(), "0"),
-                    Objects.equals(menu.getVisible(), "0"),
-                    Objects.equals(menu.getIsFrame(), "0")
-            ));
+            vo.setHidden(Objects.equals(menu.getVisible(), "1"));
+            vo.setMeta(new RouterVO.RouteMeta(menu.getMenuName(), menu.getIcon()));
 
             // 递归添加子节点
             List<RouterVO> children = buildRouteTree(menuList,menu.getMenuId());
@@ -74,10 +73,10 @@ public class SysMenuImpl implements SysMenuService {
     }
 
     private String getPath(SysMenu menu, Long parentId){
-        if (isHttpUrl(menu.getPath())){
+        if (0L != parentId && isHttpUrl(menu.getPath())){
             return menu.getPath();
         }
-        if (0L == parentId){
+        if (0L == parentId && "M".equals(menu.getMenuType())){
             return "/" + menu.getPath();
         }
         return menu.getPath();

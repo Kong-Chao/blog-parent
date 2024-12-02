@@ -48,6 +48,10 @@ public class AuthController {
         return CommonResult.success(authService.getUserInfo());
     }
 
+    /**
+     * 根据用户id获取路由
+     * @return
+     */
     @GetMapping("/getRoutes")
     public CommonResult<List<RouterVO>> getRoutes(){
         return CommonResult.success(sysMenuService.getRoutes());

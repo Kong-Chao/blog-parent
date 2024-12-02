@@ -13,6 +13,17 @@ import java.util.List;
  */
 @Mapper
 public interface SysMenuMapper {
+    /**
+     * 查询所有菜单--管理员
+     * @return
+     */
     List<SysMenu> selectAllMenus();
+
+    /**
+     * 根据用户id查询菜单
+     * @param userId
+     * @return
+     */
+    List<SysMenu> selectMenusByUserId(Long userId);
 }
 
